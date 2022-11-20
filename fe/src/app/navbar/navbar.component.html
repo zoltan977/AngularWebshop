@@ -1,1 +1,12 @@
-navbar works
+<mat-toolbar color="primary">
+    <button mat-icon-button routerLink="/"><mat-icon class="home">home</mat-icon></button>
+    <button mat-button routerLink="shopping-cart">Shopping Cart</button>
+    <button mat-button routerLink="login">Login</button>
+    <button mat-button [matMenuTriggerFor]="menu"><span class="menu">Username<mat-icon>arrow_drop_down</mat-icon></span></button>
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item>My orders</button>
+        <button mat-menu-item>Manage orders</button>
+        <button mat-menu-item>Manage products</button>
+        <button mat-menu-item>Log out</button>
+    </mat-menu>
+</mat-toolbar>
