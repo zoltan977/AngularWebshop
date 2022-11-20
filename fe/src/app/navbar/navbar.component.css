@@ -1,0 +1,8 @@
+mat-icon.home {
+    transform: scale(2);
+}
+
+span.menu {
+    display: flex;
+    align-items: center;
+}
