@@ -1,6 +1,7 @@
 import * as dotenv from "dotenv";
 import {connect, ConnectOptions, connection} from 'mongoose';
 import App from "./app";
+import { AuthRoutes } from "./routes/AuthRoutes";
 
 dotenv.config();
 
@@ -19,7 +20,7 @@ dotenv.config();
         useUnifiedTopology: true,
       } as ConnectOptions);
 
-    const app = new App();
+    const app = new App([new AuthRoutes()]);
 
     app.listen();
 })()
