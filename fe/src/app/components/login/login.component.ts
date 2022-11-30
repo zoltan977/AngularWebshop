@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { CredentialsError } from '../errors/credentialsError';
-import { FormError } from '../errors/formError';
-import { AuthService } from '../services/auth.service';
+import { CredentialsError } from '../../errors/credentialsError';
+import { FormError } from '../../errors/formError';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',

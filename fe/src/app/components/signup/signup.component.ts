@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { FormBuilder, NgForm } from '@angular/forms';
-import { FormError } from '../errors/formError';
-import { AuthService } from '../services/auth.service';
+import { FormError } from '../../errors/formError';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'signup',
