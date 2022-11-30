@@ -1,0 +1,42 @@
+<form #signUpForm="ngForm" (submit)="signUp(signUpForm.value)">
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Username</mat-label>
+          <input matInput placeholder="username" name="username" #username="ngModel" ngModel required>
+          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error *ngIf="username.errors?.required">Meg kell adni a felhasználó nevet</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="email" name="email" #email="ngModel" ngModel required email>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="email.errors?.required">Meg kell adni az email-t</mat-error>
+          <mat-error *ngIf="email.errors?.email">Nem megfelelő email</mat-error>
+          <mat-error *ngIf="email.errors?.isEmailAlreadyRegistered">{{email.errors?.isEmailAlreadyRegistered}}</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+          <input [type]="toggle.type" matInput placeholder="password" name="password" #password="ngModel" ngModel required minlength="8">
+          <mat-hint>8 characters at least</mat-hint>
+          <mat-error *ngIf="password.errors?.minlength">Nem elég hosszú a jelszó</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Confirm password</mat-label>
+          <mat-pass-toggle-visibility #toggle2 matSuffix></mat-pass-toggle-visibility>
+          <input [type]="toggle2.type" matInput placeholder="Confirm password" name="confirmPassword" #confirmPassword="ngModel" ngModel required [pattern]="password.value">
+          <mat-error *ngIf="confirmPassword.errors?.pattern">Jelszavak nem egyeznek</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" type="submit">
+            Sign Up!
+        </button>
+    </p>
+</form>

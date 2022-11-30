@@ -1,1 +1,31 @@
-login works
+<form #loginForm="ngForm" (submit)="login(loginForm.value)">
+    <p>
+        <mat-error *ngIf="loginForm.errors?.invalidCredentials">{{loginForm.errors?.invalidCredentials}}</mat-error>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Email</mat-label>
+          <input matInput placeholder="email" name="email" #email="ngModel" ngModel required email>
+          <mat-icon matSuffix>email</mat-icon>
+          <mat-error *ngIf="email.errors?.required">Meg kell adni az email-t</mat-error>
+          <mat-error *ngIf="email.errors?.email">Nem megfelelő email</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
+          <input [type]="toggle.type" matInput placeholder="password" name="password" #password="ngModel" ngModel required minlength="8">
+          <mat-hint>Legalább 8 karakter</mat-hint>
+          <mat-error *ngIf="password.errors?.minlength">Nem elég hosszú a jelszó</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">
+            Login
+        </button>
+    </p>
+    <p>
+        <a routerLink="/signup">Sign Up!</a>
+    </p>
+</form>

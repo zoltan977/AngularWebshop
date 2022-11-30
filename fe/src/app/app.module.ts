@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -19,10 +19,15 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 
+import { SignupComponent } from './signup/signup.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
+import { AppErrorHandler } from './utils/errorHandler';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -41,6 +46,7 @@ export function tokenGetter() {
     AdminOrdersComponent,
     NavbarComponent,
     LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +54,9 @@ export function tokenGetter() {
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatPasswordStrengthModule,
     FormsModule,
     HttpClientModule,
     JwtModule.forRoot({
@@ -62,12 +71,14 @@ export function tokenGetter() {
       {path: 'check-out', component: CheckOutComponent},
       {path: 'order-success', component: OrderSuccessComponent},
       {path: 'login', component: LoginComponent},
+      {path: 'signup', component: SignupComponent},
       {path: 'admin/products', component: AdminProductsComponent},
       {path: 'admin/orders', component: AdminOrdersComponent},
     ]),
     BrowserAnimationsModule,
   ],
   providers: [
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
