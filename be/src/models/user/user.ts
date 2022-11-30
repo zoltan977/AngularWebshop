@@ -1,14 +1,14 @@
 import {Schema, model, Document} from 'mongoose';
 
-interface UserModelInterface {
-    name: string;
+export interface UserModelInterface {
+    username: string;
     password: string;
     email: string;
     photo?: string;
 }
 
 const UserSchema = new Schema<UserModelInterface>({
-    name: {
+    username: {
       type: String,
       required: true,
     },
@@ -27,5 +27,7 @@ const UserSchema = new Schema<UserModelInterface>({
     },
   });
   
-  module.exports = model<Document & UserModelInterface>("user", UserSchema);
+ const UserModel = model<Document & UserModelInterface>("user", UserSchema);
+
+ export default UserModel;
   
