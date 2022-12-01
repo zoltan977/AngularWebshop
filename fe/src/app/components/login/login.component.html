@@ -16,19 +16,22 @@
           <mat-label>Password</mat-label>
           <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
           <input [type]="toggle.type" matInput placeholder="password" name="password" 
-                #password="ngModel" ngModel required minlength="8">
+                #password="ngModel" ngModel required minlength="8" pattern=".*\d.*">
           <mat-password-strength 
             #passwordComponent 
             [password]="password.value"
             [enableLowerCaseLetterRule]="false"
             [enableUpperCaseLetterRule]="false"
-            [enableDigitRule]="false"
+            [enableDigitRule]="true"
+            [enableLengthRule]="true"
             [enableSpecialCharRule]="false">
           </mat-password-strength>
           <mat-password-strength-info
-            *ngIf="(password.errors?.minlength || password.errors?.required) && (password.dirty || password.touched)"
+            *ngIf="(password.errors?.minlength || password.errors?.required || password.errors?.pattern)
+             && (password.dirty || password.touched)"
             class="with-icon-padding" 
             [minCharsCriteriaMsg]="'Legalább 8 karakter'"
+            [digitsCriteriaMsg]="'Legalább 1 szám'"
             [passwordComponent]="passwordComponent">
           </mat-password-strength-info>
         </mat-form-field>

@@ -3,6 +3,16 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
-mat-password-strength-info.with-icon-padding > mat-card  > mat-card-content > div.info-row > mat-icon {
-    flex-basis: 30%;
+mat-password-strength-info.with-icon-padding > mat-card  > mat-card-content {
+    row-gap: 10px;
+    
+    div.info-row {
+        mat-icon {
+            flex-basis: 25%;
+        }
+    
+        span {
+            flex-basis: 75%;
+        }
+    }
 }
