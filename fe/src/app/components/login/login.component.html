@@ -15,12 +15,25 @@
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
-          <input [type]="toggle.type" matInput placeholder="password" name="password" #password="ngModel" ngModel required minlength="8">
-          <mat-hint>Legalább 8 karakter</mat-hint>
-          <mat-error *ngIf="password.errors?.minlength">Nem elég hosszú a jelszó</mat-error>
+          <input [type]="toggle.type" matInput placeholder="password" name="password" 
+                #password="ngModel" ngModel required minlength="8">
+          <mat-password-strength 
+            #passwordComponent 
+            [password]="password.value"
+            [enableLowerCaseLetterRule]="false"
+            [enableUpperCaseLetterRule]="false"
+            [enableDigitRule]="false"
+            [enableSpecialCharRule]="false">
+          </mat-password-strength>
+          <mat-password-strength-info
+            *ngIf="(password.errors?.minlength || password.errors?.required) && (password.dirty || password.touched)"
+            class="with-icon-padding" 
+            [minCharsCriteriaMsg]="'Legalább 8 karakter'"
+            [passwordComponent]="passwordComponent">
+          </mat-password-strength-info>
         </mat-form-field>
     </p>
-    <p>
+    <p (click)="loginClicked()">
         <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">
             Login
         </button>

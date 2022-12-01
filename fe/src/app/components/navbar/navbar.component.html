@@ -5,8 +5,6 @@
         <button mat-button routerLink="login">Login</button>
     </ng-template>
     <ng-container *ngIf="authService.currentUser; else login">
-        <button mat-button (click)="authService.logout()">Logout</button>
-
         <button mat-button [matMenuTriggerFor]="menu">
             <span class="menu">
                 {{authService.currentUser.user.username}}
@@ -17,7 +15,7 @@
             <button mat-menu-item>My orders</button>
             <button mat-menu-item>Manage orders</button>
             <button mat-menu-item>Manage products</button>
-            <button mat-menu-item>Log out</button>
+            <button mat-menu-item (click)="authService.logout()">Log out</button>
         </mat-menu>
     </ng-container>
 </mat-toolbar>

@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
-import { FormBuilder, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
+import setFormErrors from 'src/app/utils/setFormErrors';
 import { FormError } from '../../errors/formError';
 import { AuthService } from '../../services/auth.service';
 
@@ -14,17 +15,21 @@ export class SignupComponent {
   constructor(private authService: AuthService) {
   }
 
+  confirmPasswordKeyDownHandler() {
+    this.signUpForm?.controls['confirmPassword'].markAsTouched({onlySelf: true})
+  }
+
+  signUpClicked() {
+    this.signUpForm?.control.markAllAsTouched()
+  }
+
   signUp(formData: any) {
     this.authService.signUp(formData)
     .subscribe({
       error: (error) => {
         console.log("signup component error:", error)
         if (error instanceof FormError) {
-          error.originalError.forEach((e: any) => {
-            e.constraints.forEach((c: Object) => {
-              this.signUpForm?.controls[e.property].setErrors(c)
-            });
-          });
+          setFormErrors(error, this.signUpForm)
         } else {
           throw error;
         }
