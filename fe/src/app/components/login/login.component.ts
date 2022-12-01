@@ -1,5 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import setFormErrors from 'src/app/utils/setFormErrors';
 import { CredentialsError } from '../../errors/credentialsError';
 import { FormError } from '../../errors/formError';
 import { AuthService } from '../../services/auth.service';
@@ -13,7 +14,10 @@ export class LoginComponent {
   @ViewChild('loginForm') loginForm: NgForm | undefined;
 
   constructor(private authService: AuthService) {
-    
+  }
+
+  loginClicked() {
+    this.loginForm?.control.markAllAsTouched()
   }
 
   login(formData: any) {
@@ -22,11 +26,7 @@ export class LoginComponent {
       error: (error) => {
         console.log("login component error:", error)
         if (error instanceof FormError) {
-          error.originalError.forEach((e: any) => {
-            e.constraints.forEach((c: Object) => {
-              this.loginForm?.controls[e.property].setErrors(c)
-            });
-          });
+          setFormErrors(error, this.loginForm)
         } else if (error instanceof CredentialsError) {
           this.loginForm?.form.setErrors({
             invalidCredentials: error.originalError.message
