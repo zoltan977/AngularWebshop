@@ -8,6 +8,7 @@ const createToken = (user: UserModelInterface) => {
       username: user.username,
       email: user.email,
       photo: user.photo,
+      admin: user.admin
     },
   };
 

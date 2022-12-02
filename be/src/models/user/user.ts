@@ -5,6 +5,7 @@ export interface UserModelInterface {
     password: string;
     email: string;
     photo?: string;
+    admin?: boolean;
 }
 
 const UserSchema = new Schema<UserModelInterface>({
@@ -25,6 +26,10 @@ const UserSchema = new Schema<UserModelInterface>({
       type: String,
       default: "no-image.png",
     },
+    admin: {
+      type: Boolean,
+      default: false
+    }
   });
   
  const UserModel = model<Document & UserModelInterface>("user", UserSchema);

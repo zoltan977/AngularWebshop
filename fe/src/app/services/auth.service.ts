@@ -16,6 +16,7 @@ interface ICurrentUser {
     username: string;
     email: string;
     photo: string;
+    admin: boolean;
   }
 }
 
