@@ -12,9 +12,11 @@
             </span>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item>My orders</button>
-            <button mat-menu-item>Manage orders</button>
-            <button mat-menu-item>Manage products</button>
+            <button mat-menu-item routerLink="my/orders">My orders</button>
+            <ng-container *ngIf="authService.currentUser.user.admin">
+                <button mat-menu-item routerLink="admin/orders">Manage orders</button>
+                <button mat-menu-item routerLink="admin/products">Manage products</button>
+            </ng-container>
             <button mat-menu-item (click)="authService.logout()">Log out</button>
         </mat-menu>
     </ng-container>

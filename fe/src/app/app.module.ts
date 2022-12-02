@@ -28,6 +28,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AppErrorHandler } from './utils/errorHandler';
+import { AuthGuard } from './services/auth-guard.service';
+import { AdminAuthGuard } from './services/admin-auth-guard.service';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -68,12 +70,15 @@ export function tokenGetter() {
       {path: '', component: HomeComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'check-out', component: CheckOutComponent},
-      {path: 'order-success', component: OrderSuccessComponent},
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},
-      {path: 'admin/products', component: AdminProductsComponent},
-      {path: 'admin/orders', component: AdminOrdersComponent},
+
+      {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
+      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+
+      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuard]},
     ]),
     BrowserAnimationsModule,
   ],
