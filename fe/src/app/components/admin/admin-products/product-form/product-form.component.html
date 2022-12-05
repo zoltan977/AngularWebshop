@@ -1,9 +1,8 @@
-<form #newProductForm="ngForm" (submit)="addNewProduct()" 
-  [rxwebForm]="newProductForm" [model]="productModel">
+<form (submit)="addNewProduct()" [formGroup]="newProductForm">
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="title" name="title" [(ngModel)]="productModel.title" required>
+          <input matInput placeholder="title" formControlName="title">
           <mat-error *ngIf="controls?.title?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -13,20 +12,19 @@
         <mat-form-field appearance="fill">
           <mat-label>Price</mat-label>
           <span matTextPrefix>$&nbsp;</span>
-          <input type="number" matInput placeholder="price" name="price" 
-          [(ngModel)]="productModel.price" required [rxminNumber]='{"value": 0}'>
+          <input type="number" matInput placeholder="price" formControlName="price">
           <mat-error *ngIf="controls?.price?.errors?.required">
             Meg kell adni
           </mat-error>
           <mat-error *ngIf="controls?.price?.errors?.minNumber">
-            {{controls?.price?.errors?.minNumber?.message}}
+            {{controls.price.errors?.minNumber?.message}}
           </mat-error>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Category</mat-label>
-          <mat-select [(ngModel)]="productModel.category" required name="category">
+          <mat-select formControlName="category">
             <mat-option value=""></mat-option>
             <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.displayName}}</mat-option>
           </mat-select>
@@ -38,13 +36,12 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Image URL</mat-label>
-          <input matInput placeholder="image url" name="imageURL" [(ngModel)]="productModel.imageURL"
-           required [rxurl]="{}">
+          <input matInput placeholder="image url" formControlName="imageURL">
           <mat-error *ngIf="controls?.imageURL?.errors?.required">
             Meg kell adni
           </mat-error>
           <mat-error *ngIf="controls?.imageURL?.errors?.url">
-            {{controls?.imageURL?.errors?.url?.message}}
+            {{controls.imageURL.errors?.url?.message}}
           </mat-error>
         </mat-form-field>
     </p>
