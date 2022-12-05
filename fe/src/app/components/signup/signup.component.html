@@ -1,31 +1,36 @@
-<form #signUpForm="ngForm" (submit)="signUp(signUpForm.value)">
+<form (submit)="signUp()" [formGroup]="signUpForm">
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Username</mat-label>
-          <input matInput placeholder="username" name="username" #username="ngModel" ngModel required>
+          <input matInput placeholder="username" formControlName="username">
           <mat-icon matSuffix>account_circle</mat-icon>
-          <mat-error *ngIf="username.errors?.required">Meg kell adni a felhasználó nevet</mat-error>
+          <mat-error *ngIf="controls.username.errors?.required">
+            Meg kell adni a felhasználó nevet
+          </mat-error>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="email" name="email" #email="ngModel" ngModel required email>
+          <input matInput placeholder="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="email.errors?.required">Meg kell adni az email-t</mat-error>
-          <mat-error *ngIf="email.errors?.email">Nem megfelelő email</mat-error>
-          <mat-error class="emailAlreadyRegistered" *ngIf="email.errors?.isEmailAlreadyRegistered">{{email.errors?.isEmailAlreadyRegistered}}</mat-error>
+          <mat-error *ngIf="controls.email.errors?.required">Meg kell adni az email-t</mat-error>
+          <mat-error *ngIf="controls.email.errors?.email">
+            {{controls.email.errors?.email.message}}
+          </mat-error>
+          <mat-error class="emailAlreadyRegistered" *ngIf="controls.email.errors?.isEmailAlreadyRegistered">
+            {{controls.email.errors?.isEmailAlreadyRegistered}}
+          </mat-error>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Password</mat-label>
           <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
-          <input [type]="toggle.type" matInput placeholder="password" name="password" 
-                #password="ngModel" ngModel required minlength="8" pattern=".*\d.*">
+          <input [type]="toggle.type" matInput placeholder="password" formControlName="password">
           <mat-password-strength 
             #passwordComponent 
-            [password]="password.value"
+            [password]="controls.password.value"
             [enableLowerCaseLetterRule]="false"
             [enableUpperCaseLetterRule]="false"
             [enableDigitRule]="true"
@@ -33,8 +38,8 @@
             [enableSpecialCharRule]="false">
           </mat-password-strength>
           <mat-password-strength-info
-            *ngIf="(password.errors?.minlength || password.errors?.required || 
-            password.errors?.pattern) && (password.dirty || password.touched)"
+            *ngIf="(controls.password.errors) && 
+            (controls.password.dirty || controls.password.touched)"
             class="with-icon-padding" 
             [minCharsCriteriaMsg]="'Legalább 8 karakter'"
             [digitsCriteriaMsg]="'Legalább 1 szám'"
@@ -47,10 +52,13 @@
           <mat-label>Confirm password</mat-label>
           <mat-pass-toggle-visibility #toggle2 matSuffix></mat-pass-toggle-visibility>
           <input [type]="toggle2.type" matInput placeholder="Confirm password"
-                  name="confirmPassword" #confirmPassword="ngModel" 
-                  ngModel [pattern]="password.value" required (keydown)="markConfirmPasswordAsTouched()">
-          <mat-error *ngIf="(confirmPassword.errors?.pattern)">Jelszavak nem egyeznek</mat-error>
-          <mat-error *ngIf="(confirmPassword.errors?.required)">Meg kell erősíteni a jelszót</mat-error>
+                  formControlName="confirmPassword" (keydown)="markConfirmPasswordAsTouched()">
+          <mat-error *ngIf="(controls.confirmPassword.errors?.compare)">
+            {{controls.confirmPassword.errors?.compare.message}}
+          </mat-error>
+          <mat-error *ngIf="(controls.confirmPassword.errors?.required)">
+            Meg kell erősíteni a jelszót
+          </mat-error>
         </mat-form-field>
     </p>
     <p (click)="markAllInputsAsTouched()">
