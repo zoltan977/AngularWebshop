@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 import HttpException from '../exceptions/HttpException';
 import { DTOValidationException } from '../exceptions/DTOValidationException';
 
-const mapDTOPropsToFrontendErrorProps: any = {
+const mapDTOPropsToFrontendErrorProps: Record<string, string> = {
     isString: "required",
     isEmail: "email",
     IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered"
