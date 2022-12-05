@@ -22,14 +22,17 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
+import {MatSelectModule} from '@angular/material/select';
 
 import { SignupComponent } from './components/signup/signup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AppErrorHandler } from './utils/errorHandler';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
+import { ProductFormComponent } from './components/admin/admin-products/product-form/product-form.component';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -48,10 +51,12 @@ export function tokenGetter() {
     AdminOrdersComponent,
     NavbarComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ProductFormComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
@@ -59,7 +64,10 @@ export function tokenGetter() {
     MatFormFieldModule,
     MatInputModule,
     MatPasswordStrengthModule,
+    MatSelectModule,
     FormsModule,
+    ReactiveFormsModule,
+    RxReactiveFormsModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
@@ -78,9 +86,9 @@ export function tokenGetter() {
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuard]},
     ]),
-    BrowserAnimationsModule,
   ],
   providers: [
     { provide: ErrorHandler, useClass: AppErrorHandler }
