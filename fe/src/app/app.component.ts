@@ -12,6 +12,8 @@ export class AppComponent implements OnInit {
       "validationMessage":{
         "minNumber": "Nem lehet negatív",
         "url": "Nem megfelelő URL",
+        "email": "Nem megfelelő email",
+        "compare": "Jelszavak nem egyeznek"
       }
     });
   }
