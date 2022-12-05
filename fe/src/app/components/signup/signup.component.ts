@@ -15,11 +15,11 @@ export class SignupComponent {
   constructor(private authService: AuthService) {
   }
 
-  confirmPasswordKeyDownHandler() {
+  markConfirmPasswordAsTouched() {
     this.signUpForm?.controls['confirmPassword'].markAsTouched({onlySelf: true})
   }
 
-  signUpClicked() {
+  markAllInputsAsTouched() {
     this.signUpForm?.control.markAllAsTouched()
   }
 

@@ -16,7 +16,7 @@ export class LoginComponent {
   constructor(private authService: AuthService) {
   }
 
-  loginClicked() {
+  markAllInputsAsTouched() {
     this.loginForm?.control.markAllAsTouched()
   }
 
