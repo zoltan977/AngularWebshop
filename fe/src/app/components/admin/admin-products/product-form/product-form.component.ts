@@ -1,5 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { Observable } from 'rxjs';
 import { CategoryService, ICategory } from 'src/app/services/category.service';
 import { ProductFormModel } from './product-form-model';
@@ -10,15 +11,16 @@ import { ProductFormModel } from './product-form-model';
   styleUrls: ['./product-form.component.scss']
 })
 export class ProductFormComponent implements OnInit {
-  @ViewChild('newProductForm') newProductForm: NgForm | undefined;
   public categories$: Observable<ICategory[]> | undefined;
   public productModel: ProductFormModel = new ProductFormModel();
+  public newProductForm: FormGroup = new FormGroup({});
 
-  constructor(private categoryService: CategoryService) {
+  constructor(private categoryService: CategoryService, private formBuilder: RxFormBuilder) {
   }
 
   ngOnInit(): void {
-    this.categories$ = this.categoryService.getCategories()
+    this.categories$ = this.categoryService.getCategories();
+    this.newProductForm = this.formBuilder.formGroup(this.productModel);
   }
 
   addNewProduct() {
@@ -26,7 +28,7 @@ export class ProductFormComponent implements OnInit {
   }
   
   markAllInputsAsTouched() {
-    this.newProductForm?.control.markAllAsTouched()
+    this.newProductForm?.markAllAsTouched();
   }
 
   get controls() {
