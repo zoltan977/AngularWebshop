@@ -2,6 +2,7 @@ import * as dotenv from "dotenv";
 import {connect, ConnectOptions, connection} from 'mongoose';
 import App from "./app";
 import { AuthRoutes } from "./routes/AuthRoutes";
+import { ProductRoutes } from "./routes/ProductRoutes";
 import { TypeRoutes } from "./routes/TypeRoutes";
 
 dotenv.config();
@@ -23,7 +24,8 @@ dotenv.config();
 
     const app = new App([
       new AuthRoutes(),
-      new TypeRoutes()
+      new TypeRoutes(),
+      new ProductRoutes()
     ]);
 
     app.listen();

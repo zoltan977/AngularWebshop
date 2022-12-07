@@ -8,7 +8,11 @@ import { DTOValidationException } from '../exceptions/DTOValidationException';
 const mapDTOPropsToFrontendErrorProps: Record<string, string> = {
     isString: "required",
     isEmail: "email",
-    IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered"
+    isNumber: "number",
+    isUrl: "url",
+    IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered",
+    IsCategoryInProductCategoriesConstraint: "isCategoryInProductCategories",
+    IsProductTitleAlreadyExistConstraint: "isProductTitleAlreadyExist",
 };
 
 const validationMiddleware = (type: any, skipMissingProperties = false, otherValidatorOptions?: Partial<ValidatorOptions>): RequestHandler => {

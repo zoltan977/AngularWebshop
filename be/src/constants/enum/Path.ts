@@ -1,4 +1,5 @@
 export enum Path {
     USER_AUTH = '/auth',
-    TYPE = '/type'
+    TYPE = '/type',
+    PRODUCT = '/product'
 }
