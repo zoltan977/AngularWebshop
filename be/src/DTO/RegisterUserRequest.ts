@@ -9,7 +9,7 @@ export interface RegisterUserRequestInterface {
 }
 
 export class RegisterUserRequest implements RegisterUserRequestInterface {
-    @IsEmail()
+    @IsEmail(undefined, {message: ErrorMessage.INVALID_EMAIL})
     @IsEmailAlreadyRegistered({ message: ErrorMessage.USER_EMAIL_ALREADY_EXISTS })
     public email!: string;
 
