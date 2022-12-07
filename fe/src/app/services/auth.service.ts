@@ -1,11 +1,12 @@
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, tap, throwError } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
 import { FormError } from '../errors/formError';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CredentialsError } from '../errors/credentialsError';
-import { StatusCodes } from 'http-status-codes';
+import { SignUpFormModel } from '../components/signup/signupFormModel';
+import serviceErrorHandler from '../utils/serviceErrorHandler';
 
 interface ITokenResponse {
   token: string;
@@ -45,11 +46,11 @@ export class AuthService {
         console.log("logged in: ", data.token);
         this.setToken(data.token);
       }),
-      catchError(this.authErrorHandler)
+      catchError(serviceErrorHandler)
     );
   }
 
-  signUp(signUpData: any): Observable<AppError | FormError | ITokenResponse> {
+  signUp(signUpData: SignUpFormModel): Observable<AppError | FormError | CredentialsError | ITokenResponse> {
     const response = this.httpClient.post<ITokenResponse>(this.PATH + "/signup", signUpData);
 
     return response.pipe(
@@ -57,7 +58,7 @@ export class AuthService {
         console.log("signed up: ", data.token);
         this.setToken(data.token)
       }),
-      catchError(this.authErrorHandler)
+      catchError(serviceErrorHandler)
     );
   }
 
@@ -72,15 +73,4 @@ export class AuthService {
   private deleteToken(): void {
     localStorage.removeItem("token")
   }
-
-  private authErrorHandler(error: HttpErrorResponse) {
-    console.log("service error: ", error)
-    if (error.error?.data?.errorsInPostedData && error.status === StatusCodes.BAD_REQUEST) {
-      return throwError(() => new FormError(error.error.data.errorsInPostedData));
-    } else if (error.status === StatusCodes.UNAUTHORIZED) {
-      return throwError(() => new CredentialsError(error.error))
-    }
-    return throwError(() => new AppError(error.error));
-  }
-
 }

@@ -12,8 +12,8 @@ import { SignUpFormModel } from './signupFormModel';
   styleUrls: ['./signup.component.scss']
 })
 export class SignupComponent implements OnInit {
-  signUpForm: FormGroup = new FormGroup({});
-  signUpFormModel: SignUpFormModel = new SignUpFormModel()
+  signUpForm!: FormGroup;
+  signUpFormModel!: SignUpFormModel
 
   constructor(private authService: AuthService, private formBuilder: RxFormBuilder) {
   }
@@ -23,6 +23,7 @@ export class SignupComponent implements OnInit {
   }
   
   ngOnInit(): void {
+    this.signUpFormModel = new SignUpFormModel();
     this.signUpForm = this.formBuilder.formGroup(this.signUpFormModel);
   }
 
