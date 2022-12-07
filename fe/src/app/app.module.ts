@@ -69,11 +69,15 @@ export function tokenGetter() {
     ReactiveFormsModule,
     RxReactiveFormsModule,
     HttpClientModule,
+
     JwtModule.forRoot({
       config: {
-        tokenGetter
+        tokenGetter,
+        disallowedRoutes: [/\/auth.*/, /\/type.*/],
+        allowedDomains: ["localhost:5000"]
       },
     }),
+    
     RouterModule.forRoot([
       {path: '', component: HomeComponent},
       {path: 'products', component: ProductsComponent},
@@ -91,7 +95,7 @@ export function tokenGetter() {
     ]),
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandler }
+    { provide: ErrorHandler, useClass: AppErrorHandler },
   ],
   bootstrap: [AppComponent]
 })

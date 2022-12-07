@@ -6,6 +6,9 @@
           <mat-error *ngIf="controls?.title?.errors?.required">
             Meg kell adni
           </mat-error>
+          <mat-error *ngIf="controls?.title?.errors?.isProductTitleAlreadyExist as isProductTitleAlreadyExist">
+            {{isProductTitleAlreadyExist?.message || isProductTitleAlreadyExist}}
+          </mat-error>
         </mat-form-field>
     </p>
     <p>
@@ -16,8 +19,11 @@
           <mat-error *ngIf="controls?.price?.errors?.required">
             Meg kell adni
           </mat-error>
-          <mat-error *ngIf="controls?.price?.errors?.minNumber">
-            {{controls.price.errors?.minNumber?.message}}
+          <mat-error *ngIf="controls?.price?.errors?.minNumber as minNumber">
+            {{minNumber?.message || minNumber}}
+          </mat-error>
+          <mat-error *ngIf="controls?.price?.errors?.number as number">
+            {{number?.message || number}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -31,6 +37,9 @@
           <mat-error *ngIf="controls?.category?.errors?.required">
             Meg kell adni
           </mat-error>
+          <mat-error *ngIf="controls?.category?.errors?.isCategoryInProductCategories as isCategoryInProductCategories">
+            {{isCategoryInProductCategories?.message || isCategoryInProductCategories}}
+          </mat-error>
         </mat-form-field>
     </p>
     <p>
@@ -40,8 +49,8 @@
           <mat-error *ngIf="controls?.imageURL?.errors?.required">
             Meg kell adni
           </mat-error>
-          <mat-error *ngIf="controls?.imageURL?.errors?.url">
-            {{controls.imageURL.errors?.url?.message}}
+          <mat-error *ngIf="controls?.imageURL?.errors?.url as url">
+            {{url?.message || url}}
           </mat-error>
         </mat-form-field>
     </p>

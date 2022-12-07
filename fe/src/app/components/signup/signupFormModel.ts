@@ -2,17 +2,17 @@ import { compare, email, password, required } from "@rxweb/reactive-form-validat
 
 export class SignUpFormModel {
     @required()
-    username: string = ""
+    username!: string
 
     @required()
     @email()
-    email: string = ""
+    email!: string
 
     @required()
     @password({validation:{minLength: 8,digit: true} })
-    password: string = ""
+    password!: string
 
     @required()
     @compare({ fieldName: "password" })
-    confirmPassword: string = ""
+    confirmPassword!: string
 }

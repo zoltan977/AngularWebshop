@@ -2,16 +2,16 @@ import { minNumber, required, url } from "@rxweb/reactive-form-validators";
 
 export class ProductFormModel {
     @required()
-    title: string = "";
+    title!: string;
 
     @required()
     @minNumber({ value: 0 })
-    price: string = "";
+    price!: string;
 
     @required()
-    category: string = "";
+    category!: string;
 
     @required()
     @url()
-    imageURL: string = "";
+    imageURL!: string;
 }
