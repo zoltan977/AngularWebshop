@@ -23,6 +23,8 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatPasswordStrengthModule} from '@angular-material-extensions/password-strength';
 import {MatSelectModule} from '@angular/material/select';
+import {MatCardModule} from '@angular/material/card';
+import {MatTableModule} from '@angular/material/table';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -65,6 +67,8 @@ export function tokenGetter() {
     MatInputModule,
     MatPasswordStrengthModule,
     MatSelectModule,
+    MatCardModule,
+    MatTableModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
@@ -91,6 +95,7 @@ export function tokenGetter() {
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuard]},
     ]),
   ],
