@@ -21,4 +21,47 @@ export class ProductController {
         }
     }
 
+    public getProductList = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const result = await this.productService.getProductList();
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public getProduct = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const productId = req.params.id
+            const result = await this.productService.getProduct(productId);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const productId = req.params.id
+            const result = await this.productService.updateProduct(productId, req.body);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+        console.log("deleteProduct")
+        try {
+            const productId = req.params.id
+            const result = await this.productService.deleteProduct(productId);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
 }
