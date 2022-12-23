@@ -2,9 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
-import { FormError } from '../errors/formError';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { CredentialsError } from '../errors/credentialsError';
 import { SignUpFormModel } from '../components/signup/signupFormModel';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 
@@ -38,7 +36,7 @@ export class AuthService {
     return this.jwtHelper.decodeToken();
   }
 
-  login(loginData: any): Observable<AppError | FormError | ITokenResponse> {
+  login(loginData: any): Observable<AppError | ITokenResponse> {
     const response = this.httpClient.post<ITokenResponse>(this.PATH + "/login", loginData);
 
     return response.pipe(
@@ -50,7 +48,7 @@ export class AuthService {
     );
   }
 
-  signUp(signUpData: SignUpFormModel): Observable<AppError | FormError | CredentialsError | ITokenResponse> {
+  signUp(signUpData: SignUpFormModel): Observable<AppError | ITokenResponse> {
     const response = this.httpClient.post<ITokenResponse>(this.PATH + "/signup", signUpData);
 
     return response.pipe(
