@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
+import { AppError } from '../errors/appError';
+import serviceErrorHandler from '../utils/serviceErrorHandler';
 
 export interface ICategory {
   name: string;
@@ -16,7 +18,12 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) { 
   }
 
-  getCategories(): Observable<ICategory[]> {
-    return this.httpClient.get<ICategory[]>(this.PATH)
+  getCategories(): Observable<ICategory[] | AppError> {
+    const response = this.httpClient.get<ICategory[]>(this.PATH)
+
+    return response.pipe(
+      tap(data => console.log("category service response data", data)),
+      catchError(serviceErrorHandler)
+      )
   }
 }
