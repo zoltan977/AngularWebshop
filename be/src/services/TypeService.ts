@@ -3,7 +3,7 @@ import { DatabaseException } from "../exceptions/DatabaseException";
 import CategoryModel from "../models/category/category";
 
 class TypeService {
-  public async getCategoryList() {
+  public async getAll() {
       try {
         return CategoryModel.find();
       } catch (error) {

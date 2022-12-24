@@ -13,7 +13,7 @@ export class AdminProductsComponent implements OnInit {
   constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
-    this.productService.getProductList()
+    this.productService.getAll()
     .subscribe({
       next: (data) => this.products$ = data as ProductFormModel[],
       error: (error) => {

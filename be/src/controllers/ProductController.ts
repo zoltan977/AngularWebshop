@@ -8,10 +8,10 @@ export class ProductController {
         this.productService = new ProductService();
     }
 
-    public addProduct = async (req: Request, res: Response, next: NextFunction) => {
+    public add = async (req: Request, res: Response, next: NextFunction) => {
         console.log("req.body: ", req.body)
         try {
-            const result = await this.productService.addProduct(
+            const result = await this.productService.add(
                 req.body
             );
           
@@ -21,9 +21,9 @@ export class ProductController {
         }
     }
 
-    public getProductList = async (req: Request, res: Response, next: NextFunction) => {
+    public getAll = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const result = await this.productService.getProductList();
+            const result = await this.productService.getAll();
           
             return res.json(result);
         } catch (error) {
@@ -31,21 +31,10 @@ export class ProductController {
         }
     }
 
-    public getProduct = async (req: Request, res: Response, next: NextFunction) => {
-        try {
-            const productId = req.params.id
-            const result = await this.productService.getProduct(productId);
-          
-            return res.json(result);
-        } catch (error) {
-            next(error)
-        }
-    }
-
-    public updateProduct = async (req: Request, res: Response, next: NextFunction) => {
+    public get = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const productId = req.params.id
-            const result = await this.productService.updateProduct(productId, req.body);
+            const result = await this.productService.get(productId);
           
             return res.json(result);
         } catch (error) {
@@ -53,11 +42,22 @@ export class ProductController {
         }
     }
 
-    public deleteProduct = async (req: Request, res: Response, next: NextFunction) => {
+    public update = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const productId = req.params.id
+            const result = await this.productService.update(productId, req.body);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public delete = async (req: Request, res: Response, next: NextFunction) => {
         console.log("deleteProduct")
         try {
             const productId = req.params.id
-            const result = await this.productService.deleteProduct(productId);
+            const result = await this.productService.delete(productId);
           
             return res.json(result);
         } catch (error) {

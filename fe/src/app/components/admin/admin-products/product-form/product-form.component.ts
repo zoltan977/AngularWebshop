@@ -31,13 +31,13 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories$ = this.categoryService.getCategories() as Observable<ICategory[]>;
+    this.categories$ = this.categoryService.getAll() as Observable<ICategory[]>;
     this.productModel = new ProductFormModel();
     this.newProductForm = this.formBuilder.formGroup(this.productModel);
 
     
     if (this.id) {
-      this.productService.getProduct(this.id).pipe(take(1))
+      this.productService.get(this.id).pipe(take(1))
       .subscribe({
         next: (data: any) => {
           delete data._id
@@ -53,9 +53,9 @@ export class ProductFormComponent implements OnInit {
     console.log("productModel Data: ", this.productModel)
     let result: Observable<ProductFormModel | AppError>
     if (this.id)
-      result = this.productService.updateProduct(this.id, this.productModel)
+      result = this.productService.update(this.id, this.productModel)
     else
-      result = this.productService.addProduct(this.productModel)
+      result = this.productService.add(this.productModel)
 
     result
     .subscribe({
@@ -76,7 +76,7 @@ export class ProductFormComponent implements OnInit {
   delete() {
     if (!(confirm("Are you sure you want to delete this product?") && this.id)) return;
     
-    this.productService.deleteProduct(this.id)
+    this.productService.delete(this.id)
     .subscribe({
       next: () => {
         this.router.navigate(['/admin/products']);
