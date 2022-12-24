@@ -3,7 +3,7 @@ import { DatabaseException } from "../exceptions/DatabaseException";
 import ProductModel from "../models/product/product";
 
 class ProductService {
-  public async addProduct(productData: AddProductRequestInterface) {
+  public async add(productData: AddProductRequestInterface) {
       console.log("productData:", productData)
 
       let savedProduct
@@ -19,7 +19,7 @@ class ProductService {
       return savedProduct;
   }
 
-  public async getProductList() {
+  public async getAll() {
     let products
 
     try {
@@ -31,7 +31,7 @@ class ProductService {
     return products;
   }
 
-  public async getProduct(productId: string) {
+  public async get(productId: string) {
     let products
 
     try {
@@ -43,7 +43,7 @@ class ProductService {
     return products;
   }
 
-  public async updateProduct(productId: string, prodData: any) {
+  public async update(productId: string, prodData: any) {
     let updated
 
     try {
@@ -55,7 +55,7 @@ class ProductService {
     return updated;
   }
 
-  public async deleteProduct(productId: string) {
+  public async delete(productId: string) {
     let deletedProduct
 
     try {

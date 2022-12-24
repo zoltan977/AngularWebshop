@@ -18,7 +18,7 @@ export class CategoryService {
   constructor(private httpClient: HttpClient) { 
   }
 
-  getCategories(): Observable<ICategory[] | AppError> {
+  getAll(): Observable<ICategory[] | AppError> {
     const response = this.httpClient.get<ICategory[]>(this.PATH)
 
     return response.pipe(
