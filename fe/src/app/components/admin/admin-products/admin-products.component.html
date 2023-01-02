@@ -1,4 +1,8 @@
 <a mat-raised-button color="primary" routerLink="/admin/products/new">New Product</a>
+<mat-form-field>
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+</mat-form-field>
 <table mat-table [dataSource]="products$" class="mat-elevation-z8">
 
     <!-- title -->

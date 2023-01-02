@@ -63,7 +63,7 @@
         </button>
     </p>
 </form>
-<mat-card class="example-card">
+<mat-card class="example-card" *ngIf="productModel.title">
   <mat-card-header>
     <mat-card-title>{{productModel.title}}</mat-card-title>
   </mat-card-header>
