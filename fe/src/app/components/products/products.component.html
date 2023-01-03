@@ -1,1 +1,19 @@
-<p>products works!</p>
+<div class="categories">
+    <categories [category]="category"></categories>
+</div>
+<div class="products">
+    <mat-card class="example-card" *ngFor="let p of filteredProducts">
+        <mat-card-header>
+          <mat-card-title>{{p.title}}</mat-card-title>
+        </mat-card-header>
+        <img mat-card-image src={{p.imageURL}} *ngIf="p.imageURL">
+        <mat-card-content>
+          <p>
+            {{p.price | currency:'HUF'}}
+          </p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-raised-button color="primary">Add to Cart</button>
+        </mat-card-actions>
+    </mat-card>
+</div>

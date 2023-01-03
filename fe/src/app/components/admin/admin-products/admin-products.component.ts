@@ -9,24 +9,24 @@ import { ProductFormModel } from './product-form/product-form-model';
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
-  products$!: MatTableDataSource<ProductFormModel>;
+  dataSource!: MatTableDataSource<ProductFormModel>;
   displayedColumns: string[] = ['title', 'price', '_id'];
 
   constructor(private productService: ProductService) {}
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.products$.filter = filterValue.trim().toLowerCase();
+    this.dataSource.filter = filterValue.trim().toLowerCase();
 
-    if (this.products$.paginator) {
-      this.products$.paginator.firstPage();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
   
   ngOnInit(): void {
     this.productService.getAll()
     .subscribe({
-      next: (data) => this.products$ = new MatTableDataSource(data as ProductFormModel[]),
+      next: (data) => this.dataSource = new MatTableDataSource(data as ProductFormModel[]),
       error: (error) => {
         console.log("admin products component error:", error)
         throw error;
