@@ -1,0 +1,28 @@
+:host {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    width: 100%;
+
+    .categories {
+        flex-basis: 15%;
+        box-sizing: border-box;
+
+        padding-top: 20px;
+        padding-left: 20px;
+    }
+    .products {
+        display: flex;
+        flex-basis: 85%;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        padding: 20px;
+        box-sizing: border-box;
+    
+        .example-card {
+            width: 400px;
+        }
+    }
+}

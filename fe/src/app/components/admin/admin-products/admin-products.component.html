@@ -3,7 +3,7 @@
   <mat-label>Filter</mat-label>
   <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
 </mat-form-field>
-<table mat-table [dataSource]="products$" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
     <!-- title -->
     <ng-container matColumnDef="title">

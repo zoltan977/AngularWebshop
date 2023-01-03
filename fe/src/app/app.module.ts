@@ -35,6 +35,7 @@ import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { ProductFormComponent } from './components/admin/admin-products/product-form/product-form.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { CategoriesComponent } from './components/products/categories/categories.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -55,6 +56,7 @@ export function tokenGetter() {
     LoginComponent,
     SignupComponent,
     ProductFormComponent,
+    CategoriesComponent,
   ],
   imports: [
     BrowserModule,
@@ -83,7 +85,7 @@ export function tokenGetter() {
     }),
     
     RouterModule.forRoot([
-      {path: '', component: HomeComponent},
+      {path: '', component: ProductsComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
       {path: 'login', component: LoginComponent},
