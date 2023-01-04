@@ -26,7 +26,13 @@ export class AdminProductsComponent implements OnInit {
   ngOnInit(): void {
     this.productService.getAll()
     .subscribe({
-      next: (data) => this.dataSource = new MatTableDataSource(data as ProductFormModel[]),
+      next: (data) => {
+        this.dataSource = new MatTableDataSource(data as ProductFormModel[])
+        this.dataSource.filterPredicate = function (record,filter) {
+          return record.title.toLowerCase().includes(filter.toLowerCase()) || 
+          record.price.toString().toLowerCase().includes(filter.toLowerCase());
+        }
+      },
       error: (error) => {
         console.log("admin products component error:", error)
         throw error;
