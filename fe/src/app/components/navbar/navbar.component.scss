@@ -1,8 +1,16 @@
-mat-icon.home {
-    transform: scale(2);
-}
-
-span.menu {
-    display: flex;
-    align-items: center;
+:host {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    
+    mat-icon.home {
+        transform: scale(2);
+    }
+    
+    span.menu {
+        display: flex;
+        align-items: center;
+    }
 }
