@@ -1,17 +1,18 @@
-import {Schema, model, Document} from 'mongoose';
+import {Schema, model, Document, ObjectId} from 'mongoose';
 
 export interface ProductModelInterface {
+    _id: string;
     title: string;
     price: number;
     category: string;
     imageURL: string;
 }
 
-const ProductSchema = new Schema<ProductModelInterface>({
+export const ProductSchema = (titleIsUnique = true) => new Schema<ProductModelInterface>({
     title: {
       type: String,
       required: true,
-      unique: true
+      unique: titleIsUnique
     },
     price: {
       type: Number,
@@ -27,7 +28,7 @@ const ProductSchema = new Schema<ProductModelInterface>({
     }
   });
   
- const ProductModel = model<Document & ProductModelInterface>("product", ProductSchema);
+ const ProductModel = model<Document & ProductModelInterface>("product", ProductSchema());
 
  export default ProductModel;
   
