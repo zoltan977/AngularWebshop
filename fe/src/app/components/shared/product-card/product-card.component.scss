@@ -4,4 +4,21 @@
     button {
         width: 100%;
     }
+
+    .actionButtons {
+        display: flex;
+        width: 100%;
+
+        button {
+            width: 25%;
+        }
+
+        p {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            margin: 0;
+        }
+    }
 }
