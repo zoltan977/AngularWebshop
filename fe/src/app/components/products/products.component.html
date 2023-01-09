@@ -3,6 +3,6 @@
 </div>
 <div class="products">
     <ng-container *ngFor="let p of filteredProducts">
-      <product-card [product]="p" [show-actions]="true"></product-card>
+      <product-card [product]="p" [show-actions]="true" [shopping-cart]="cart"></product-card>
     </ng-container>
 </div>
