@@ -8,7 +8,7 @@ import { FormError } from 'src/app/errors/formError';
 import { CategoryService, ICategory } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
-import { ProductFormModel } from './product-form-model';
+import { Product } from '../../../../models/product-model';
 
 @Component({
   selector: 'app-product-form-component',
@@ -17,7 +17,7 @@ import { ProductFormModel } from './product-form-model';
 })
 export class ProductFormComponent implements OnInit {
   public categories$!: Observable<ICategory[]>;
-  public productModel!: ProductFormModel;
+  public productModel!: Product;
   public newProductForm!: FormGroup;
   private id;
 
@@ -32,16 +32,15 @@ export class ProductFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.categories$ = this.categoryService.getAll() as Observable<ICategory[]>;
-    this.productModel = new ProductFormModel();
+    this.productModel = new Product();
     this.newProductForm = this.formBuilder.formGroup(this.productModel);
 
     
     if (this.id) {
       this.productService.get(this.id).pipe(take(1))
       .subscribe({
-        next: (data: any) => {
-          delete data._id
-          Object.assign(this.productModel, data)
+        next: (data: Product | AppError) => {
+          Object.assign(this.productModel, data as Product)
           console.log("this.productModel: ", this.productModel)
           this.newProductForm = this.formBuilder.formGroup(this.productModel);
         }
@@ -51,7 +50,7 @@ export class ProductFormComponent implements OnInit {
 
   save() {
     console.log("productModel Data: ", this.productModel)
-    let result: Observable<ProductFormModel | AppError>
+    let result: Observable<Product | AppError>
     if (this.id)
       result = this.productService.update(this.id, this.productModel)
     else

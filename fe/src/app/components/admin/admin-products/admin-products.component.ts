@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/services/product.service';
-import { ProductFormModel } from './product-form/product-form-model';
+import { Product } from '../../../models/product-model'
 
 @Component({
   selector: 'app-admin-products',
@@ -9,7 +9,7 @@ import { ProductFormModel } from './product-form/product-form-model';
   styleUrls: ['./admin-products.component.scss']
 })
 export class AdminProductsComponent implements OnInit {
-  dataSource!: MatTableDataSource<ProductFormModel>;
+  dataSource!: MatTableDataSource<Product>;
   displayedColumns: string[] = ['title', 'price', '_id'];
 
   constructor(private productService: ProductService) {}
@@ -27,7 +27,7 @@ export class AdminProductsComponent implements OnInit {
     this.productService.getAll()
     .subscribe({
       next: (data) => {
-        this.dataSource = new MatTableDataSource(data as ProductFormModel[])
+        this.dataSource = new MatTableDataSource(data as Product[])
         this.dataSource.filterPredicate = function (record,filter) {
           return record.title.toLowerCase().includes(filter.toLowerCase()) || 
           record.price.toString().toLowerCase().includes(filter.toLowerCase());
