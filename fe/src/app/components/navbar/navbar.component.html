@@ -1,6 +1,11 @@
 <mat-toolbar color="primary">
     <button mat-icon-button routerLink="/"><mat-icon class="home">home</mat-icon></button>
-    <button mat-button routerLink="shopping-cart">Shopping Cart</button>
+    <button mat-button routerLink="shopping-cart" 
+        [matBadge]="cartService.currentCart.itemCount" 
+        matBadgeColor="accent" 
+        [matBadgeHidden]="!cartService.currentCart.itemCount">
+        Shopping Cart
+    </button>
     <ng-template #login>
         <button mat-button routerLink="login">Login</button>
     </ng-template>
