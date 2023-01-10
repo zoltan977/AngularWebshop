@@ -25,6 +25,7 @@ import {MatPasswordStrengthModule} from '@angular-material-extensions/password-s
 import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
+import {MatBadgeModule} from '@angular/material/badge';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -73,6 +74,7 @@ export function tokenGetter() {
     MatSelectModule,
     MatCardModule,
     MatTableModule,
+    MatBadgeModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
