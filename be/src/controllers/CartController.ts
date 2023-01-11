@@ -46,4 +46,17 @@ export class CartController {
             next(error)
         }
     }
+
+    public clear = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const cartId = req.params.cartId;
+            const result = await this.cartService.clear(
+                cartId
+            );
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
 }

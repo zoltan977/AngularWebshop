@@ -19,7 +19,8 @@ export class CartRoutes implements RoutesClassInterface {
 
     private initRoutes() {
         this.router.post('/add', validationMiddleware(AddCartItemRequest) ,this.cartController.add)
-        this.router.get('/get/:cartId', this.cartController.get)
         this.router.post('/remove', validationMiddleware(RemoveCartItemRequest) ,this.cartController.remove)
+        this.router.get('/get/:cartId', this.cartController.get)
+        this.router.delete('/clear/:cartId', this.cartController.clear)
     }
 }
