@@ -38,6 +38,7 @@ import { ProductFormComponent } from './components/admin/admin-products/product-
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { CategoriesComponent } from './components/products/categories/categories.component';
 import { ProductCardComponent } from './components/shared/product-card/product-card.component';
+import { ProductQuantityComponent } from './components/shared/product-quantity/product-quantity.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -60,6 +61,7 @@ export function tokenGetter() {
     ProductFormComponent,
     CategoriesComponent,
     ProductCardComponent,
+    ProductQuantityComponent,
   ],
   imports: [
     BrowserModule,

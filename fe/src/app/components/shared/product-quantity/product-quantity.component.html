@@ -1,0 +1,3 @@
+<button mat-raised-button color="accent" (click)="removeFromCart()" [class.small]="small">-</button>
+<p [class.small]="small">{{cartService.currentCart.getProductQuantity(product)}} db a kosárban</p>
+<button mat-raised-button color="accent" (click)="addToCart()" [class.small]="small">+</button>
