@@ -10,15 +10,12 @@
     </mat-card-content>
     <mat-card-actions *ngIf="showActions">
         <button mat-raised-button color="primary" 
-        (click)="addToCart()" *ngIf="getQuantity() === 0; else updateQuantity">
+        (click)="addToCart()" 
+        *ngIf="!cartService.currentCart.getProductQuantity(product); else updateQuantity">
           Add to Cart
         </button>
         <ng-template #updateQuantity>
-          <div class="actionButtons">
-            <button mat-raised-button color="accent" (click)="removeFromCart()">-</button>
-            <p>{{getQuantity()}} in cart</p>
-            <button mat-raised-button color="accent" (click)="addToCart()">+</button>
-          </div>
+          <product-quantity [product]="product"></product-quantity>
         </ng-template>
     </mat-card-actions>
 </mat-card>
