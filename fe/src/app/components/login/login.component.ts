@@ -23,8 +23,12 @@ export class LoginComponent {
   login(formData: any) {
     this.authService.login(formData)
     .subscribe({
-      error: (error) => {
-        console.log("login component error:", error)
+      error: this.settingFormErrors
+    })
+  }
+
+  private settingFormErrors(error: any) {
+    console.log("login component error:", error)
         if (error instanceof FormError) {
           setFormErrors(error, this.loginForm)
         } else if (error instanceof CredentialsError) {
@@ -34,7 +38,5 @@ export class LoginComponent {
         } else {
           throw error;
         }
-      }
-    })
   }
 }

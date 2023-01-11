@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { Observable, take } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { FormError } from 'src/app/errors/formError';
 import { CategoryService, ICategory } from 'src/app/services/category.service';
@@ -22,12 +22,12 @@ export class ProductFormComponent implements OnInit {
   private id;
 
   constructor(private categoryService: CategoryService, 
-              private route: ActivatedRoute,
+              route: ActivatedRoute,
               private formBuilder: RxFormBuilder,
               private productService: ProductService,
               private router: Router) {
 
-      this.id = this.route.snapshot.paramMap.get('id')
+      this.id = route.snapshot.paramMap.get('id')
   }
 
   ngOnInit(): void {
@@ -35,17 +35,20 @@ export class ProductFormComponent implements OnInit {
     this.productModel = new Product();
     this.newProductForm = this.formBuilder.formGroup(this.productModel);
 
-    
     if (this.id) {
-      this.productService.get(this.id).pipe(take(1))
-      .subscribe({
-        next: (data: Product | AppError) => {
-          Object.assign(this.productModel, data as Product)
-          console.log("this.productModel: ", this.productModel)
-          this.newProductForm = this.formBuilder.formGroup(this.productModel);
-        }
-      })
+      this.populateForm();
     }
+  }
+
+  private populateForm() {
+    this.productService.get(this.id!)
+    .subscribe({
+      next: (data: Product | AppError) => {
+        Object.assign(this.productModel, data as Product)
+        console.log("this.productModel: ", this.productModel)
+        this.newProductForm = this.formBuilder.formGroup(this.productModel);
+      }
+    })
   }
 
   save() {
