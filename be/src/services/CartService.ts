@@ -79,6 +79,16 @@ class CartService {
 
     return cart;
   }
+
+  public async clear(cartId: string) {
+    try {
+      await CartModel.findByIdAndRemove(cartId);
+    } catch (error) {
+      throw new DatabaseException()
+    }
+
+    return true;
+  }
 }
 
 export default CartService;
