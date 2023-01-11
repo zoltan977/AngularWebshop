@@ -30,7 +30,7 @@ export class ProductsComponent implements OnInit {
   private populateCart() {
     (this.cartService.getCart() as Observable<ShoppingCart>).pipe(take(1)).subscribe({
       next: cart => {
-        this.cart = new ShoppingCart(cart.items, cart._id)
+        this.cart = new ShoppingCart(cart)
       }
     })
   }

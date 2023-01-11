@@ -1,7 +1,12 @@
 import { Product } from "./product-model";
 
 export class ShoppingCartItem {
-    constructor(public readonly product: Product, public readonly quantity: number) {}
+    public readonly product!: Product;
+    public readonly quantity!: number;
+
+    constructor(init: ShoppingCartItem) {
+            Object.assign(this, init)
+        }
 
     get totalPrice() {
         return parseInt(this.product.price) * this.quantity
