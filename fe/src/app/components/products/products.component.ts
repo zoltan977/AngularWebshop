@@ -18,28 +18,40 @@ export class ProductsComponent implements OnInit {
   cart!: ShoppingCart;
 
   constructor(private productService: ProductService, 
-     route: ActivatedRoute, private cartService: ShoppingCartService) {
-    
-    this.productService.getAll()
-    .pipe(switchMap(products => {
-      this.products = products as Product[];
-
-      return route.queryParamMap;
-    }))
-    .subscribe(params => {
-      this.category = params.get('category') as string
-
-      this.filteredProducts = this.category ? 
-        this.products.filter(p => p.category === this.category) : this.products
-    })
-
-    
+     private route: ActivatedRoute, private cartService: ShoppingCartService) {
   }
+
   ngOnInit(): void {
+    
+    this.populateCart()
+    this.populateProducts()    
+  }
+
+  private populateCart() {
     (this.cartService.getCart() as Observable<ShoppingCart>).pipe(take(1)).subscribe({
       next: cart => {
         this.cart = new ShoppingCart(cart.items, cart._id)
       }
     })
+  }
+
+  private populateProducts() {
+    this.productService.getAll()
+    .pipe(take(1), switchMap(products => {
+
+      this.products = products as Product[];
+      return this.route.queryParamMap;
+    }))
+    .subscribe(params => {
+
+      this.category = params.get('category') as string
+      this.applyFilter()
+    })
+  }
+
+  private applyFilter() {
+
+    this.filteredProducts = this.category ? 
+        this.products.filter(p => p.category === this.category) : this.products
   }
 }
