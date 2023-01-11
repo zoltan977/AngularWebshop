@@ -1,0 +1,41 @@
+.shopping-cart {
+    padding: 80px 20px 20px 20px;
+
+    .table-container {
+        width: 80%;
+
+        table {
+            margin-bottom: 20px;
+            min-width: unset;
+        }
+
+        td[mat-footer-cell],
+        th[mat-header-cell] {
+            font-weight: bold;
+        }
+
+        th[mat-header-cell]:nth-child(1) {
+            width: 100px;
+        }
+
+        th[mat-header-cell]:nth-child(2) {
+            min-width: unset;
+        }
+
+        th[mat-header-cell]:nth-child(3) {
+            width: 230px;
+        }
+
+        th[mat-header-cell]:nth-child(4) {
+            width: 200px;
+        }
+
+        .thumbnail {
+            width: 80px;
+            height: 80px;
+            border-radius: 100%;
+            background-size: cover;
+            margin: 2px;
+        }
+    }
+}
