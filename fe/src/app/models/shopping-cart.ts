@@ -1,27 +1,41 @@
+import { Product } from "./product-model";
 import { ShoppingCartItem } from "./shopping-cart-item";
 
 export class ShoppingCart {
-    public readonly itemCount: number;
-    public readonly totalPrice: number;
+
     public readonly items: ShoppingCartItem[] = [];
+    public readonly _id: string = "";
     
-    constructor(items: ShoppingCartItem[], public _id: string) {
-        for (const item of items) {
-            this.items.push(new ShoppingCartItem(item.product, item.quantity))
+    constructor(init?: ShoppingCart) {
+        if (init) {
+            this._id = init._id;
+    
+            for (const item of init.items) {
+                this.items.push(new ShoppingCartItem(item))
+            }
         }
+    }
 
-        let count: number = 0;
-        for (const item of this.items) {
-            count += item.quantity
-        }
-
-        this.itemCount = count;
-
+    get totalPrice(): number {
         let totalPrice: number = 0;
         for (const item of this.items) {
             totalPrice += item.totalPrice
         }
 
-        this.totalPrice = totalPrice;
+        return totalPrice;
+    }
+
+    get itemCount(): number {
+        let count: number = 0;
+        for (const item of this.items) {
+            count += item.quantity
+        }
+
+        return count;
+    }
+
+    getProductQuantity(product: Product) {
+        const item = this.items.find((item: ShoppingCartItem) => item.product._id === product._id)
+        return item ? item.quantity : 0
     }
 }

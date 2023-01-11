@@ -11,11 +11,11 @@ import serviceErrorHandler from '../utils/serviceErrorHandler';
 })
 export class ShoppingCartService {
   private readonly PATH = "http://localhost:5000/cart"
-  private currentShoppingCart: ShoppingCart = new ShoppingCart([], "")
+  private currentShoppingCart: ShoppingCart = new ShoppingCart()
 
   constructor(private httpClient: HttpClient) {
-    this.getCart().subscribe({
-      next: cart => this.currentShoppingCart = cart as ShoppingCart
+    (this.getCart() as Observable<ShoppingCart>).subscribe({
+      next: cart => this.currentShoppingCart = new ShoppingCart(cart)
     }) 
   }
 
@@ -28,10 +28,10 @@ export class ShoppingCartService {
     const response = this.httpClient.post<ShoppingCart>(this.PATH + '/add', {product, quantity, cartId});
 
     return response.pipe(
-      tap((data: ShoppingCart) => {
-        console.log("shopping-cart service response data", data);
-        localStorage.setItem('cartId', data._id);
-        this.currentShoppingCart = new ShoppingCart(data.items, data._id);      
+      tap((cart: ShoppingCart) => {
+        console.log("shopping-cart service response data", cart);
+        localStorage.setItem('cartId', cart._id);
+        this.currentShoppingCart = new ShoppingCart(cart);      
       }),
       catchError(serviceErrorHandler)
       )
@@ -40,14 +40,14 @@ export class ShoppingCartService {
   removeFromCart(product: Product, quantity: number): Observable<ShoppingCart | AppError> {
     const cartId = localStorage.getItem('cartId');
     if (!cartId) {
-      return of(new ShoppingCart([], ""))
+      return of(new ShoppingCart())
     }
     const response = this.httpClient.post<ShoppingCart>(this.PATH + '/remove', {product, quantity, cartId});
 
     return response.pipe(
-      tap((data: ShoppingCart) => {
-        console.log("shopping-cart service response data", data);
-        this.currentShoppingCart = new ShoppingCart(data.items, data._id);
+      tap((cart: ShoppingCart) => {
+        console.log("shopping-cart service response data", cart);
+        this.currentShoppingCart = new ShoppingCart(cart);
       }),
       catchError(serviceErrorHandler)
       )
@@ -56,14 +56,14 @@ export class ShoppingCartService {
   getCart(): Observable<ShoppingCart | AppError> {
     const cartId = localStorage.getItem('cartId');
     if (!cartId) {
-      return of(new ShoppingCart([], ""))
+      return of(new ShoppingCart())
     }
     const response = this.httpClient.get<ShoppingCart>(this.PATH + '/get/' + cartId);
 
     return response.pipe(
-      tap((data: ShoppingCart) => {
-        console.log("shopping-cart service response data", data);
-        this.currentShoppingCart = new ShoppingCart(data.items, data._id);
+      tap((cart: ShoppingCart) => {
+        console.log("shopping-cart service response data", cart);
+        this.currentShoppingCart = new ShoppingCart(cart);
       }),
       catchError(serviceErrorHandler)
       )
