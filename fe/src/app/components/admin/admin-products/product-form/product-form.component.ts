@@ -19,7 +19,7 @@ export class ProductFormComponent implements OnInit {
   public categories$!: Observable<ICategory[]>;
   public productModel!: Product;
   public newProductForm!: FormGroup;
-  private id;
+  public id;
 
   constructor(private categoryService: CategoryService, 
               route: ActivatedRoute,

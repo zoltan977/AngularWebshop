@@ -2,7 +2,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Title</mat-label>
-          <input matInput placeholder="title" [(ngModel)]="productModel.title" formControlName="title">
+          <input matInput placeholder="title" formControlName="title">
           <mat-error *ngIf="controls?.title?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -15,7 +15,7 @@
         <mat-form-field appearance="fill">
           <mat-label>Price</mat-label>
           <span matTextPrefix>$&nbsp;</span>
-          <input type="number" matInput placeholder="price" [(ngModel)]="productModel.price" formControlName="price">
+          <input type="number" matInput placeholder="price" formControlName="price">
           <mat-error *ngIf="controls?.price?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -30,7 +30,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Category</mat-label>
-          <mat-select formControlName="category" [(ngModel)]="productModel.category">
+          <mat-select formControlName="category">
             <mat-option value=""></mat-option>
             <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.displayName}}</mat-option>
           </mat-select>
@@ -45,7 +45,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Image URL</mat-label>
-          <input matInput placeholder="image url" formControlName="imageURL" [(ngModel)]="productModel.imageURL">
+          <input matInput placeholder="image url" formControlName="imageURL">
           <mat-error *ngIf="controls?.imageURL?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -58,7 +58,7 @@
         <button [disabled]="newProductForm.invalid" mat-raised-button color="primary" type="submit">
             Save
         </button>
-        <button type="button" mat-raised-button color="warn" (click)="delete()">
+        <button [disabled]="!id" type="button" mat-raised-button color="warn" (click)="delete()">
             Delete
         </button>
     </p>

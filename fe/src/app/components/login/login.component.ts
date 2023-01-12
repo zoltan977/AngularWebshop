@@ -27,16 +27,16 @@ export class LoginComponent {
     })
   }
 
-  private settingFormErrors(error: any) {
+  private settingFormErrors = (error: any) => {
     console.log("login component error:", error)
-        if (error instanceof FormError) {
-          setFormErrors(error, this.loginForm)
-        } else if (error instanceof CredentialsError) {
-          this.loginForm?.form.setErrors({
-            invalidCredentials: error.originalError.message
-          })
-        } else {
-          throw error;
-        }
+    if (error instanceof FormError) {
+      setFormErrors(error, this.loginForm)
+    } else if (error instanceof CredentialsError) {
+      this.loginForm?.form.setErrors({
+        invalidCredentials: error.originalError.message
+      })
+    } else {
+      throw error;
+    }
   }
 }
