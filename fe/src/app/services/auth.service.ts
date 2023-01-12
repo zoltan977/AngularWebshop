@@ -5,6 +5,7 @@ import { AppError } from '../errors/appError';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SignUpFormModel } from '../components/signup/signupFormModel';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
+import { ActivatedRoute, Router } from '@angular/router';
 
 interface ITokenResponse {
   token: string;
@@ -25,7 +26,10 @@ interface ICurrentUser {
 export class AuthService {
   private readonly PATH = "http://localhost:5000/auth"
 
-  constructor(private httpClient: HttpClient, private jwtHelper: JwtHelperService) { 
+  constructor(private httpClient: HttpClient, 
+              private jwtHelper: JwtHelperService,
+              private route: ActivatedRoute,
+              private router: Router) { 
   }
   
   get userLoggedIn(): boolean {
@@ -43,6 +47,7 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("logged in: ", data.token);
         this.setToken(data.token);
+        this.navigateToTheReturnUrl();
       }),
       catchError(serviceErrorHandler)
     );
@@ -55,6 +60,7 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("signed up: ", data.token);
         this.setToken(data.token)
+        this.navigateToHomePage()
       }),
       catchError(serviceErrorHandler)
     );
@@ -62,6 +68,7 @@ export class AuthService {
 
   logout() {
     this.deleteToken()
+    this.navigateToHomePage()
   }
 
   private setToken(token: string): void {
@@ -70,5 +77,15 @@ export class AuthService {
 
   private deleteToken(): void {
     localStorage.removeItem("token")
+  }
+
+  private navigateToTheReturnUrl = () => {
+    const returnUrl = this.route.snapshot.queryParamMap.get('returnUrl') || '/';
+    console.log("returnUrl: ", returnUrl)
+    this.router.navigateByUrl(returnUrl)
+  }
+
+  private navigateToHomePage = () => {
+    this.router.navigate(['/'])
   }
 }
