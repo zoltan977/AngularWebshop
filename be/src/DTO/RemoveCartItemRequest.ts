@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsNumber, IsString, ValidateNested } from 'class-validator';
 import { ProductModelInterface } from '../models/product/product';
 import { ProductDTO } from './ProductDTO';
 import 'reflect-metadata';
