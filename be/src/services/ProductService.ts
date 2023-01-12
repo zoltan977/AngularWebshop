@@ -1,4 +1,5 @@
 import { AddProductRequestInterface } from "../DTO/AddProductRequest";
+import { UpdateProductRequestInterface } from "../DTO/UpdateProductRequest";
 import { DatabaseException } from "../exceptions/DatabaseException";
 import ProductModel from "../models/product/product";
 
@@ -43,7 +44,7 @@ class ProductService {
     return products;
   }
 
-  public async update(productId: string, prodData: any) {
+  public async update(productId: string, prodData: UpdateProductRequestInterface) {
     let updated
 
     try {
