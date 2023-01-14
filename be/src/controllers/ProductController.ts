@@ -44,8 +44,7 @@ export class ProductController {
 
     public update = async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const productId = req.params.id
-            const result = await this.productService.update(productId, req.body);
+            const result = await this.productService.update(req.body);
           
             return res.json(result);
         } catch (error) {

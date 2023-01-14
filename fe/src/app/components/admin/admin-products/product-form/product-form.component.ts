@@ -55,7 +55,7 @@ export class ProductFormComponent implements OnInit {
     console.log("productModel Data: ", this.productModel)
     let result: Observable<Product | AppError>
     if (this.id)
-      result = this.productService.update(this.id, this.productModel)
+      result = this.productService.update(this.productModel)
     else
       result = this.productService.add(this.productModel)
 

@@ -1,15 +1,11 @@
 import { IsNumber, IsString, IsUrl } from 'class-validator';
 import { ErrorMessage } from '../constants/enum/ErrorMessage';
 import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
-
-export interface UpdateProductRequestInterface {
-    title: string;
-    price: number;
-    category: string;
-    imageURL: string;
-}
-
-export class UpdateProductRequest implements UpdateProductRequestInterface {
+import { ProductModelInterface } from '../models/product/product';
+export class UpdateProductRequest implements ProductModelInterface {
+    @IsString()
+    public _id!: string;
+    
     @IsString()
     public title!: string;
 

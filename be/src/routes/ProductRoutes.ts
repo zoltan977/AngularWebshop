@@ -20,7 +20,7 @@ export class ProductRoutes implements RoutesClassInterface {
 
     private initRoutes() {
         this.router.post('/add', authMiddleWare(true), validationMiddleware(AddProductRequest), this.productController.add)
-        this.router.post('/update/:id', authMiddleWare(true), validationMiddleware(UpdateProductRequest), this.productController.update)
+        this.router.post('/update', authMiddleWare(true), validationMiddleware(UpdateProductRequest), this.productController.update)
         this.router.get('/getAll', this.productController.getAll)
         this.router.get('/get/:id', this.productController.get)
         this.router.delete('/delete/:id', authMiddleWare(true), this.productController.delete)

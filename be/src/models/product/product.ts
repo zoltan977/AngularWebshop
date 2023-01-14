@@ -1,4 +1,4 @@
-import {Schema, model, Document, ObjectId} from 'mongoose';
+import {Schema, model, Document} from 'mongoose';
 
 export interface ProductModelInterface {
     _id: string;
