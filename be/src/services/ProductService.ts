@@ -1,7 +1,6 @@
 import { AddProductRequestInterface } from "../DTO/AddProductRequest";
-import { UpdateProductRequestInterface } from "../DTO/UpdateProductRequest";
 import { DatabaseException } from "../exceptions/DatabaseException";
-import ProductModel from "../models/product/product";
+import ProductModel, { ProductModelInterface } from "../models/product/product";
 
 class ProductService {
   public async add(productData: AddProductRequestInterface) {
@@ -44,11 +43,11 @@ class ProductService {
     return products;
   }
 
-  public async update(productId: string, prodData: UpdateProductRequestInterface) {
+  public async update(prodData: ProductModelInterface) {
     let updated
 
     try {
-      updated = ProductModel.findOneAndUpdate({_id: productId}, prodData, {new: true, upsert: true})
+      updated = ProductModel.findOneAndUpdate({_id: prodData._id}, prodData, {new: true, upsert: true})
     } catch (error) {
       throw new DatabaseException();
     }

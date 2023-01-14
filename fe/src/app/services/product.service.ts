@@ -42,8 +42,8 @@ export class ProductService {
       )
   }
 
-  update(productId: string, productData: Product): Observable<Product | AppError> {
-    const response = this.httpClient.post<Product>(this.PATH + "/update/" + productId, productData)
+  update(productData: Product): Observable<Product | AppError> {
+    const response = this.httpClient.post<Product>(this.PATH + "/update", productData)
     
     return response.pipe(
       tap(data => console.log("product service response data", data)),
