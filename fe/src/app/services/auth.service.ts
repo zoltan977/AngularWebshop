@@ -37,7 +37,7 @@ export class AuthService {
   }
   
   get currentUser(): ICurrentUser | undefined {
-    return this.jwtHelper.decodeToken();
+    return this.userLoggedIn ? this.jwtHelper.decodeToken() : undefined;
   }
 
   login(loginData: any): Observable<AppError | ITokenResponse> {

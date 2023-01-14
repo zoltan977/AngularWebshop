@@ -10,12 +10,14 @@ import serviceErrorHandler from '../utils/serviceErrorHandler';
   providedIn: 'root'
 })
 export class ShoppingCartService {
+  private readonly LOCALSTORAGE_FIELD_OF_CART_ID = 'cartId';
   private readonly PATH = "http://localhost:5000/cart"
   private currentShoppingCart: ShoppingCart = new ShoppingCart()
 
   constructor(private httpClient: HttpClient) {
+    console.log("Shopping cart service constructor");
     (this.getCart() as Observable<ShoppingCart>).subscribe({
-      next: cart => this.currentShoppingCart = new ShoppingCart(cart)
+      next: cart => this.setCurrentShoppingCart(cart)
     }) 
   }
 
@@ -23,22 +25,26 @@ export class ShoppingCartService {
     return this.currentShoppingCart;
   }
 
+  get currentCartId() {
+    return this.getCartId()
+  }
+
   addToCart(product: Product, quantity: number) {
-    const cartId = localStorage.getItem('cartId');
+    const cartId = this.getCartId()
     const response = this.httpClient.post<ShoppingCart>(this.PATH + '/add', {product, quantity, cartId});
 
     return response.pipe(
       tap((cart: ShoppingCart) => {
-        console.log("shopping-cart service response data", cart);
-        localStorage.setItem('cartId', cart._id);
-        this.currentShoppingCart = new ShoppingCart(cart);      
+        console.log("shopping-cart service ADD response data", cart);
+        this.setCartId(cart._id)
+        this.setCurrentShoppingCart(cart);      
       }),
       catchError(serviceErrorHandler)
       )
   }
 
   removeFromCart(product: Product, quantity: number): Observable<ShoppingCart | AppError> {
-    const cartId = localStorage.getItem('cartId');
+    const cartId = this.getCartId()
     if (!cartId) {
       return of(new ShoppingCart())
     }
@@ -46,15 +52,15 @@ export class ShoppingCartService {
 
     return response.pipe(
       tap((cart: ShoppingCart) => {
-        console.log("shopping-cart service response data", cart);
-        this.currentShoppingCart = new ShoppingCart(cart);
+        console.log("shopping-cart service REMOVE response data", cart);
+        this.setCurrentShoppingCart(cart);
       }),
       catchError(serviceErrorHandler)
       )
   }
 
   getCart(): Observable<ShoppingCart | AppError> {
-    const cartId = localStorage.getItem('cartId');
+    const cartId = this.getCartId()
     if (!cartId) {
       return of(new ShoppingCart())
     }
@@ -62,15 +68,15 @@ export class ShoppingCartService {
 
     return response.pipe(
       tap((cart: ShoppingCart) => {
-        console.log("shopping-cart service response data", cart);
-        this.currentShoppingCart = new ShoppingCart(cart);
+        console.log("shopping-cart service GET response data", cart);
+        this.setCurrentShoppingCart(cart);
       }),
       catchError(serviceErrorHandler)
       )
   }
 
   clearCart(): Observable<ShoppingCart | AppError> {
-    const cartId = localStorage.getItem('cartId');
+    const cartId = this.getCartId()
     if (!cartId) {
       return of(new ShoppingCart())
     }
@@ -78,13 +84,35 @@ export class ShoppingCartService {
 
     return response.pipe(
       switchMap((data: boolean) => {
-        console.log("shopping-cart service response data", data);
+        console.log("shopping-cart service CLEAR response data", data);
         this.currentShoppingCart = new ShoppingCart();
-        localStorage.removeItem('cartId');
+        this.removeCartId()
 
         return of(this.currentShoppingCart)
       }),
       catchError(serviceErrorHandler)
       )
+  }
+
+  private getCartId() {
+    return localStorage.getItem(this.LOCALSTORAGE_FIELD_OF_CART_ID)
+  }
+
+  private setCartId(cartId: string) {
+    return localStorage.setItem(this.LOCALSTORAGE_FIELD_OF_CART_ID, cartId)
+  }
+
+  private removeCartId() {
+    return localStorage.removeItem(this.LOCALSTORAGE_FIELD_OF_CART_ID)
+  }
+
+  private setCurrentShoppingCart = (cart: ShoppingCart) => {
+    console.log("setCurrentShoppingCart cart: ", cart)
+    if (!cart.items.length) {
+      this.clearCart().subscribe()
+    }
+    else {
+      this.currentShoppingCart = new ShoppingCart(cart);
+    }
   }
 }
