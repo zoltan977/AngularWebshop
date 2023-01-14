@@ -16,9 +16,6 @@ export class ShoppingCartService {
 
   constructor(private httpClient: HttpClient) {
     console.log("Shopping cart service constructor");
-    (this.getCart() as Observable<ShoppingCart>).subscribe({
-      next: cart => this.setCurrentShoppingCart(cart)
-    }) 
   }
 
   get currentCart() {
