@@ -2,5 +2,6 @@ export enum Path {
     USER_AUTH = '/auth',
     TYPE = '/type',
     PRODUCT = '/product',
-    CART = '/cart'
+    CART = '/cart',
+    ORDER = '/order'
 }

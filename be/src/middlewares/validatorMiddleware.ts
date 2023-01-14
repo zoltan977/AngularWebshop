@@ -13,6 +13,7 @@ const mapDTOPropsToFrontendErrorProps: Record<string, string> = {
     IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered",
     IsCategoryInProductCategoriesConstraint: "isCategoryInProductCategories",
     IsProductTitleAlreadyExistConstraint: "isProductTitleAlreadyExist",
+    IsUserEmailInUserCollectionConstraint: "isUserEmailInUserCollection"
 };
 
 const validationMiddleware = (type: any, skipMissingProperties = false, otherValidatorOptions?: Partial<ValidatorOptions>): RequestHandler => {
