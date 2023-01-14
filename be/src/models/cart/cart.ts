@@ -11,7 +11,7 @@ export interface ItemModelInterface {
   quantity: number
 }
 
-const ItemSchema = new Schema<ItemModelInterface>({
+export const ItemSchema = new Schema<ItemModelInterface>({
   product: {
     type: ProductSchema(false),
     required: true

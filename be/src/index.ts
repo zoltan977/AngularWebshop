@@ -3,6 +3,7 @@ import {connect, ConnectOptions, connection} from 'mongoose';
 import App from "./app";
 import { AuthRoutes } from "./routes/AuthRoutes";
 import { CartRoutes } from "./routes/CartRoutes";
+import { OrderRoutes } from "./routes/OrderRoutes";
 import { ProductRoutes } from "./routes/ProductRoutes";
 import { TypeRoutes } from "./routes/TypeRoutes";
 
@@ -27,7 +28,8 @@ dotenv.config();
       new AuthRoutes(),
       new TypeRoutes(),
       new ProductRoutes(),
-      new CartRoutes()
+      new CartRoutes(),
+      new OrderRoutes()
     ]);
 
     app.listen();

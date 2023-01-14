@@ -3,6 +3,7 @@ export enum ErrorMessage {
     USER_EMAIL_ALREADY_EXISTS = 'Ezzel az email-el már létezik felhasználó',
     PRODUCT_TITLE_ALREADY_EXISTS = 'Ezzel a névvel már van termék',
     NOT_A_VALID_CATEGORY = 'Nem érvényes kategória',
+    NOT_A_VALID_USER = 'Érvénytelen felhasználó',
     DATABASE_ERROR = 'DATABASE_ERROR',
     NO_JWT_SECRET = 'NO_JWT_SECRET',
     INVALID_CREDENTIALS = 'Felhasználónév vagy jelszó hibás',
