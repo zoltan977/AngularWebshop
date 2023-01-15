@@ -20,4 +20,25 @@ export class OrderController {
             next(error)
         }
     }
+
+    public getAll = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const result = await this.orderService.getAll();
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
+
+    public getAllByUser = async (req: Request, res: Response, next: NextFunction) => {
+        const userEmail = res?.locals?.user?.email;
+        try {
+            const result = await this.orderService.getAllByUser(userEmail);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
 }

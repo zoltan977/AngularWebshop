@@ -19,5 +19,7 @@ export class OrderRoutes implements RoutesClassInterface {
 
     private initRoutes() {
         this.router.post('/add', authMiddleWare(), validationMiddleware(AddOrderRequest), this.orderController.add)
+        this.router.get('/getAll', authMiddleWare(true), this.orderController.getAll)
+        this.router.get('/getAllByUser', authMiddleWare(), this.orderController.getAllByUser)
     }
 }
