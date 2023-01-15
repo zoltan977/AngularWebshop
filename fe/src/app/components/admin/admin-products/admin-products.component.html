@@ -1,19 +1,19 @@
 <a mat-raised-button color="primary" routerLink="/admin/products/new">New Product</a>
 <mat-form-field>
   <mat-label>Filter</mat-label>
-  <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Mia">
+  <input #filter matInput (keyup)="applyFilter(filter.value)" placeholder="Ex. Mia">
 </mat-form-field>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- title -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
   
     <!-- price -->
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
       <td mat-cell *matCellDef="let element"> {{element.price}} </td>
     </ng-container>
   

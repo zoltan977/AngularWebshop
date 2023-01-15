@@ -6,4 +6,21 @@
     width: 100%;
     box-sizing: border-box;
     padding: 80px 10px 10px 10px;
+
+    table {
+        min-width: 66%;
+    }
+
+    th[mat-header-cell] {
+        font-weight: bold;
+    }
+
+    th[mat-header-cell]:nth-child(1) {
+        min-width: unset;
+    }
+    
+    th[mat-header-cell]:nth-child(3) {
+        width: 100px;
+    }
+
 }
