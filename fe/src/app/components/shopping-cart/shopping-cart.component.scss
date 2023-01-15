@@ -9,7 +9,8 @@
     }
 
     .table-container {
-        width: 80%;
+        min-width: 66%;
+        max-width: 100%;
 
         table {
             margin-bottom: 20px;

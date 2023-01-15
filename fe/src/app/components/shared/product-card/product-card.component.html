@@ -2,7 +2,7 @@
     <mat-card-header>
       <mat-card-title>{{product.title}}</mat-card-title>
     </mat-card-header>
-    <img mat-card-image src={{product.imageURL}} *ngIf="product.imageURL">
+    <img mat-card-image [src]="product.imageURL" *ngIf="product.imageURL">
     <mat-card-content>
       <p>
         {{product.price | currency:'HUF'}}

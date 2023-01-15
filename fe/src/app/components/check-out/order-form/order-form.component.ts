@@ -2,10 +2,8 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { Observable } from 'rxjs';
 import { FormError } from 'src/app/errors/formError';
 import { Order } from 'src/app/models/order-model';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
@@ -33,7 +31,7 @@ export class OrderFormComponent {
   }
 
   submit() {
-    this.orderService.placeOrder(this.orderModel)
+    this.orderService.add(this.orderModel)
     .subscribe({
       next: (order) => {
         this.router.navigate(['/order-success', (order as Order)._id]);
