@@ -39,6 +39,8 @@ import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { CategoriesComponent } from './components/products/categories/categories.component';
 import { ProductCardComponent } from './components/shared/product-card/product-card.component';
 import { ProductQuantityComponent } from './components/shared/product-quantity/product-quantity.component';
+import { OrderSummaryComponent } from './components/check-out/order-summary/order-summary.component';
+import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -62,6 +64,8 @@ export function tokenGetter() {
     CategoriesComponent,
     ProductCardComponent,
     ProductQuantityComponent,
+    OrderSummaryComponent,
+    OrderFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -98,7 +102,7 @@ export function tokenGetter() {
       {path: 'signup', component: SignupComponent},
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
-      {path: 'order-success', component: OrderSuccessComponent, canActivate: [AuthGuard]},
+      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
