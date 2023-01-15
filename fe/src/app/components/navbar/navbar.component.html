@@ -4,10 +4,10 @@
         [matBadge]="cartService.currentCart.itemCount" 
         matBadgeColor="accent" 
         [matBadgeHidden]="!cartService.currentCart.itemCount">
-        Shopping Cart
+        Bevásárló kosár
     </button>
     <ng-template #login>
-        <button mat-button routerLink="login">Login</button>
+        <button mat-button routerLink="login">Belépés</button>
     </ng-template>
     <ng-container *ngIf="authService.currentUser; else login">
         <button mat-button [matMenuTriggerFor]="menu">
@@ -17,12 +17,12 @@
             </span>
         </button>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="my/orders">My orders</button>
+            <button mat-menu-item routerLink="my/orders">Megrendeléseim</button>
             <ng-container *ngIf="authService.currentUser.user.admin">
-                <button mat-menu-item routerLink="admin/orders">Manage orders</button>
-                <button mat-menu-item routerLink="admin/products">Manage products</button>
+                <button mat-menu-item routerLink="admin/orders">Összes megrendelés</button>
+                <button mat-menu-item routerLink="admin/products">Összes termék</button>
             </ng-container>
-            <button mat-menu-item (click)="authService.logout()">Log out</button>
+            <button mat-menu-item (click)="authService.logout()">Kilépés</button>
         </mat-menu>
     </ng-container>
 </mat-toolbar>

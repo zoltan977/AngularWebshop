@@ -1,27 +1,27 @@
-<a mat-raised-button color="primary" routerLink="/admin/products/new">New Product</a>
+<a mat-raised-button color="primary" routerLink="/admin/products/new">Új termék</a>
 <mat-form-field>
-  <mat-label>Filter</mat-label>
+  <mat-label>Szűrő</mat-label>
   <input #filter matInput (keyup)="applyFilter(filter.value)" placeholder="Ex. Mia">
 </mat-form-field>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- title -->
     <ng-container matColumnDef="title">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Termék </th>
       <td mat-cell *matCellDef="let element"> {{element.title}} </td>
     </ng-container>
   
     <!-- price -->
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
-      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ár </th>
+      <td mat-cell *matCellDef="let element"> {{element.price | currency:'HUF':'symbol':'0.0-0':'hu'}} </td>
     </ng-container>
   
     <!-- _id -->
     <ng-container matColumnDef="_id">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-         <a [routerLink]="['/admin/products/', element._id]">Edit</a>
+         <a [routerLink]="['/admin/products/', element._id]">Szerkesztés</a>
       </td>
     </ng-container>
   

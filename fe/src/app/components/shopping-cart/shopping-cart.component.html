@@ -1,5 +1,5 @@
 <div class="shopping-cart">
-  <h1>Shopping Cart</h1>
+  <h1>Bevásárló kosár</h1>
   <p>
       {{cartService.currentCart.itemCount || 0}} db tétel van a kosárban. 
       <button mat-raised-button 
@@ -41,8 +41,8 @@
           <!-- quantity -->
           <ng-container matColumnDef="totalPrice">
             <th mat-header-cell *matHeaderCellDef> Ár </th>
-            <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency:'HUF'}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{(cartService.currentCart.totalPrice || 0) | currency:'HUF'}} </td>
+            <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}} </td>
+            <td mat-footer-cell *matFooterCellDef> {{(cartService.currentCart.totalPrice || 0) | currency:'HUF':'symbol':'0.0-0':'hu'}} </td>
           </ng-container>
         
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

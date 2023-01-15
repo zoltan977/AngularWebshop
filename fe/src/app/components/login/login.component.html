@@ -13,7 +13,7 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
+          <mat-label>Jelszó</mat-label>
           <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
           <input [type]="toggle.type" matInput placeholder="password" name="password" 
                 #password="ngModel" ngModel required minlength="8" pattern=".*\d.*">
@@ -38,10 +38,10 @@
     </p>
     <p (click)="markAllInputsAsTouched()">
         <button [disabled]="loginForm.invalid" mat-raised-button color="primary" type="submit">
-            Login
+            Belépés
         </button>
     </p>
     <p>
-        <a routerLink="/signup">Sign Up!</a>
+        <a routerLink="/signup">Regisztráció!</a>
     </p>
 </form>

@@ -1,7 +1,7 @@
 <form (submit)="save()" [formGroup]="newProductForm">
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Title</mat-label>
+          <mat-label>Termék</mat-label>
           <input matInput placeholder="title" formControlName="title">
           <mat-error *ngIf="controls?.title?.errors?.required">
             Meg kell adni
@@ -13,9 +13,9 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Price</mat-label>
-          <span matTextPrefix>$&nbsp;</span>
+          <mat-label>Ár</mat-label>
           <input type="number" matInput placeholder="price" formControlName="price">
+          <span matTextSuffix>Ft</span>
           <mat-error *ngIf="controls?.price?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -29,7 +29,7 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Category</mat-label>
+          <mat-label>Kategória</mat-label>
           <mat-select formControlName="category">
             <mat-option value=""></mat-option>
             <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.displayName}}</mat-option>
@@ -44,7 +44,7 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Image URL</mat-label>
+          <mat-label>Kép URL</mat-label>
           <input matInput placeholder="image url" formControlName="imageURL">
           <mat-error *ngIf="controls?.imageURL?.errors?.required">
             Meg kell adni
@@ -56,10 +56,10 @@
     </p>
     <p (click)="markAllInputsAsTouched()">
         <button [disabled]="newProductForm.invalid" mat-raised-button color="primary" type="submit">
-            Save
+            Mentés
         </button>
         <button [disabled]="!id" type="button" mat-raised-button color="warn" (click)="delete()">
-            Delete
+            Törlés
         </button>
     </p>
 </form>
