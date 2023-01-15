@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { ProductService } from 'src/app/services/product.service';
 import { Product } from '../../../models/product-model'
@@ -11,16 +12,12 @@ import { Product } from '../../../models/product-model'
 export class AdminProductsComponent implements OnInit {
   dataSource!: MatTableDataSource<Product>;
   displayedColumns: string[] = ['title', 'price', '_id'];
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private productService: ProductService) {}
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+  applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
   }
   
   ngOnInit(): void {
@@ -32,6 +29,8 @@ export class AdminProductsComponent implements OnInit {
     .subscribe({
       next: (data) => {
         this.dataSource = new MatTableDataSource(data as Product[]);
+        this.dataSource.sort = this.sort;
+
         this.settingMatTableFilter();
       },
       error: (error) => {
