@@ -9,6 +9,7 @@ export interface OrderModelInterface {
     city: string;
     cart: CartModelWithoutDateInterface;
     userEmail: string;
+    dateCreated: Date;
 }
 
 const CartSchemaWithoutDate = new Schema<CartModelWithoutDateInterface>({
@@ -34,6 +35,10 @@ export const OrderSchema = new Schema<OrderModelInterface>({
     },
     userEmail: {
       type: String,
+      required: true
+    },
+    dateCreated: {
+      type: Date,
       required: true
     }
   });
