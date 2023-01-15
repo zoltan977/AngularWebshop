@@ -1,5 +1,5 @@
 <mat-form-field>
-    <mat-label>Filter</mat-label>
+    <mat-label>Szűrő</mat-label>
     <input #filter matInput (keyup)="applyFilter(filter.value)" placeholder="Ex. Mia">
 </mat-form-field>
 <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">

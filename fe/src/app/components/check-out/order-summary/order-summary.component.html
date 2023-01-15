@@ -11,7 +11,7 @@
                     {{item.quantity}} X {{item.product.title}}
                 </span>
                 <span>
-                    {{item.totalPrice | currency:'HUF'}}
+                    {{item.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}}
                 </span>
             </li>
             <li>
@@ -19,7 +19,7 @@
                     Összesen:
                 </span>
                 <span>
-                    {{cart.totalPrice | currency:'HUF'}}
+                    {{cart.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}}
                 </span>
             </li>
           </ul>

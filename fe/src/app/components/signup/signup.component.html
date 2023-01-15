@@ -1,7 +1,7 @@
 <form (submit)="signUp()" [formGroup]="signUpForm">
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Username</mat-label>
+          <mat-label>Felhasználónév</mat-label>
           <input matInput placeholder="username" formControlName="username">
           <mat-icon matSuffix>account_circle</mat-icon>
           <mat-error *ngIf="controls.username.errors?.required">
@@ -25,7 +25,7 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Password</mat-label>
+          <mat-label>Jelszó</mat-label>
           <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
           <input [type]="toggle.type" matInput placeholder="password" formControlName="password">
           <mat-password-strength 
@@ -49,7 +49,7 @@
     </p>
     <p>
         <mat-form-field appearance="fill">
-          <mat-label>Confirm password</mat-label>
+          <mat-label>Jelszó megerősítés</mat-label>
           <mat-pass-toggle-visibility #toggle2 matSuffix></mat-pass-toggle-visibility>
           <input [type]="toggle2.type" matInput placeholder="Confirm password"
                   formControlName="confirmPassword" (keydown)="markConfirmPasswordAsTouched()">
@@ -63,7 +63,7 @@
     </p>
     <p (click)="markAllInputsAsTouched()">
         <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" type="submit">
-            Sign Up!
+            Regisztrálok!
         </button>
     </p>
 </form>

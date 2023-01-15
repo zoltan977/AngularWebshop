@@ -5,7 +5,7 @@
     <img mat-card-image [src]="product.imageURL" *ngIf="product.imageURL">
     <mat-card-content>
       <p>
-        {{product.price | currency:'HUF'}}
+        {{product.price | currency:'HUF':'symbol':'0.0-0':'hu'}}
       </p>
     </mat-card-content>
     <mat-card-actions *ngIf="showActions">
