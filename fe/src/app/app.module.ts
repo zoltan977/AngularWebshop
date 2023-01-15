@@ -26,6 +26,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
+import {MatSortModule} from '@angular/material/sort';
 
 import { SignupComponent } from './components/signup/signup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -41,6 +42,11 @@ import { ProductCardComponent } from './components/shared/product-card/product-c
 import { ProductQuantityComponent } from './components/shared/product-quantity/product-quantity.component';
 import { OrderSummaryComponent } from './components/check-out/order-summary/order-summary.component';
 import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
+
+import localeHu from '@angular/common/locales/hu';
+import { registerLocaleData } from '@angular/common';
+
+registerLocaleData(localeHu, 'hu');
 
 export function tokenGetter() {
   return localStorage.getItem("token");
@@ -81,6 +87,7 @@ export function tokenGetter() {
     MatCardModule,
     MatTableModule,
     MatBadgeModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,

@@ -5,6 +5,9 @@ import { AppError } from '../errors/appError';
 import { Order } from '../models/order-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 import { ShoppingCartService } from './shopping-cart.service';
+export interface OrderWithDate extends Order {
+  dateCreated: Date;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -15,15 +18,33 @@ export class OrderService {
   constructor(private httpClient: HttpClient, private cartService: ShoppingCartService) { 
   }
 
-  placeOrder(order: Order): Observable<AppError | Order> {
+  add(order: Order): Observable<AppError | OrderWithDate> {
 
-    const response = this.httpClient.post<Order>(this.PATH + "/add", order);
+    const response = this.httpClient.post<OrderWithDate>(this.PATH + "/add", order);
 
     return response.pipe(
       tap(data => {
         console.log("order service response data", data);
         this.cartService.clearCart().subscribe();
       }),
+      catchError(serviceErrorHandler)
+      )
+  }
+
+  getAll(): Observable<OrderWithDate[] | AppError> {
+    const response = this.httpClient.get<OrderWithDate[]>(this.PATH + "/getAll")
+
+    return response.pipe(
+      tap(data => console.log("order service response data", data)),
+      catchError(serviceErrorHandler)
+      )
+  }
+
+  getAllByUser(): Observable<OrderWithDate[] | AppError> {
+    const response = this.httpClient.get<OrderWithDate[]>(this.PATH + "/getAllByUser")
+
+    return response.pipe(
+      tap(data => console.log("order service response data", data)),
       catchError(serviceErrorHandler)
       )
   }
