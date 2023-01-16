@@ -41,4 +41,15 @@ export class OrderController {
             next(error)
         }
     }
+    
+    public get = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const orderId = req.params.id
+            const result = await this.orderService.get(orderId);
+          
+            return res.json(result);
+        } catch (error) {
+            next(error)
+        }
+    }
 }
