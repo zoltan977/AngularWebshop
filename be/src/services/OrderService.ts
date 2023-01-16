@@ -33,10 +33,22 @@ class OrderService {
   }
 
   public async getAllByUser(userEmail: string) {
+    let orders
+
+    try {
+      orders = OrderModel.find({userEmail})
+    } catch (error) {
+      throw new DatabaseException();
+    }
+
+    return orders;
+  }
+
+  public async get(orderId: string) {
     let order
 
     try {
-      order = OrderModel.find({userEmail})
+      order = OrderModel.findById(orderId)
     } catch (error) {
       throw new DatabaseException();
     }
