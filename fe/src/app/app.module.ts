@@ -45,6 +45,7 @@ import { OrderFormComponent } from './components/check-out/order-form/order-form
 
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
+import { OrderListComponent } from './components/shared/order-list/order-list.component';
 
 registerLocaleData(localeHu, 'hu');
 
@@ -72,6 +73,7 @@ export function tokenGetter() {
     ProductQuantityComponent,
     OrderSummaryComponent,
     OrderFormComponent,
+    OrderListComponent,
   ],
   imports: [
     BrowserModule,
