@@ -3,7 +3,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
-import { OrderService, OrderWithDate } from 'src/app/services/order.service';
+import { OrderWithDate } from 'src/app/models/order-model';
+import { OrderService } from 'src/app/services/order.service';
 
 @Component({
   selector: 'order-list',

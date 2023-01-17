@@ -24,7 +24,7 @@
     <ng-container matColumnDef="_id">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element">
-         <a [routerLink]="['/admin/orders/', element._id]">Megnézem</a>
+         <a [routerLink]="['order-details/', element._id]">Megnézem</a>
       </td>
     </ng-container>
   
