@@ -8,49 +8,8 @@
           Kosár ürítése
       </button>
   </p>
-  <div class="table-container">
-      <table mat-table [dataSource]="cartService.currentCart.items" class="mat-elevation-z8">
-      
-          <!-- imageURL -->
-          <ng-container matColumnDef="imageURL">
-            <th mat-header-cell *matHeaderCellDef></th>
-            <td mat-cell *matCellDef="let element"> 
-              <div [style.backgroundImage]="'url(' + element.product.imageURL + ')'"
-                  class="thumbnail">
-              </div>
-            </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
-          
-          <!-- title -->
-          <ng-container matColumnDef="title">
-            <th mat-header-cell *matHeaderCellDef> Termék </th>
-            <td mat-cell *matCellDef="let element"> {{element.product.title}} </td>
-            <td mat-footer-cell *matFooterCellDef></td>
-          </ng-container>
-        
-          <!-- quantity -->
-          <ng-container matColumnDef="quantity">
-            <th mat-header-cell *matHeaderCellDef> Mennyiség </th>
-            <td mat-cell *matCellDef="let element"> 
-              <product-quantity [product]="element.product" [small]="true"></product-quantity>
-            </td>
-            <td mat-footer-cell *matFooterCellDef>Összesen:</td>
-          </ng-container>
-
-          <!-- quantity -->
-          <ng-container matColumnDef="totalPrice">
-            <th mat-header-cell *matHeaderCellDef> Ár </th>
-            <td mat-cell *matCellDef="let element"> {{element.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}} </td>
-            <td mat-footer-cell *matFooterCellDef> {{(cartService.currentCart.totalPrice || 0) | currency:'HUF':'symbol':'0.0-0':'hu'}} </td>
-          </ng-container>
-        
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-      </table>
-      <button [routerLink]="['/check-out']" mat-raised-button color="primary" *ngIf="cartService.currentCartId">
-        Megrendelem
-      </button>
-  </div>
+  <display-cart [shopping-cart]="cartService.currentCart" [is-product-quantity-dynamic]="true"></display-cart>
+  <button [routerLink]="['/check-out']" mat-raised-button color="primary" *ngIf="cartService.currentCartId">
+    Megrendelem
+  </button>
 </div>

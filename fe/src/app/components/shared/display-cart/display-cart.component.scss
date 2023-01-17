@@ -1,0 +1,39 @@
+table {
+    min-width: 66%;
+
+    &.fullWidth {
+        width: 100%;
+    }
+}
+
+td[mat-footer-cell],
+th[mat-header-cell] {
+    font-weight: bold;
+}
+
+th[mat-header-cell]:nth-child(1) {
+    width: 100px;
+}
+
+th[mat-header-cell]:nth-child(2) {
+    min-width: unset;
+}
+
+th[mat-header-cell]:nth-child(3),
+td[mat-cell]:nth-child(3),
+td[mat-footer-cell]:nth-child(3) {
+    width: 230px;
+    text-align: center;
+}
+
+th[mat-header-cell]:nth-child(4) {
+    width: 200px;
+}
+
+.thumbnail {
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-size: cover;
+    margin: 2px;
+}
