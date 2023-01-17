@@ -1,28 +1,9 @@
-<div class="orderSummary">
-    <mat-card *ngIf="cartService.currentCart as cart">
-        <mat-card-header>
-          <mat-card-title>Rendelés összesítő</mat-card-title>
-          <mat-card-subtitle>{{cart.itemCount}} tétel van a kosárban</mat-card-subtitle>
-        </mat-card-header>
-        <mat-card-content>
-          <ul>
-            <li *ngFor="let item of cart.items">
-               <span>
-                    {{item.quantity}} X {{item.product.title}}
-                </span>
-                <span>
-                    {{item.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}}
-                </span>
-            </li>
-            <li>
-                <span>
-                    Összesen:
-                </span>
-                <span>
-                    {{cart.totalPrice | currency:'HUF':'symbol':'0.0-0':'hu'}}
-                </span>
-            </li>
-          </ul>
-        </mat-card-content>
-      </mat-card>
-</div>
+<mat-card *ngIf="cartService.currentCart as cart">
+  <mat-card-header>
+    <mat-card-title>Rendelés összesítő</mat-card-title>
+    <mat-card-subtitle>{{cart.itemCount}} tétel van a kosárban</mat-card-subtitle>
+  </mat-card-header>
+  <mat-card-content>
+    <display-cart [shopping-cart]="cart" [full-width]="true"></display-cart>
+  </mat-card-content>
+</mat-card>

@@ -1,16 +1,15 @@
-.checkOut {
+.orderDetails {
     padding: 80px 20px 20px 20px;
 
     .content {
         display: flex;
         flex-wrap: wrap;
         gap: 20px;
-        width: 100%;
-        
-        order-form {
+
+        order-data {
             flex: 1 1 calc(50% - 10px);
         }
-        order-summary {
+        display-cart {
             flex: 1 1 calc(50% - 10px);
         }
     }

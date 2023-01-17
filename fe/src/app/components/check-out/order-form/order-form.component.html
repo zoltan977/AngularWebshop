@@ -1,52 +1,50 @@
-<div class="orderForm">
-    <form (submit)="submit()" [formGroup]="orderForm">
-        <p>
-            <mat-error *ngIf="controls?.cart?.invalid">
-                Nincs kosár
-            </mat-error>
-        </p>
-        <p>
-            <mat-error *ngIf="controls?.userEmail?.errors?.required">
-                Nem vagy belépve
-            </mat-error>
-        </p>
-        <p>
-          <mat-error *ngIf="controls?.userEmail?.errors?.isUserEmailInUserCollection as isUserEmailInUserCollection">
-            {{isUserEmailInUserCollection?.message || isUserEmailInUserCollection}}
+<form (submit)="submit()" [formGroup]="orderForm">
+    <p>
+        <mat-error *ngIf="controls?.cart?.invalid">
+            Nincs kosár
+        </mat-error>
+    </p>
+    <p>
+        <mat-error *ngIf="controls?.userEmail?.errors?.required">
+            Nem vagy belépve
+        </mat-error>
+    </p>
+    <p>
+      <mat-error *ngIf="controls?.userEmail?.errors?.isUserEmailInUserCollection as isUserEmailInUserCollection">
+        {{isUserEmailInUserCollection?.message || isUserEmailInUserCollection}}
+      </mat-error>
+  </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Név</mat-label>
+          <input matInput placeholder="name" formControlName="name">
+          <mat-error *ngIf="controls?.name?.errors?.required">
+            Meg kell adni
           </mat-error>
-      </p>
-        <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Név</mat-label>
-              <input matInput placeholder="name" formControlName="name">
-              <mat-error *ngIf="controls?.name?.errors?.required">
-                Meg kell adni
-              </mat-error>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Cím</mat-label>
-              <textarea matInput placeholder="address" formControlName="address"></textarea>
-              <mat-error *ngIf="controls?.address?.errors?.required">
-                Meg kell adni
-              </mat-error>
-            </mat-form-field>
-        </p>
-        <p>
-            <mat-form-field appearance="fill">
-              <mat-label>Város</mat-label>
-              <input matInput placeholder="city" formControlName="city">
-              <mat-error *ngIf="controls?.city?.errors?.required">
-                Meg kell adni
-              </mat-error>
-            </mat-form-field>
-        </p>
-        
-        <p (click)="markAllInputsAsTouched()">
-            <button [disabled]="orderForm.invalid" mat-raised-button color="primary" type="submit">
-                Elküld
-            </button>
-        </p>
-    </form>
-</div>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Cím</mat-label>
+          <textarea matInput placeholder="address" formControlName="address"></textarea>
+          <mat-error *ngIf="controls?.address?.errors?.required">
+            Meg kell adni
+          </mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+          <mat-label>Város</mat-label>
+          <input matInput placeholder="city" formControlName="city">
+          <mat-error *ngIf="controls?.city?.errors?.required">
+            Meg kell adni
+          </mat-error>
+        </mat-form-field>
+    </p>
+    
+    <p (click)="markAllInputsAsTouched()">
+        <button [disabled]="orderForm.invalid" mat-raised-button color="primary" type="submit">
+            Elküld
+        </button>
+    </p>
+</form>

@@ -1,0 +1,10 @@
+<div class="orderDetails" *ngIf="order.cart">
+    <h1>A megrendelés részletei</h1>
+    <p>
+        {{order.cart.itemCount || 0}} db tétel van a kosárban. 
+    </p>
+    <div class="content">
+        <order-data [order]="order"></order-data>
+        <display-cart [shopping-cart]="order.cart" [full-width]="true"></display-cart>
+    </div>
+</div>

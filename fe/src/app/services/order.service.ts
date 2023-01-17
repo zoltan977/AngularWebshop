@@ -2,12 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
-import { Order } from '../models/order-model';
+import { OrderWithDate, Order } from '../models/order-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 import { ShoppingCartService } from './shopping-cart.service';
-export interface OrderWithDate extends Order {
-  dateCreated: Date;
-}
 
 @Injectable({
   providedIn: 'root'
@@ -42,6 +39,15 @@ export class OrderService {
 
   getAllByUser(): Observable<OrderWithDate[] | AppError> {
     const response = this.httpClient.get<OrderWithDate[]>(this.PATH + "/getAllByUser")
+
+    return response.pipe(
+      tap(data => console.log("order service response data", data)),
+      catchError(serviceErrorHandler)
+      )
+  }
+
+  get(orderId: string): Observable<OrderWithDate | AppError> {
+    const response = this.httpClient.get<OrderWithDate>(this.PATH + "/get/" + orderId)
 
     return response.pipe(
       tap(data => console.log("order service response data", data)),

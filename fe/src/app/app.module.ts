@@ -46,6 +46,9 @@ import { OrderFormComponent } from './components/check-out/order-form/order-form
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
 import { OrderListComponent } from './components/shared/order-list/order-list.component';
+import { OrderDetailsComponent } from './components/shared/order-list/order-details/order-details.component';
+import { DisplayCartComponent } from './components/shared/display-cart/display-cart.component';
+import { OrderDataComponent } from './components/shared/order-list/order-details/order-data/order-data.component';
 
 registerLocaleData(localeHu, 'hu');
 
@@ -74,6 +77,9 @@ export function tokenGetter() {
     OrderSummaryComponent,
     OrderFormComponent,
     OrderListComponent,
+    OrderDetailsComponent,
+    DisplayCartComponent,
+    OrderDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -113,11 +119,13 @@ export function tokenGetter() {
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AdminAuthGuard]},
     ]),
   ],
   providers: [

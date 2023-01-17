@@ -1,0 +1,29 @@
+:host {
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    min-height: 200px;
+
+    p {
+        display: flex;
+
+        span:first-child {
+            margin-right: 50px;
+            font-weight: bold;
+        }
+
+        &:nth-child(3) {
+            span:first-child {
+                margin-right: 33px;
+            } 
+        }
+
+        &:nth-child(4) {
+            span:first-child {
+                margin-right: 27px;
+            } 
+        }
+    }
+}
