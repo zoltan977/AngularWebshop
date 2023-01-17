@@ -1,0 +1,26 @@
+<p>
+    <span>Név:</span>
+    <span>
+        {{order.name}}
+    </span>
+</p>
+<p>
+    <span>
+        Cím:
+    </span>
+    <span>
+        {{order.address}}
+    </span>
+</p>
+<p>
+    <span>Város:</span>
+    <span>
+        {{order.city}}
+    </span>
+</p>
+<p>
+    <span>Dátum:</span>
+    <span>
+        {{order.dateCreated | date:'short':'+0100':'hu'}}
+    </span>
+</p>
