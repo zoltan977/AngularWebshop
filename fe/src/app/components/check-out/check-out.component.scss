@@ -8,12 +8,10 @@
         width: 100%;
         
         order-form {
-            flex-basis: calc(50% - 10px);
-            
-            
+            flex: 1 1 calc(50% - 10px);
         }
         order-summary {
-            flex-basis: calc(50% - 10px);
+            flex: 1 1 calc(50% - 10px);
         }
     }
 }
