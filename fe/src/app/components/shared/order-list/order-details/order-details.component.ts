@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { OrderWithDate } from 'src/app/models/order-model';
+import { OrderDataWithDateAndId } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -11,17 +11,17 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class OrderDetailsComponent implements OnInit {
   
-  order: OrderWithDate = new OrderWithDate();
+  order: OrderDataWithDateAndId = new OrderDataWithDateAndId();
 
   constructor(public orderService: OrderService, private route: ActivatedRoute) {}
   
   ngOnInit(): void {
     const orderId = this.route.snapshot.paramMap.get('id');
     if (orderId) {
-      const response = this.orderService.get(orderId) as Observable<OrderWithDate>
+      const response = this.orderService.get(orderId) as Observable<OrderDataWithDateAndId>
       response.subscribe({
         next: order => {
-          this.order = new OrderWithDate(order)
+          this.order = new OrderDataWithDateAndId(order)
         }
       })
     }
