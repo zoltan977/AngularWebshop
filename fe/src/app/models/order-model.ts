@@ -1,15 +1,13 @@
 import { prop, required } from "@rxweb/reactive-form-validators";
 import { ShoppingCart } from "./shopping-cart";
 
-export class Order {
-    constructor(init?: Order) {
+export class OrderFormModel {
+    constructor(init?: OrderFormModel) {
         if (init) {
             Object.assign(this, init)
             this.cart = new ShoppingCart(init.cart)
         }
     }
-
-    _id!: string;
 
     @required()
     name!: string;
@@ -26,15 +24,26 @@ export class Order {
     @prop()
     cart!: ShoppingCart;
 }
-export class OrderWithDate extends Order {
-    public readonly dateCreated: Date | undefined;
+export class OrderData extends OrderFormModel {
+    public readonly deliveryMethod: string | undefined;
+    public readonly paymentMethod: string | undefined;
+    
+    constructor(init?: OrderData) {
+        super(init);
+            
+        this.deliveryMethod = init?.deliveryMethod;
+        this.paymentMethod = init?.paymentMethod;
+    }
+}
 
-    constructor(init?: OrderWithDate) {
-        if (init) {
-            super(init);
-            this.dateCreated = init?.dateCreated;
-        } else {
-            super();
-        }
+export class OrderDataWithDateAndId extends OrderData {
+    public readonly dateCreated: Date | undefined;
+    public readonly _id: string | undefined;
+
+    constructor(init?: OrderDataWithDateAndId) {
+        super(init);
+            
+        this.dateCreated = init?.dateCreated;
+        this._id = init?._id;
     }
 }
