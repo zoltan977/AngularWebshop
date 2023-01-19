@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { FormError } from 'src/app/errors/formError';
-import { Order } from 'src/app/models/order-model';
+import { OrderFormModel } from 'src/app/models/order-model';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderService } from 'src/app/services/order.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
-import setFormErrors from 'src/app/utils/setFormErrors';
 import { orderCartValidator } from 'src/app/utils/validators/orderCartValidator';
 
 @Component({
@@ -17,7 +15,7 @@ import { orderCartValidator } from 'src/app/utils/validators/orderCartValidator'
 })
 export class OrderFormComponent {
   public orderForm: FormGroup;
-  private orderModel: Order;
+  public orderModel: OrderFormModel;
 
   constructor(
     private formBuilder: RxFormBuilder,
@@ -26,25 +24,8 @@ export class OrderFormComponent {
     private orderService: OrderService,
     private router: Router
     ) {
-      this.orderModel = new Order()
+      this.orderModel = new OrderFormModel()
       this.orderForm = formBuilder.formGroup(this.orderModel);
-  }
-
-  submit() {
-    this.orderService.add(this.orderModel)
-    .subscribe({
-      next: (order) => {
-        this.router.navigate(['/order-success', (order as Order)._id]);
-      },
-      error: (error) => {
-        console.log("order form component error:", error)
-        if (error instanceof FormError) {
-          setFormErrors(error, this.orderForm)
-        } else {
-          throw error;
-        }
-      }
-    })
   }
 
   markAllInputsAsTouched() {
