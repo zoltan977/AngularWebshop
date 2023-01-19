@@ -10,6 +10,11 @@ const mapDTOPropsToFrontendErrorProps: Record<string, string> = {
     isEmail: "email",
     isNumber: "number",
     isUrl: "url",
+    isArray: "isArray",
+    isIn: "isIn",
+    isDefined: "isDefined",
+    nestedValidation: "nestedValidation",
+    objectPropertyError: "objectPropertyError",
     IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered",
     IsCategoryInProductCategoriesConstraint: "isCategoryInProductCategories",
     IsProductTitleAlreadyExistConstraint: "isProductTitleAlreadyExist",
@@ -25,11 +30,14 @@ const validationMiddleware = (type: any, skipMissingProperties = false, otherVal
                 ...otherValidatorOptions,
             });
             if (errors.length > 0) {
-                console.log("Validation errors:", errors)
-                const message = errors.map((error: ValidationError) => Object.values(error.constraints || {}).join(", ")).join(', ');
-                const data = errors.map((error: ValidationError) => ({
+                console.log("Validation errorsArray:", errors)
+                const flatErrorsArray = createFlatArrayFromChildErrors(errors);
+                console.log("Validation flatErrorsArray: ", flatErrorsArray);
+
+                const message = flatErrorsArray.map((error: ValidationError) => Object.values(error.constraints || {objectPropertyError: `${error.property} error`}).join(", ")).join(', ');
+                const data = flatErrorsArray.map((error: ValidationError) => ({
                     property: error.property, 
-                    constraints: Object.entries(error.constraints || {}).map(e => ({[mapDTOPropsToFrontendErrorProps[e[0]]]: e[1]}))
+                    constraints: Object.entries(error.constraints || {objectPropertyError: `${error.property} error`}).map(e => ({[mapDTOPropsToFrontendErrorProps[e[0]]]: e[1]})),
                 }))
 
                 next(new HttpException(StatusCodes.BAD_REQUEST, message, {errorsInPostedData: data}));
@@ -43,5 +51,20 @@ const validationMiddleware = (type: any, skipMissingProperties = false, otherVal
 
     };
 };
+
+const createFlatArrayFromChildErrors = (errors: ValidationError[]): ValidationError[] => {
+    const errorsArray: ValidationError[] = [];
+
+    for (const error of errors) {
+        errorsArray.push(error);
+        let currentError = error;
+        while (currentError.children?.length) {
+            currentError = currentError.children.pop() as ValidationError;
+            errorsArray.push(currentError as ValidationError);
+        }
+    }
+
+    return errorsArray;
+}
 
 export default validationMiddleware;

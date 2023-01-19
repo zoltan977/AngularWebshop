@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsString, ValidateNested } from 'class-validator';
+import { IsDefined, IsNumber, IsString, ValidateNested } from 'class-validator';
 import { ProductModelInterface } from '../models/product/product';
 import { ProductDTO } from './ProductDTO';
 import 'reflect-metadata';
@@ -14,6 +14,7 @@ export class RemoveCartItemRequest implements RemoveCartItemRequestInterface {
     @IsString()
     public cartId!: string;
 
+    @IsDefined()
     @ValidateNested()
     @Type(() => ProductDTO)
     public product!: ProductDTO;
