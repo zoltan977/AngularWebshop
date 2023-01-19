@@ -20,7 +20,7 @@ const authMiddleWare = (admin: boolean = false) => async (request: Request, resp
             next(new UnauthorizedException())
         }
 
-        const decodedToken: any = verify(token as string, process.env.JWT_SECRET as string)
+        const decodedToken: any = verify(token as string, jwtSecret as string)
         console.log("auth middleware decodedToken: ", decodedToken)
         if (!decodedToken.user) {
             next(new UnauthorizedException())

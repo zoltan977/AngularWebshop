@@ -5,7 +5,7 @@ import { StatusCodes } from 'http-status-codes';
 import HttpException from '../exceptions/HttpException';
 import { DTOValidationException } from '../exceptions/DTOValidationException';
 
-const mapDTOPropsToFrontendErrorProps: Record<string, string> = {
+const mapErrorConstraintsPropsToFrontendErrorProps: Record<string, string> = {
     isString: "required",
     isEmail: "email",
     isNumber: "number",
@@ -37,7 +37,7 @@ const validationMiddleware = (type: any, skipMissingProperties = false, otherVal
                 const message = flatErrorsArray.map((error: ValidationError) => Object.values(error.constraints || {objectPropertyError: `${error.property} error`}).join(", ")).join(', ');
                 const data = flatErrorsArray.map((error: ValidationError) => ({
                     property: error.property, 
-                    constraints: Object.entries(error.constraints || {objectPropertyError: `${error.property} error`}).map(e => ({[mapDTOPropsToFrontendErrorProps[e[0]]]: e[1]})),
+                    constraints: Object.entries(error.constraints || {objectPropertyError: `${error.property} error`}).map(e => ({[mapErrorConstraintsPropsToFrontendErrorProps[e[0]]]: e[1]})),
                 }))
 
                 next(new HttpException(StatusCodes.BAD_REQUEST, message, {errorsInPostedData: data}));
