@@ -1,5 +1,4 @@
 import { ErrorHandler, NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -13,7 +12,18 @@ import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orde
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+import { SignupComponent } from './components/signup/signup.component';
+import { ProductFormComponent } from './components/admin/admin-products/product-form/product-form.component';
+import { CategoriesComponent } from './components/products/categories/categories.component';
+import { ProductCardComponent } from './components/shared/product-card/product-card.component';
+import { ProductQuantityComponent } from './components/shared/product-quantity/product-quantity.component';
+import { OrderSummaryComponent } from './components/check-out/order-summary/order-summary.component';
+import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
+import { OrderListComponent } from './components/shared/order-list/order-list.component';
+import { OrderDetailsComponent } from './components/shared/order-list/order-details/order-details.component';
+import { DisplayCartComponent } from './components/shared/display-cart/display-cart.component';
+import { OrderDataComponent } from './components/shared/order-list/order-details/order-data/order-data.component';
+import { PaymentAndDeliveryFormComponent } from './components/check-out/payment-and-delivery-form/payment-and-delivery-form.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -27,28 +37,21 @@ import {MatCardModule} from '@angular/material/card';
 import {MatTableModule} from '@angular/material/table';
 import {MatBadgeModule} from '@angular/material/badge';
 import {MatSortModule} from '@angular/material/sort';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatRadioModule} from '@angular/material/radio';
 
-import { SignupComponent } from './components/signup/signup.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from "@auth0/angular-jwt";
 import { AppErrorHandler } from './utils/errorHandler';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
-import { ProductFormComponent } from './components/admin/admin-products/product-form/product-form.component';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
-import { CategoriesComponent } from './components/products/categories/categories.component';
-import { ProductCardComponent } from './components/shared/product-card/product-card.component';
-import { ProductQuantityComponent } from './components/shared/product-quantity/product-quantity.component';
-import { OrderSummaryComponent } from './components/check-out/order-summary/order-summary.component';
-import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
 
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
-import { OrderListComponent } from './components/shared/order-list/order-list.component';
-import { OrderDetailsComponent } from './components/shared/order-list/order-details/order-details.component';
-import { DisplayCartComponent } from './components/shared/display-cart/display-cart.component';
-import { OrderDataComponent } from './components/shared/order-list/order-details/order-data/order-data.component';
 
 registerLocaleData(localeHu, 'hu');
 
@@ -80,6 +83,7 @@ export function tokenGetter() {
     OrderDetailsComponent,
     DisplayCartComponent,
     OrderDataComponent,
+    PaymentAndDeliveryFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +100,8 @@ export function tokenGetter() {
     MatTableModule,
     MatBadgeModule,
     MatSortModule,
+    MatStepperModule,
+    MatRadioModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
@@ -129,7 +135,7 @@ export function tokenGetter() {
     ]),
   ],
   providers: [
-    { provide: ErrorHandler, useClass: AppErrorHandler },
+    { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]
 })
