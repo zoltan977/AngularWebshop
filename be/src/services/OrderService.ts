@@ -1,10 +1,9 @@
-import { AddOrderRequestInterface } from "../DTO/AddOrderRequest";
+import { OrderModelWithoutDateInterface } from "../DTO/AddOrderRequest";
 import { DatabaseException } from "../exceptions/DatabaseException";
 import OrderModel from "../models/order/order";
-import UserModel from "../models/user/user";
 
 class OrderService {
-  public async add(orderData: AddOrderRequestInterface) {
+  public async add(orderData: OrderModelWithoutDateInterface) {
       console.log("orderData:", orderData)
 
       let savedOrder
@@ -13,7 +12,7 @@ class OrderService {
         savedOrder = await newOrder.save();
     
       } catch (error) {
-        console.log("Error creating Product: ", error);
+        console.log("Error creating Order: ", error);
         throw new DatabaseException();
       }
       

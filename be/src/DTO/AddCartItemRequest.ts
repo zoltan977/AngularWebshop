@@ -1,5 +1,5 @@
 import { Type } from 'class-transformer';
-import { IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsDefined, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
 import { ProductModelInterface } from '../models/product/product';
 import { ProductDTO } from './ProductDTO';
 import 'reflect-metadata';
@@ -15,6 +15,7 @@ export class AddCartItemRequest implements AddCartItemRequestInterface {
     @IsOptional()
     public cartId!: string;
 
+    @IsDefined()
     @ValidateNested()
     @Type(() => ProductDTO)
     public product!: ProductDTO;
