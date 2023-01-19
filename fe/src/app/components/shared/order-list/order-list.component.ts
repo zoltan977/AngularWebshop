@@ -3,7 +3,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
-import { OrderWithDate } from 'src/app/models/order-model';
+import { OrderDataWithDateAndId } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -12,7 +12,7 @@ import { OrderService } from 'src/app/services/order.service';
   styleUrls: ['./order-list.component.scss']
 })
 export class OrderListComponent implements OnInit{
-  dataSource!: MatTableDataSource<OrderWithDate>;
+  dataSource!: MatTableDataSource<OrderDataWithDateAndId>;
   displayedColumns: string[] = ['userEmail', 'name', 'dateCreated', '_id'];
   @ViewChild(MatSort) sort!: MatSort;
   @Input('admin') admin: boolean = false;
@@ -28,13 +28,13 @@ export class OrderListComponent implements OnInit{
   }
 
   private populateMatTableWithProducts() {
-    const orderList$: Observable<OrderWithDate[] | AppError> =
+    const orderList$: Observable<OrderDataWithDateAndId[] | AppError> =
     this.admin ? this.orderService.getAll() : this.orderService.getAllByUser();
 
     orderList$
     .subscribe({
       next: (data) => {
-        this.dataSource = new MatTableDataSource(data as OrderWithDate[]);
+        this.dataSource = new MatTableDataSource(data as OrderDataWithDateAndId[]);
         this.dataSource.sort = this.sort;
 
         this.settingMatTableFilter();
