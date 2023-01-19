@@ -1,7 +1,31 @@
 <div class="checkOut">
     <h1>Megrendelés</h1>
-    <div class="content">
-        <order-form></order-form>
-        <order-summary></order-summary>
-    </div>
+    <mat-stepper linear #stepper>
+        <mat-step [stepControl]="orderFormComponent.orderForm" [optional]="false" errorMessage="Hibásak az adatok">
+            <ng-template matStepLabel>A megrendelő adatai</ng-template>
+            <div class="orderFormAndCart">
+                <order-form #orderFormComponent></order-form>
+                <order-summary></order-summary>
+            </div>
+        </mat-step>
+
+        <mat-step [stepControl]="paymentAndDeliveryFormComponent.paymentAndDeliveryForm" [optional]="false" errorMessage="Meg kell adni">
+            <ng-template matStepLabel>Fizetés és kiszállítás</ng-template>
+            <payment-and-delivery-form #paymentAndDeliveryFormComponent></payment-and-delivery-form>
+        </mat-step>
+        <mat-step>
+            <ng-template matStepLabel>Küldés</ng-template>
+            <p>Ha minden rendben küldd el.</p>
+            <div>
+                <button type="button" mat-button matStepperPrevious>Vissza</button>
+                <button type="button" mat-button (click)="submit(orderFormComponent.orderModel, 
+                    paymentAndDeliveryFormComponent.paymentAndDeliveryFormModel, 
+                    orderFormComponent.orderForm, 
+                    paymentAndDeliveryFormComponent.paymentAndDeliveryForm,
+                    stepper)">
+                        Elküld
+                </button>
+            </div>
+        </mat-step>
+    </mat-stepper>
 </div>
