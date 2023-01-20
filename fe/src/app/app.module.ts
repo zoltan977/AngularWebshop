@@ -24,6 +24,7 @@ import { OrderDetailsComponent } from './components/shared/order-list/order-deta
 import { DisplayCartComponent } from './components/shared/display-cart/display-cart.component';
 import { OrderDataComponent } from './components/shared/order-list/order-details/order-data/order-data.component';
 import { PaymentAndDeliveryFormComponent } from './components/check-out/payment-and-delivery-form/payment-and-delivery-form.component';
+import { UserAccountComponent } from './components/user-account/user-account.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -84,6 +85,7 @@ export function tokenGetter() {
     DisplayCartComponent,
     OrderDataComponent,
     PaymentAndDeliveryFormComponent,
+    UserAccountComponent,
   ],
   imports: [
     BrowserModule,
@@ -126,6 +128,7 @@ export function tokenGetter() {
       {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
       {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
+      {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
