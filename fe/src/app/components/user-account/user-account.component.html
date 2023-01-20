@@ -1,0 +1,53 @@
+<div class="userAccount">
+    <form (submit)="submit()" [formGroup]="userAccountForm">
+        <div>
+            <p [formGroup]="customerName" *ngFor="let customerName of customerNames; let i=index">
+                <mat-form-field appearance="fill">
+                  <mat-label>Számlázási név</mat-label>
+                  <input matInput formControlName="name">
+                  <mat-icon matSuffix>account_circle</mat-icon>
+                  <mat-error *ngIf="customerName.controls.name.errors?.required">
+                    Meg kell adni a számlázási nevet
+                  </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="accent" type="button" (click)="removeCustomerName(i)">
+                    -
+                </button>
+            </p>
+            <button mat-raised-button color="accent" type="button" (click)="addCustomerName()">
+                +
+            </button>
+        </div>
+        <div>
+            <p [formGroup]="deliveryAddress" *ngFor="let deliveryAddress of deliveryAddresses; let i=index">
+                <mat-form-field appearance="fill">
+                  <mat-label>Szállítási cím</mat-label>
+                  <textarea matInput formControlName="address"></textarea>
+                  <mat-error *ngIf="deliveryAddress.controls.address.errors?.required">
+                    Meg kell adni a szállítási címet
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Város</mat-label>
+                    <input matInput formControlName="city">
+                    <mat-error *ngIf="deliveryAddress.controls.city.errors?.required">
+                      Meg kell adni a várost
+                    </mat-error>
+                  </mat-form-field>
+                <button mat-raised-button color="accent" type="button" (click)="removeDeliveryAddress(i)">
+                    -
+                </button>
+            </p>
+            <button mat-raised-button color="accent" type="button" (click)="addDeliveryAddress()">
+                +
+            </button>
+        </div>
+        <p>
+            <span (click)="markAllInputsAsTouched()">
+                <button [disabled]="userAccountForm.invalid" mat-raised-button color="primary" type="submit">
+                    submit
+                </button>
+            </span>
+        </p>
+    </form>
+</div>

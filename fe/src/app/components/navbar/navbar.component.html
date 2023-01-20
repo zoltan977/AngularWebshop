@@ -18,6 +18,7 @@
         </button>
         <mat-menu #menu="matMenu">
             <button mat-menu-item routerLink="my/orders">Megrendeléseim</button>
+            <button mat-menu-item routerLink="my/account">Fiókom</button>
             <ng-container *ngIf="authService.currentUser.user.admin">
                 <button mat-menu-item routerLink="admin/orders">Összes megrendelés</button>
                 <button mat-menu-item routerLink="admin/products">Összes termék</button>
