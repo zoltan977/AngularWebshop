@@ -2,7 +2,6 @@
     <categories [category]="category"></categories>
 </div>
 <div class="products">
-    <ng-container *ngFor="let p of filteredProducts">
-      <product-card [product]="p" [show-actions]="true"></product-card>
-    </ng-container>
+    <product-card [product]="p" [show-actions]="true" *ngFor="let p of filteredProducts">
+    </product-card>
 </div>
