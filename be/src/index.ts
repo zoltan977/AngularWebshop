@@ -6,6 +6,7 @@ import { CartRoutes } from "./routes/CartRoutes";
 import { OrderRoutes } from "./routes/OrderRoutes";
 import { ProductRoutes } from "./routes/ProductRoutes";
 import { TypeRoutes } from "./routes/TypeRoutes";
+import { UserAccountRoutes } from "./routes/UserAccountRoutes";
 
 dotenv.config();
 
@@ -29,7 +30,8 @@ dotenv.config();
       new TypeRoutes(),
       new ProductRoutes(),
       new CartRoutes(),
-      new OrderRoutes()
+      new OrderRoutes(),
+      new UserAccountRoutes()
     ]);
 
     app.listen();
