@@ -1,5 +1,5 @@
 <a [routerLink]="['/']" [class.active]="!category">Összes</a>
-<a *ngFor="let c of categories$ | async" role="listitem" [routerLink]="['/']" 
+<a *ngFor="let c of categories$ | async" [routerLink]="['/']" 
     [queryParams]="{category: c.name}" 
     [class.active]="category === c.name">
     {{c.displayName}}

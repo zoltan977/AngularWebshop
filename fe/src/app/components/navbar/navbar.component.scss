@@ -1,11 +1,22 @@
-:host {
+mat-toolbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 100;
-    
-    mat-icon.home {
+
+    display: flex;
+    padding-right: 30px;
+    & > * {
+        &:last-child {
+            flex: 1;
+
+            display: flex;
+            flex-direction: row-reverse;
+        }
+    }
+
+    mat-icon.big {
         transform: scale(2);
     }
     

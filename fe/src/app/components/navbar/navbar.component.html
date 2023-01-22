@@ -1,29 +1,31 @@
 <mat-toolbar color="primary">
-    <button mat-icon-button routerLink="/"><mat-icon class="home">home</mat-icon></button>
-    <button mat-button routerLink="shopping-cart" 
-        [matBadge]="cartService.currentCart.itemCount" 
-        matBadgeColor="accent" 
-        [matBadgeHidden]="!cartService.currentCart.itemCount">
-        Bevásárló kosár
-    </button>
+    <a mat-icon-button routerLink="/"><mat-icon class="big">home</mat-icon></a>
     <ng-template #login>
-        <button mat-button routerLink="login">Belépés</button>
+        <a mat-button routerLink="login">Belépés</a>
     </ng-template>
     <ng-container *ngIf="authService.currentUser; else login">
-        <button mat-button [matMenuTriggerFor]="menu">
+        <a mat-button [matMenuTriggerFor]="menu">
             <span class="menu">
                 {{authService.currentUser.user.username}}
                 <mat-icon>arrow_drop_down</mat-icon>
             </span>
-        </button>
+        </a>
         <mat-menu #menu="matMenu">
-            <button mat-menu-item routerLink="my/orders">Megrendeléseim</button>
-            <button mat-menu-item routerLink="my/account">Fiókom</button>
+            <a mat-menu-item routerLink="my/orders">Megrendeléseim</a>
+            <a mat-menu-item routerLink="my/account">Fiókom</a>
             <ng-container *ngIf="authService.currentUser.user.admin">
-                <button mat-menu-item routerLink="admin/orders">Összes megrendelés</button>
-                <button mat-menu-item routerLink="admin/products">Összes termék</button>
+                <a mat-menu-item routerLink="admin/orders">Összes megrendelés</a>
+                <a mat-menu-item routerLink="admin/products">Összes termék</a>
             </ng-container>
-            <button mat-menu-item (click)="authService.logout()">Kilépés</button>
+            <a mat-menu-item (click)="authService.logout()">Kilépés</a>
         </mat-menu>
     </ng-container>
+    <div>
+        <a mat-button routerLink="shopping-cart" 
+            [matBadge]="cartService.currentCart.itemCount" 
+            matBadgeColor="accent" 
+            [matBadgeHidden]="!cartService.currentCart.itemCount">
+            <mat-icon class="big">shopping_cart</mat-icon>
+        </a>
+    </div>
 </mat-toolbar>

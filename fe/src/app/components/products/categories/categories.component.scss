@@ -1,8 +1,7 @@
 :host {
-    position: fixed;
     top: 80px;
-    left: 20px;
-
+    position: sticky;
+        
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -15,7 +14,7 @@
     }
 
     .active {
-        background: #3F51B5 !important;
-        color: white !important;
+        background: #3F51B5;
+        color: white;
     }
 }
