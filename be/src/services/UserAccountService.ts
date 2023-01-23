@@ -41,9 +41,6 @@ class UserAccountService {
 
     try {
       accountData = await UserAccountModel.findOne({userEmail})
-      if  (!accountData) {
-        throw new DatabaseException();
-      }
     } catch (error) {
       throw new DatabaseException();
     }
