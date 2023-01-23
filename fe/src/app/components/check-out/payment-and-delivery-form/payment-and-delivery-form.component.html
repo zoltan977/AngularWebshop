@@ -1,5 +1,6 @@
 <form [formGroup]="paymentAndDeliveryForm">
-    <p>
+    <div>
+      <div class="formControls">
         <mat-label>Fizetési mód</mat-label>
         <mat-radio-group
           formControlName="paymentMethod">
@@ -7,14 +8,16 @@
               {{paymentMethodItem.displayValue}}
           </mat-radio-button>
         </mat-radio-group>
+      </div>
         <mat-error *ngIf="controls?.paymentMethod?.errors?.required">
           Meg kell adni
         </mat-error>
         <mat-error *ngIf="controls?.paymentMethod?.errors?.isIn as isIn">
           {{isIn || isIn.message}}
         </mat-error>
-    </p>
-    <p>
+    </div>
+    <div>
+      <div class="formControls">
         <mat-label>Kiszállítási mód</mat-label>
         <mat-radio-group
           formControlName="deliveryMethod">
@@ -22,16 +25,17 @@
               {{deliveryMethodItem.displayValue}}
           </mat-radio-button>
         </mat-radio-group>
+      </div>
         <mat-error *ngIf="controls?.deliveryMethod?.errors?.required">
           Meg kell adni
         </mat-error>
         <mat-error *ngIf="controls?.deliveryMethod?.errors?.isIn as isIn">
           {{isIn || isIn.message}}
         </mat-error>
-    </p>
+    </div>
         
-    <p (click)="markAllInputsAsTouched()">
+    <span (click)="markAllInputsAsTouched()">
         <button type="button" mat-button matStepperPrevious>Vissza</button>
         <button type="button" mat-button matStepperNext>Következő</button>
-    </p>
+    </span>
 </form>
