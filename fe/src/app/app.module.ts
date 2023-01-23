@@ -25,6 +25,8 @@ import { DisplayCartComponent } from './components/shared/display-cart/display-c
 import { OrderDataComponent } from './components/shared/order-list/order-details/order-data/order-data.component';
 import { PaymentAndDeliveryFormComponent } from './components/check-out/payment-and-delivery-form/payment-and-delivery-form.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
+import { AddUserAccountItemFormComponent } from './components/user-account/add-user-account-item-form/add-user-account-item-form.component';
+import { DisplayUserAccountDataComponent } from './components/user-account/display-user-account-data/display-user-account-data.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -86,6 +88,8 @@ export function tokenGetter() {
     OrderDataComponent,
     PaymentAndDeliveryFormComponent,
     UserAccountComponent,
+    AddUserAccountItemFormComponent,
+    DisplayUserAccountDataComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,37 @@
+<mat-card class="accountData">
+    <mat-card-header>
+        <h1>
+            Számlázási nevek
+        </h1>
+    </mat-card-header>
+    <mat-card>
+        <mat-card-content *ngFor="let customerName of userAccountService.currentUserAccountData.customerNames">
+            <p>
+                {{customerName.name}}
+            </p>
+            <button mat-mini-fab color="accent" type="button" (click)="deleteCustomerName(customerName._id)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card-header>
+        <h1>
+            Számlázási címek
+        </h1>
+    </mat-card-header>
+    <mat-card>
+        <mat-card-content *ngFor="let deliveryAddress of userAccountService.currentUserAccountData.deliveryAddresses">
+            <div>
+                <p>
+                    {{deliveryAddress.address}}
+                </p>
+                <p>
+                    {{deliveryAddress.city}}
+                </p>
+            </div>
+            <button mat-mini-fab color="accent" type="button" (click)="deleteDeliveryAddress(deliveryAddress._id)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </mat-card-content>
+    </mat-card>
+</mat-card>

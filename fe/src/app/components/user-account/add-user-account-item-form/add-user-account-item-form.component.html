@@ -1,0 +1,65 @@
+<form (submit)="submit()" [formGroup]="userAccountForm">
+    <p>
+        <mat-error *ngIf="controls?.userEmail?.invalid">
+            Nem vagy belépve
+        </mat-error>
+    </p>
+    <mat-card>
+        <mat-card-content [formGroup]="customerName" *ngFor="let customerName of customerNames; let i=index">
+            <mat-form-field appearance="fill">
+              <mat-label>Számlázási név</mat-label>
+              <input matInput formControlName="name">
+              <mat-icon matSuffix>account_circle</mat-icon>
+              <mat-error *ngIf="customerName.controls.name.errors?.required">
+                Meg kell adni a számlázási nevet
+              </mat-error>
+            </mat-form-field>
+            <button mat-mini-fab color="accent" type="button" (click)="removeCustomerName(i)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-mini-fab color="accent" type="button" (click)="addCustomerName()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <mat-card>
+        <mat-card-content [formGroup]="deliveryAddress" *ngFor="let deliveryAddress of deliveryAddresses; let i=index">
+            <div>
+                <mat-form-field appearance="fill">
+                  <mat-label>Szállítási cím</mat-label>
+                  <textarea matInput formControlName="address"></textarea>
+                  <mat-icon matSuffix>location_on</mat-icon>
+                  <mat-error *ngIf="deliveryAddress.controls.address.errors?.required">
+                    Meg kell adni a szállítási címet
+                  </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Város</mat-label>
+                    <input matInput formControlName="city">
+                    <mat-icon matSuffix>location_city</mat-icon>
+                    <mat-error *ngIf="deliveryAddress.controls.city.errors?.required">
+                      Meg kell adni a várost
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <button mat-mini-fab color="accent" type="button" (click)="removeDeliveryAddress(i)">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-mini-fab color="accent" type="button" (click)="addDeliveryAddress()">
+                <mat-icon>add</mat-icon>
+            </button>
+        </mat-card-actions>
+    </mat-card>
+    <p>
+        <span (click)="markAllInputsAsTouched()">
+            <button [disabled]="isFormInvalid"
+             mat-raised-button color="primary" type="submit">
+                hozzáad
+            </button>
+        </span>
+    </p>
+</form>
