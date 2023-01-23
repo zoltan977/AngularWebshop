@@ -6,6 +6,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { SignUpFormModel } from '../components/signup/signupFormModel';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UserAccountService } from './user-account.service';
 
 interface ITokenResponse {
   token: string;
@@ -29,7 +30,8 @@ export class AuthService {
   constructor(private httpClient: HttpClient, 
               private jwtHelper: JwtHelperService,
               private route: ActivatedRoute,
-              private router: Router) { 
+              private router: Router,
+              private userAccountService: UserAccountService) { 
   }
   
   get userLoggedIn(): boolean {
@@ -47,6 +49,7 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("logged in: ", data.token);
         this.setToken(data.token);
+        this.userAccountService.get().subscribe();
         this.navigateToTheReturnUrl();
       }),
       catchError(serviceErrorHandler)

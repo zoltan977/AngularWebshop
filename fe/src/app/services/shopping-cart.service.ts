@@ -12,14 +12,14 @@ import serviceErrorHandler from '../utils/serviceErrorHandler';
 export class ShoppingCartService {
   private readonly LOCALSTORAGE_FIELD_OF_CART_ID = 'cartId';
   private readonly PATH = "http://localhost:5000/cart"
-  private currentShoppingCart: ShoppingCart = new ShoppingCart()
+  private _currentCart: ShoppingCart = new ShoppingCart()
 
   constructor(private httpClient: HttpClient) {
     console.log("Shopping cart service constructor");
   }
 
   get currentCart() {
-    return this.currentShoppingCart;
+    return this._currentCart;
   }
 
   get currentCartId() {
@@ -82,10 +82,10 @@ export class ShoppingCartService {
     return response.pipe(
       switchMap((data: boolean) => {
         console.log("shopping-cart service CLEAR response data", data);
-        this.currentShoppingCart = new ShoppingCart();
+        this._currentCart = new ShoppingCart();
         this.removeCartId()
 
-        return of(this.currentShoppingCart)
+        return of(this._currentCart)
       }),
       catchError(serviceErrorHandler)
       )
@@ -109,7 +109,7 @@ export class ShoppingCartService {
       this.clearCart().subscribe()
     }
     else {
-      this.currentShoppingCart = new ShoppingCart(cart);
+      this._currentCart = new ShoppingCart(cart);
     }
   }
 }

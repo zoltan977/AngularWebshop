@@ -1,0 +1,29 @@
+.accountData {
+    flex: 1 1 50%;
+    min-width: 350px;
+    max-width: 600px;
+    padding: 20px;
+    
+    mat-card {
+        margin-bottom: 20px;
+
+        mat-card-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding-bottom: 10px;
+            margin: 0 10px 10px 10px;
+            border-bottom: 1px solid #a8a8a8;
+
+            button {
+                margin-left: 20px;
+            }
+
+            p:last-child,
+            p:only-of-type {
+                margin: 0;
+            }
+        }
+    }
+}
