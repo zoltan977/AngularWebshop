@@ -1,0 +1,16 @@
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 20px;
+    
+    .formControls {
+        & > * {
+            display: block;
+    
+            &:first-child {
+                font-weight: bold !important;
+            }
+        }
+    }
+}
