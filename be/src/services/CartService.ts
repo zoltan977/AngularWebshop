@@ -20,18 +20,17 @@ class CartService {
           savedCart = await newCart.save();
         } else {
           const cartToUpdate = await CartModel.findById(cartData.cartId);
-          if (!cartToUpdate) throw new DatabaseException();
-          const itemToUpdate = cartToUpdate.items.find(item => item.product._id.toString() === cartData.product._id.toString())
+          const itemToUpdate = cartToUpdate!.items.find(item => item.product._id.toString() === cartData.product._id.toString())
           if (itemToUpdate) {
             itemToUpdate.quantity += cartData.quantity;
           } else {
-            cartToUpdate.items.push({
+            cartToUpdate!.items.push({
               product: cartData.product,
               quantity: 1
             })
           }
 
-          savedCart = await cartToUpdate.save()
+          savedCart = await cartToUpdate!.save()
         }
     
       } catch (error) {
@@ -44,22 +43,18 @@ class CartService {
 
   public async remove(cartData: RemoveCartItemRequestInterface) {
     console.log("cartData:", cartData)
-
+    
     let savedCart
     try {
         const cartToUpdate = await CartModel.findById(cartData.cartId);
-        if (!cartToUpdate) throw new DatabaseException();
-        let itemToUpdate = cartToUpdate.items.find(item => item.product._id.toString() === cartData.product._id.toString())
-        if (itemToUpdate) {
-          itemToUpdate.quantity -= cartData.quantity;
-          if (itemToUpdate.quantity === 0) {
-            cartToUpdate.items = cartToUpdate.items.filter(item => item.product._id.toString() !== cartData.product._id.toString())
-          }
-        } else {
-          throw new DatabaseException();
+        let itemToUpdate = cartToUpdate!.items.find(item => item.product._id.toString() === cartData.product._id.toString())
+        
+        itemToUpdate!.quantity -= cartData.quantity;
+        if (itemToUpdate!.quantity === 0) {
+          cartToUpdate!.items = cartToUpdate!.items.filter(item => item.product._id.toString() !== cartData.product._id.toString())
         }
-
-        savedCart = await cartToUpdate.save()
+        
+        savedCart = await cartToUpdate!.save()
   
     } catch (error) {
       console.log("Error creating cart: ", error);
