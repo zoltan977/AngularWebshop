@@ -13,10 +13,10 @@
         <mat-menu #menu="matMenu">
             <a mat-menu-item routerLink="my/orders">Megrendeléseim</a>
             <a mat-menu-item routerLink="my/account">Fiókom</a>
-            <ng-container *ngIf="authService.currentUser.user.admin">
+            <div style="background-color:#ff4081" *ngIf="authService.currentUser.user.admin">
                 <a mat-menu-item routerLink="admin/orders">Összes megrendelés</a>
                 <a mat-menu-item routerLink="admin/products">Összes termék</a>
-            </ng-container>
+            </div>
             <a mat-menu-item (click)="authService.logout()">Kilépés</a>
         </mat-menu>
     </ng-container>

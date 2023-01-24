@@ -1,7 +1,5 @@
 <mat-card *ngIf="product.title">
-    <mat-card-header>
-      <mat-card-title>{{product.title}}</mat-card-title>
-    </mat-card-header>
+    <mat-card-title>{{product.title}}</mat-card-title>
     <img mat-card-image [src]="product.imageURL" *ngIf="product.imageURL">
     <mat-card-content>
       <p>
