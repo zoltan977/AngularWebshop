@@ -27,6 +27,7 @@ import { PaymentAndDeliveryFormComponent } from './components/check-out/payment-
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { AddUserAccountItemFormComponent } from './components/user-account/add-user-account-item-form/add-user-account-item-form.component';
 import { DisplayUserAccountDataComponent } from './components/user-account/display-user-account-data/display-user-account-data.component';
+import { DeleteProductDialogComponent } from './components/admin/admin-products/product-form/delete-product-dialog/delete-product-dialog.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -43,6 +44,7 @@ import {MatSortModule} from '@angular/material/sort';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatDialogModule} from '@angular/material/dialog';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
@@ -53,6 +55,7 @@ import { AppErrorHandler } from './utils/errorHandler';
 import { AuthGuard } from './services/auth-guard.service';
 import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
 
 import localeHu from '@angular/common/locales/hu';
 import { registerLocaleData } from '@angular/common';
@@ -91,6 +94,7 @@ export function tokenGetter() {
     UserAccountComponent,
     AddUserAccountItemFormComponent,
     DisplayUserAccountDataComponent,
+    DeleteProductDialogComponent,
   ],
   imports: [
     BrowserModule,
@@ -110,10 +114,12 @@ export function tokenGetter() {
     MatStepperModule,
     MatRadioModule,
     MatAutocompleteModule,
+    MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
     HttpClientModule,
+    AngularToastifyModule,
 
     JwtModule.forRoot({
       config: {
@@ -144,6 +150,7 @@ export function tokenGetter() {
     ]),
   ],
   providers: [
+    ToastService,
     { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
   bootstrap: [AppComponent]

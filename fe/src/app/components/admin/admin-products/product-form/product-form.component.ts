@@ -1,14 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { FormError } from 'src/app/errors/formError';
 import { CategoryService, ICategory } from 'src/app/services/category.service';
 import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { Product } from '../../../../models/product-model';
+import { DeleteProductDialogComponent } from './delete-product-dialog/delete-product-dialog.component';
 
 @Component({
   selector: 'app-product-form-component',
@@ -25,7 +27,8 @@ export class ProductFormComponent implements OnInit {
               route: ActivatedRoute,
               private formBuilder: RxFormBuilder,
               private productService: ProductService,
-              private router: Router) {
+              private router: Router,
+              public dialog: MatDialog) {
 
       this.id = route.snapshot.paramMap.get('id')
   }
@@ -74,9 +77,15 @@ export class ProductFormComponent implements OnInit {
       }
     })
   }
+
+  async openDeleteProductDialog() {
+    const dialogRef = this.dialog.open(DeleteProductDialogComponent);
+    const result = await lastValueFrom(dialogRef.afterClosed());
+    return result;
+  }
   
-  delete() {
-    if (!(confirm("Are you sure you want to delete this product?") && this.id)) return;
+  async delete() {
+    if (!(await this.openDeleteProductDialog() && this.id)) return;
     
     this.productService.delete(this.id)
     .subscribe({
