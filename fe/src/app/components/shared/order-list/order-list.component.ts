@@ -4,6 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { OrderDataWithDateAndId } from 'src/app/models/order-model';
+import { FilterValuesService } from 'src/app/services/filter-values.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -14,13 +15,15 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderListComponent implements OnInit{
   dataSource!: MatTableDataSource<OrderDataWithDateAndId>;
   displayedColumns: string[] = ['userEmail', 'name', 'dateCreated', '_id'];
+  noData: boolean = true;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('admin') admin: boolean = false;
 
-  constructor(private orderService: OrderService) {}
+  constructor(private orderService: OrderService, public filterValuesService: FilterValuesService) {
+  }
 
-  applyFilter(filterValue: string) {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyFilter() {
+    this.dataSource.filter = this.filterValuesService.ordersFilter.trim().toLowerCase();
   }
 
   ngOnInit(): void {
@@ -36,7 +39,7 @@ export class OrderListComponent implements OnInit{
       next: (data) => {
         this.dataSource = new MatTableDataSource(data as OrderDataWithDateAndId[]);
         this.dataSource.sort = this.sort;
-
+        this.noData = !(data as OrderDataWithDateAndId[])?.length;
         this.settingMatTableFilter();
       },
       error: (error) => {
@@ -51,6 +54,7 @@ export class OrderListComponent implements OnInit{
       return record.userEmail.toLowerCase().includes(filter.toLowerCase()) || 
       record.name.toString().toLowerCase().includes(filter.toLowerCase());
     }
+    this.applyFilter();
   }
 
 }

@@ -1,8 +1,8 @@
 <mat-form-field>
     <mat-label>Szűrő</mat-label>
-    <input #filter matInput (keyup)="applyFilter(filter.value)" placeholder="Ex. Mia">
+    <input matInput [(ngModel)]="filterValuesService.ordersFilter" placeholder="Ex. Mia" (keyup)="applyFilter()">
 </mat-form-field>
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" *ngIf="!noData; else noOrdersData">
     <!-- userEmail -->
     <ng-container matColumnDef="userEmail">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Email </th>
@@ -32,7 +32,12 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
      <!-- Row shown when there is no matching data. -->
-    <tr class="mat-row" *matNoDataRow>
-       <td class="mat-cell" colspan="4">Nem található "{{filter.value}}" az emailekben vagy nevekben</td>
+    <tr *matNoDataRow>
+       <td colspan="4">Nem található "{{filterValuesService.ordersFilter}}" az emailekben vagy nevekben</td>
     </tr>
 </table>
+<ng-template #noOrdersData>
+  <p>
+    Nincsenek megrendelések
+  </p>
+</ng-template>
