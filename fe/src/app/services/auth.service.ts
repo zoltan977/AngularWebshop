@@ -49,8 +49,9 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("logged in: ", data.token);
         this.setToken(data.token);
-        this.userAccountService.get().subscribe();
-        this.navigateToTheReturnUrl();
+        this.userAccountService.get().subscribe({
+            complete: this.navigateToTheReturnUrl
+          });
       }),
       catchError(serviceErrorHandler)
     );
