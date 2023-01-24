@@ -1,9 +1,14 @@
 :host {
     width: 400px;
+    text-align: center;
 
     button {
         width: 100%;
     }
 
-    
+    mat-card-content {
+        p {
+            margin: 10px 0;
+        }
+    }
 }
