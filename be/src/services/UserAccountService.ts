@@ -53,12 +53,8 @@ class UserAccountService {
 
     try {
       accountData = await UserAccountModel.findOne({userEmail});
-      if (accountData) {
-        accountData.deliveryAddresses = accountData?.deliveryAddresses.filter(da => da._id.toString() !== deliveryAddressId)
-        accountData = accountData.save();
-      } else {
-        throw new DatabaseException();
-      }
+      accountData!.deliveryAddresses = accountData!.deliveryAddresses.filter(da => da._id.toString() !== deliveryAddressId)
+      accountData = accountData!.save();
     } catch (error) {
       throw new DatabaseException();
     }
@@ -71,12 +67,8 @@ class UserAccountService {
 
     try {
       accountData = await UserAccountModel.findOne({userEmail});
-      if (accountData) {
-        accountData.customerNames = accountData?.customerNames.filter(cn => cn._id.toString() !== customerNameId)
-        accountData = accountData.save();
-      } else {
-        throw new DatabaseException();
-      }
+      accountData!.customerNames = accountData!.customerNames.filter(cn => cn._id.toString() !== customerNameId)
+      accountData = accountData!.save();
     } catch (error) {
       throw new DatabaseException();
     }
