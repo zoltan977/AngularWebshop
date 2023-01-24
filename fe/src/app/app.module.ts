@@ -42,6 +42,7 @@ import {MatBadgeModule} from '@angular/material/badge';
 import {MatSortModule} from '@angular/material/sort';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatRadioModule} from '@angular/material/radio';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
 
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
@@ -108,6 +109,7 @@ export function tokenGetter() {
     MatSortModule,
     MatStepperModule,
     MatRadioModule,
+    MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,

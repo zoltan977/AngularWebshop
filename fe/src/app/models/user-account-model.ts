@@ -26,7 +26,7 @@ export class UserAccountFormModel {
     userEmail!: string;
 }
 
-class CustomerNameData {
+export class CustomerNameData {
     public readonly _id: string = "";
     public readonly name: string = "";
 
@@ -38,7 +38,7 @@ class CustomerNameData {
     }
 }
 
-class DeliveryAddressData {
+export class DeliveryAddressData {
     public readonly _id: string = "";
     public readonly address: string = "";
     public readonly city: string = "";

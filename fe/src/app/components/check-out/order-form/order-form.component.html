@@ -13,11 +13,19 @@
       <mat-error *ngIf="controls?.userEmail?.errors?.isUserEmailInUserCollection as isUserEmailInUserCollection">
         {{isUserEmailInUserCollection?.message || isUserEmailInUserCollection}}
       </mat-error>
-  </p>
+    </p>
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Név</mat-label>
-          <input matInput placeholder="name" formControlName="name">
+          <input
+            matInput
+            formControlName="name"
+            [matAutocomplete]="nameAuto">
+          <mat-autocomplete #nameAuto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredCustomerNames | async" [value]="option.name">
+              {{option.name}}
+            </mat-option>
+          </mat-autocomplete>
           <mat-error *ngIf="controls?.name?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -26,7 +34,17 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Cím</mat-label>
-          <textarea matInput placeholder="address" formControlName="address"></textarea>
+          <textarea
+            matInput
+            formControlName="address"
+            [matAutocomplete]="addressAuto">
+          </textarea>
+          <mat-autocomplete #addressAuto="matAutocomplete"
+          (optionSelected)="deliveryAddressSelected($event)" [displayWith]="displayDeliveryAddressValue">
+            <mat-option *ngFor="let option of filteredDeliveryAddresses | async" [value]="option">
+              {{option.city}} - {{option.address}}
+            </mat-option>
+          </mat-autocomplete>
           <mat-error *ngIf="controls?.address?.errors?.required">
             Meg kell adni
           </mat-error>
@@ -35,7 +53,7 @@
     <p>
         <mat-form-field appearance="fill">
           <mat-label>Város</mat-label>
-          <input matInput placeholder="city" formControlName="city">
+          <input matInput formControlName="city">
           <mat-error *ngIf="controls?.city?.errors?.required">
             Meg kell adni
           </mat-error>
