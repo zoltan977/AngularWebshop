@@ -18,6 +18,10 @@ export class AppComponent implements OnInit {
     private userAccountService: UserAccountService, private authService: AuthService) {
   }
 
+  get cartAndUserAccountDataLoaded() {
+    return this.cartLoaded && this.userAccountDataLoaded
+  }
+
   ngOnInit(): void {
     this.settingValidationMessagesForRxWebForms()
     this.preloadingShoppingCartData()
