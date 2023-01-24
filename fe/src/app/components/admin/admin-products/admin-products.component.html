@@ -1,9 +1,9 @@
 <a mat-raised-button color="primary" routerLink="/admin/products/new">Új termék</a>
 <mat-form-field>
   <mat-label>Szűrő</mat-label>
-  <input #filter matInput (keyup)="applyFilter(filter.value)" placeholder="Ex. Mia">
+  <input matInput [(ngModel)]="filterValuesService.productsFilter" (keyup)="applyFilter()" placeholder="Ex. Mia">
 </mat-form-field>
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" *ngIf="!noData; else noProductsData">
 
     <!-- title -->
     <ng-container matColumnDef="title">
@@ -27,4 +27,14 @@
   
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <!-- Row shown when there is no matching data. -->
+    <tr *matNoDataRow>
+      <td colspan="4">Nem található "{{filterValuesService.productsFilter}}" a termékben vagy árban</td>
+   </tr>
   </table>
+  <ng-template #noProductsData>
+    <p>
+      Nincsenek termékek
+    </p>
+  </ng-template>
