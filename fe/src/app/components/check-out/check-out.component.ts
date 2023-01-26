@@ -5,6 +5,7 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { FormError } from 'src/app/errors/formError';
 import { OrderDataToAPI, OrderDataFromAPI, OrderFormModel } from 'src/app/models/order-model';
+import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
 import { OrderService } from 'src/app/services/order.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-model';
@@ -22,7 +23,7 @@ import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-m
 })
 export class CheckOutComponent {
 
-  constructor(private orderService: OrderService, private router: Router) {}
+  constructor(private orderService: OrderService, private router: Router, private checkoutFormsValuesService: CheckoutFormsValuesService) {}
 
   submit(orderModel: OrderFormModel, paymentAndDeliveryModel:PaymentAndDeliveryFormModel, 
     orderForm: FormGroup, paymentAndDeliveryForm: FormGroup, stepper: MatStepper) {
@@ -32,6 +33,7 @@ export class CheckOutComponent {
     this.orderService.add(orderData)
     .subscribe({
       next: (order) => {
+        this.resetForms();
         this.router.navigate(['/order-success', (order as OrderDataFromAPI)._id]);
       },
       error: (error) => {
@@ -44,6 +46,10 @@ export class CheckOutComponent {
         }
       }
     })
+  }
 
+  private resetForms() {
+    this.checkoutFormsValuesService.orderFormValues = new OrderFormModel();
+    this.checkoutFormsValuesService.paymentAndDeliveryFormValues = new PaymentAndDeliveryFormModel();
   }
 }
