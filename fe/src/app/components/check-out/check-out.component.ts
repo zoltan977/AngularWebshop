@@ -7,7 +7,7 @@ import { FormError } from 'src/app/errors/formError';
 import { OrderDataToAPI, OrderDataFromAPI, OrderFormModel } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
-import { PaymentAndDeliveryFormModel } from './payment-and-delivery-form/payment-and-delivery-form-model';
+import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-model';
 
 @Component({
   selector: 'app-check-out',

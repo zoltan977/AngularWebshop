@@ -6,6 +6,7 @@ import { map, Observable, startWith } from 'rxjs';
 import { OrderFormModel } from 'src/app/models/order-model';
 import { CustomerNameData, DeliveryAddressData } from 'src/app/models/user-account-model';
 import { AuthService } from 'src/app/services/auth.service';
+import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { UserAccountService } from 'src/app/services/user-account.service';
 import { orderCartValidator } from 'src/app/utils/validators/orderCartValidator';
@@ -28,9 +29,10 @@ export class OrderFormComponent {
     private formBuilder: RxFormBuilder,
     private authService: AuthService,
     private cartService: ShoppingCartService,
+    checkoutFormsValuesService: CheckoutFormsValuesService,
     userAccountService: UserAccountService
     ) {
-      this.orderModel = new OrderFormModel()
+      this.orderModel = checkoutFormsValuesService.orderFormValues;
       this.orderForm = formBuilder.formGroup(this.orderModel);
       this.customerNames = userAccountService.currentUserAccountData.customerNames;
       this.deliveryAddresses = userAccountService.currentUserAccountData.deliveryAddresses;
