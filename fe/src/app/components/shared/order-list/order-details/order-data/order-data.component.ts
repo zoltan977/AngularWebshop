@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeliveryMethods, PaymentMethods } from 'src/app/components/check-out/payment-and-delivery-form/payment-and-delivery-form-model';
+import { DeliveryMethods, PaymentMethods } from 'src/app/models/payment-and-delivery-model';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
 
 @Component({

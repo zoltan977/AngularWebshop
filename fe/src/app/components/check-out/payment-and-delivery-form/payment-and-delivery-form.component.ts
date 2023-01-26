@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { DeliveryMethods, PaymentAndDeliveryFormModel, PaymentMethods } from './payment-and-delivery-form-model';
+import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
+import { DeliveryMethods, PaymentAndDeliveryFormModel, PaymentMethods } from '../../../models/payment-and-delivery-model';
 
 @Component({
   selector: 'payment-and-delivery-form',
@@ -15,8 +16,8 @@ export class PaymentAndDeliveryFormComponent {
   paymentAndDeliveryForm: FormGroup;
   paymentAndDeliveryFormModel: PaymentAndDeliveryFormModel;
 
-  constructor(formBuilder: RxFormBuilder) {
-    this.paymentAndDeliveryFormModel = new PaymentAndDeliveryFormModel()
+  constructor(formBuilder: RxFormBuilder, checkoutFormsValuesService: CheckoutFormsValuesService) {
+    this.paymentAndDeliveryFormModel = checkoutFormsValuesService.paymentAndDeliveryFormValues;
     this.paymentAndDeliveryForm = formBuilder.formGroup(this.paymentAndDeliveryFormModel);
   }
 

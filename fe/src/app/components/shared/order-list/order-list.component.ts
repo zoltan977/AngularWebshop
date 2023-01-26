@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
-import { FilterValuesService } from 'src/app/services/filter-values.service';
+import { DataTablesFilterValuesService } from 'src/app/services/data-tables-filter-values.service';
 import { OrderService } from 'src/app/services/order.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class OrderListComponent implements OnInit{
   @ViewChild(MatSort) sort!: MatSort;
   @Input('admin') admin: boolean = false;
 
-  constructor(private orderService: OrderService, public filterValuesService: FilterValuesService) {
+  constructor(private orderService: OrderService, public filterValuesService: DataTablesFilterValuesService) {
   }
 
   applyFilter() {
