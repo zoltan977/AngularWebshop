@@ -5,8 +5,8 @@ export class ShoppingCartItem {
     public readonly quantity!: number;
 
     constructor(init: ShoppingCartItem) {
-            Object.assign(this, init)
-        }
+        Object.assign(this, init)
+    }
 
     get totalPrice() {
         return parseInt(this.product.price) * this.quantity

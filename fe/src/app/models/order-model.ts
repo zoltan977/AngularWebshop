@@ -25,25 +25,25 @@ export class OrderFormModel {
     cart!: ShoppingCart;
 }
 export class OrderDataToAPI extends OrderFormModel {
-    public readonly deliveryMethod: string | undefined;
-    public readonly paymentMethod: string | undefined;
+    public readonly deliveryMethod: string;
+    public readonly paymentMethod: string;
     
-    constructor(init?: OrderDataToAPI) {
+    constructor(init: OrderDataToAPI) {
         super(init);
             
-        this.deliveryMethod = init?.deliveryMethod;
-        this.paymentMethod = init?.paymentMethod;
+        this.deliveryMethod = init.deliveryMethod;
+        this.paymentMethod = init.paymentMethod;
     }
 }
 
 export class OrderDataFromAPI extends OrderDataToAPI {
-    public readonly dateCreated: Date | undefined;
-    public readonly _id: string | undefined;
+    public readonly dateCreated: Date;
+    public readonly _id: string;
 
-    constructor(init?: OrderDataFromAPI) {
+    constructor(init: OrderDataFromAPI) {
         super(init);
             
-        this.dateCreated = init?.dateCreated;
-        this._id = init?._id;
+        this.dateCreated = init.dateCreated;
+        this._id = init._id;
     }
 }

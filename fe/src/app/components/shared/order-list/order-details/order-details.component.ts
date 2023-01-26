@@ -11,7 +11,7 @@ import { OrderService } from 'src/app/services/order.service';
 })
 export class OrderDetailsComponent implements OnInit {
   
-  order: OrderDataFromAPI = new OrderDataFromAPI();
+  order?: OrderDataFromAPI;
 
   constructor(public orderService: OrderService, private route: ActivatedRoute) {}
   
