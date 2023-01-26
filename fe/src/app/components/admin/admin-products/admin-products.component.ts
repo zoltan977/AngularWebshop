@@ -13,7 +13,7 @@ import { Product } from '../../../models/product-model'
 export class AdminProductsComponent implements OnInit {
   dataSource!: MatTableDataSource<Product>;
   displayedColumns: string[] = ['title', 'price', '_id'];
-  noData: boolean = true;
+  noData: boolean = false;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private productService: ProductService, public filterValuesService: FilterValuesService) {}

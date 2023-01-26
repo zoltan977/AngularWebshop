@@ -15,7 +15,7 @@ import { OrderService } from 'src/app/services/order.service';
 export class OrderListComponent implements OnInit{
   dataSource!: MatTableDataSource<OrderDataFromAPI>;
   displayedColumns: string[] = ['userEmail', 'name', 'dateCreated', '_id'];
-  noData: boolean = true;
+  noData: boolean = false;
   @ViewChild(MatSort) sort!: MatSort;
   @Input('admin') admin: boolean = false;
 
