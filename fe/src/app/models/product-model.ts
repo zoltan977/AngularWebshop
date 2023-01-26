@@ -1,7 +1,7 @@
 import { minNumber, required, url } from "@rxweb/reactive-form-validators";
 
 export class Product {
-    _id!: string;
+    _id?: string;
 
     @required()
     title!: string;

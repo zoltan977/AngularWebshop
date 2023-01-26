@@ -24,11 +24,11 @@ export class OrderFormModel {
     @prop()
     cart!: ShoppingCart;
 }
-export class OrderData extends OrderFormModel {
+export class OrderDataToAPI extends OrderFormModel {
     public readonly deliveryMethod: string | undefined;
     public readonly paymentMethod: string | undefined;
     
-    constructor(init?: OrderData) {
+    constructor(init?: OrderDataToAPI) {
         super(init);
             
         this.deliveryMethod = init?.deliveryMethod;
@@ -36,11 +36,11 @@ export class OrderData extends OrderFormModel {
     }
 }
 
-export class OrderDataWithDateAndId extends OrderData {
+export class OrderDataFromAPI extends OrderDataToAPI {
     public readonly dateCreated: Date | undefined;
     public readonly _id: string | undefined;
 
-    constructor(init?: OrderDataWithDateAndId) {
+    constructor(init?: OrderDataFromAPI) {
         super(init);
             
         this.dateCreated = init?.dateCreated;

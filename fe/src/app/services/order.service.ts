@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
-import { OrderData, OrderDataWithDateAndId } from '../models/order-model';
+import { OrderDataToAPI, OrderDataFromAPI } from '../models/order-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 import { ShoppingCartService } from './shopping-cart.service';
 
@@ -15,9 +15,9 @@ export class OrderService {
   constructor(private httpClient: HttpClient, private cartService: ShoppingCartService) { 
   }
 
-  add(order: OrderData): Observable<AppError | OrderDataWithDateAndId> {
+  add(order: OrderDataToAPI): Observable<AppError | OrderDataFromAPI> {
 
-    const response = this.httpClient.post<OrderDataWithDateAndId>(this.PATH + "/add", order);
+    const response = this.httpClient.post<OrderDataFromAPI>(this.PATH + "/add", order);
 
     return response.pipe(
       tap(data => {
@@ -28,8 +28,8 @@ export class OrderService {
       )
   }
 
-  getAll(): Observable<OrderDataWithDateAndId[] | AppError> {
-    const response = this.httpClient.get<OrderDataWithDateAndId[]>(this.PATH + "/getAll")
+  getAll(): Observable<OrderDataFromAPI[] | AppError> {
+    const response = this.httpClient.get<OrderDataFromAPI[]>(this.PATH + "/getAll")
 
     return response.pipe(
       tap(data => console.log("order service response data", data)),
@@ -37,8 +37,8 @@ export class OrderService {
       )
   }
 
-  getAllByUser(): Observable<OrderDataWithDateAndId[] | AppError> {
-    const response = this.httpClient.get<OrderDataWithDateAndId[]>(this.PATH + "/getAllByUser")
+  getAllByUser(): Observable<OrderDataFromAPI[] | AppError> {
+    const response = this.httpClient.get<OrderDataFromAPI[]>(this.PATH + "/getAllByUser")
 
     return response.pipe(
       tap(data => console.log("order service response data", data)),
@@ -46,8 +46,8 @@ export class OrderService {
       )
   }
 
-  get(orderId: string): Observable<OrderDataWithDateAndId | AppError> {
-    const response = this.httpClient.get<OrderDataWithDateAndId>(this.PATH + "/get/" + orderId)
+  get(orderId: string): Observable<OrderDataFromAPI | AppError> {
+    const response = this.httpClient.get<OrderDataFromAPI>(this.PATH + "/get/" + orderId)
 
     return response.pipe(
       tap(data => console.log("order service response data", data)),

@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { FormError } from 'src/app/errors/formError';
-import { OrderData, OrderDataWithDateAndId, OrderFormModel } from 'src/app/models/order-model';
+import { OrderDataToAPI, OrderDataFromAPI, OrderFormModel } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { PaymentAndDeliveryFormModel } from './payment-and-delivery-form/payment-and-delivery-form-model';
@@ -27,12 +27,12 @@ export class CheckOutComponent {
   submit(orderModel: OrderFormModel, paymentAndDeliveryModel:PaymentAndDeliveryFormModel, 
     orderForm: FormGroup, paymentAndDeliveryForm: FormGroup, stepper: MatStepper) {
 
-    const orderData: OrderData = {...orderModel, ...paymentAndDeliveryModel};
+    const orderData: OrderDataToAPI = {...orderModel, ...paymentAndDeliveryModel};
 
     this.orderService.add(orderData)
     .subscribe({
       next: (order) => {
-        this.router.navigate(['/order-success', (order as OrderDataWithDateAndId)._id]);
+        this.router.navigate(['/order-success', (order as OrderDataFromAPI)._id]);
       },
       error: (error) => {
         console.log("order form component error:", error)
