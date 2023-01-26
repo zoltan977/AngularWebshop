@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeliveryMethods, PaymentMethods } from 'src/app/components/check-out/payment-and-delivery-form/payment-and-delivery-form-model';
-import { OrderDataWithDateAndId } from 'src/app/models/order-model';
+import { OrderDataFromAPI } from 'src/app/models/order-model';
 
 @Component({
   selector: 'order-data',
@@ -8,7 +8,7 @@ import { OrderDataWithDateAndId } from 'src/app/models/order-model';
   styleUrls: ['./order-data.component.scss']
 })
 export class OrderDataComponent implements OnInit {
-  @Input('order') order!: OrderDataWithDateAndId
+  @Input('order') order!: OrderDataFromAPI
   deliveryMethodDisplayValue!: string;
   paymentMethodDisplayValue!: string;
 

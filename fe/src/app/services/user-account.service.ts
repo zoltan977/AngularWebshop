@@ -11,7 +11,7 @@ import serviceErrorHandler from '../utils/serviceErrorHandler';
 export class UserAccountService {
 
   private readonly PATH = "http://localhost:5000/user-account";
-  private _currentUserAccountData = new UserAccountData();
+  private _currentUserAccountData: UserAccountData = new UserAccountData();
 
   constructor(private httpClient: HttpClient) { 
   }
