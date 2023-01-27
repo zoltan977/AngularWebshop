@@ -1,5 +1,6 @@
 import {Schema, model, Document} from 'mongoose';
 import { DeliveryMethodType } from '../../constants/enum/DeliveryMethodType';
+import { OrderStatusType } from '../../constants/enum/OrderStatusType';
 import { PaymentMethodType } from '../../constants/enum/PaymentMethodType';
 import { CartModelWithoutDateInterface } from '../../DTO/CartDTO';
 import { ItemSchema } from '../cart/cart';
@@ -13,6 +14,7 @@ export interface OrderModelInterface {
     userEmail: string;
     deliveryMethod: DeliveryMethodType;
     paymentMethod: PaymentMethodType;
+    orderStatus: OrderStatusType;
     dateCreated: Date;
 }
 
@@ -50,6 +52,11 @@ export const OrderSchema = new Schema<OrderModelInterface>({
       type: String,
       enum: Object.values(PaymentMethodType),
       required: true
+    },
+    orderStatus: {
+      type: String,
+      enum: Object.values(OrderStatusType),
+      default: OrderStatusType.NEW
     },
     dateCreated: {
       type: Date,

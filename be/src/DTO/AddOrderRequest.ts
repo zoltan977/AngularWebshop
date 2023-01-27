@@ -7,10 +7,10 @@ import { OrderModelInterface } from '../models/order/order';
 import { IsUserEmailInUserCollection } from '../utils/validationDecorator/isUserEmailInUserCollection';
 import { CartDTO } from './CartDTO';
 
-export interface OrderModelWithoutDateInterface extends Omit<OrderModelInterface, "dateCreated" | "_id"> {
+export interface AddOrderRequestInterface extends Omit<OrderModelInterface, "dateCreated" | "orderStatus" | "_id"> {
 }
 
-export class AddOrderRequest implements OrderModelWithoutDateInterface {
+export class AddOrderRequest implements AddOrderRequestInterface {
     @IsString()
     public name!: string;
 
