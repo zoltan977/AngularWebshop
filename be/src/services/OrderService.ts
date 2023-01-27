@@ -1,9 +1,10 @@
-import { OrderModelWithoutDateInterface } from "../DTO/AddOrderRequest";
+import { AddOrderRequestInterface } from "../DTO/AddOrderRequest";
+import { UpdateOrderStatusRequest } from "../DTO/UpdateOrderStatusRequest";
 import { DatabaseException } from "../exceptions/DatabaseException";
 import OrderModel from "../models/order/order";
 
 class OrderService {
-  public async add(orderData: OrderModelWithoutDateInterface) {
+  public async add(orderData: AddOrderRequestInterface) {
       console.log("orderData:", orderData)
 
       let savedOrder
@@ -17,6 +18,22 @@ class OrderService {
       }
       
       return savedOrder;
+  }
+
+  public async update(newStatusRequest: UpdateOrderStatusRequest) {
+    console.log("newStatusRequest:", newStatusRequest)
+
+    let savedOrder
+    try {
+      const order = await OrderModel.findById(newStatusRequest._id);
+      order!.orderStatus = newStatusRequest.newStatus;
+      savedOrder = await order!.save();
+    } catch (error) {
+      console.log("Error updating Order: ", error);
+      throw new DatabaseException();
+    }
+    
+    return savedOrder;
   }
 
   public async getAll() {
@@ -53,6 +70,16 @@ class OrderService {
     }
 
     return order;
+  }
+
+  public async delete(orderId: string) {
+    try {
+      await OrderModel.findByIdAndRemove(orderId);
+    } catch (error) {
+      throw new DatabaseException()
+    }
+
+    return true;
   }
 }
 
