@@ -1,9 +1,8 @@
-import User from "../models/user/user";
 import { DatabaseException } from "../exceptions/DatabaseException";
 import CategoryModel from "../models/category/category";
 
 class TypeService {
-  public async getAll() {
+  public async getCategoryList() {
       try {
         return CategoryModel.find();
       } catch (error) {

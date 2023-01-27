@@ -8,10 +8,10 @@ export class TypeController {
         this.typeService = new TypeService();
     }
 
-    public getAll = async (req: Request, res: Response, next: NextFunction) => {
+    public getCategoryList = async (req: Request, res: Response, next: NextFunction) => {
         console.log("controller getCategorylist")
         try {
-            const result = await this.typeService.getAll();
+            const result = await this.typeService.getCategoryList();
           
             return res.json(result);
         } catch (error) {
