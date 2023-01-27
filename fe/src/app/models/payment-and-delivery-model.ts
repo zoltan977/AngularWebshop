@@ -24,10 +24,10 @@ export const PaymentMethods = [{
 
 export class PaymentAndDeliveryFormModel {
     @required()
-    @oneOf({matchValues: ['CLICK_AND_COLLECT', 'HOME_DELIVERY', 'LOCKER_DELIVERY']})
+    @oneOf({matchValues: DeliveryMethods.map(dm => dm.value)})
     deliveryMethod!: string;
 
     @required()
-    @oneOf({matchValues: ['CASH', 'CREDIT_CARD', 'BANK_TRANSFER']})
+    @oneOf({matchValues: PaymentMethods.map(pm => pm.value)})
     paymentMethod!: string;
 }
