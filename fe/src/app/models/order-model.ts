@@ -1,4 +1,5 @@
 import { prop, required } from "@rxweb/reactive-form-validators";
+import { DropDownListItemInterface } from "./dropdownlist-item-interface";
 import { ShoppingCart } from "./shopping-cart";
 
 export class OrderFormModel {
@@ -38,12 +39,42 @@ export class OrderDataToAPI extends OrderFormModel {
 
 export class OrderDataFromAPI extends OrderDataToAPI {
     public readonly dateCreated: Date;
+    public readonly orderStatus: string;
     public readonly _id: string;
 
     constructor(init: OrderDataFromAPI) {
         super(init);
             
         this.dateCreated = init.dateCreated;
+        this.orderStatus = init.orderStatus;
         this._id = init._id;
     }
 }
+
+export const OrderStatusList: DropDownListItemInterface[] = [
+    {
+        value: 'NEW',
+        displayValue: 'Új, feldolgozás alatt'
+    }, 
+    {
+        value: 'PICKING',
+        displayValue: 'Összekészítés alatt'
+    }, 
+    {
+        value: 'PACKED',
+        displayValue: 'Összekészítve'
+    },
+    {
+        value: 'COMPLETED',
+        displayValue: 'Teljesítve'
+    }, 
+    {
+        value: 'RETURNED',
+        displayValue: 'Visszaküldve'
+    }, 
+    {
+        value: 'CANCELLED',
+        displayValue: 'Törölve'
+    }, 
+];
+    
