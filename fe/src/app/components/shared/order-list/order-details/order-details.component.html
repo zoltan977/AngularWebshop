@@ -1,5 +1,10 @@
 <div class="orderDetails" *ngIf="order">
-    <h1>A megrendelés részletei</h1>
+    <h1>
+        A megrendelés részletei
+        <button type="button" mat-raised-button color="warn" (click)="deleteOrder()" *ngIf="isRouteAdmin.check()">
+            Rendelés törlése
+        </button>
+    </h1>
     <p>
         {{order.cart.itemCount || 0}} db tétel van a kosárban. 
     </p>
