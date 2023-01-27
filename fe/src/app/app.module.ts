@@ -6,9 +6,7 @@ import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderSuccessComponent } from './components/order-success/order-success.component';
-import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
-import { AdminOrdersComponent } from './components/admin/admin-orders/admin-orders.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -74,9 +72,7 @@ export function tokenGetter() {
     ShoppingCartComponent,
     CheckOutComponent,
     OrderSuccessComponent,
-    MyOrdersComponent,
     AdminProductsComponent,
-    AdminOrdersComponent,
     NavbarComponent,
     LoginComponent,
     SignupComponent,
@@ -138,14 +134,14 @@ export function tokenGetter() {
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
-      {path: 'my/orders', component: MyOrdersComponent, canActivate: [AuthGuard]},
+      {path: 'my/orders', component: OrderListComponent, canActivate: [AuthGuard]},
       {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
       {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/orders', component: AdminOrdersComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/orders', component: OrderListComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AdminAuthGuard]},
     ]),
   ],

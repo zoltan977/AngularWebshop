@@ -1,16 +1,28 @@
 .orderDetails {
     padding: 80px 20px 20px 20px;
 
+    h1 {
+        display: flex;
+        justify-content: space-between;
+
+        button {
+            height: unset;
+        }
+    }
+
     .content {
         display: flex;
         flex-wrap: wrap;
+        justify-content: space-between;
         gap: 20px;
 
         order-data {
             flex: 1 1 calc(50% - 10px);
+            max-width: 900px;
         }
         display-cart {
             flex: 1 1 calc(50% - 10px);
+            max-width: 900px;
         }
     }
 }

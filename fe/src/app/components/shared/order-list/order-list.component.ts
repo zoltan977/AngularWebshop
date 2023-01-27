@@ -6,6 +6,7 @@ import { AppError } from 'src/app/errors/appError';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
 import { DataTablesFilterValuesService } from 'src/app/services/data-tables-filter-values.service';
 import { OrderService } from 'src/app/services/order.service';
+import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
 
 @Component({
   selector: 'order-list',
@@ -17,9 +18,10 @@ export class OrderListComponent implements OnInit{
   displayedColumns: string[] = ['userEmail', 'name', 'dateCreated', '_id'];
   noData: boolean = false;
   @ViewChild(MatSort) sort!: MatSort;
-  @Input('admin') admin: boolean = false;
 
-  constructor(private orderService: OrderService, public filterValuesService: DataTablesFilterValuesService) {
+  constructor(private orderService: OrderService, 
+    public filterValuesService: DataTablesFilterValuesService, 
+    private isRouteAdmin: IsRouteAdmin) {
   }
 
   applyFilter() {
@@ -32,7 +34,7 @@ export class OrderListComponent implements OnInit{
 
   private populateMatTableWithProducts() {
     const orderList$: Observable<OrderDataFromAPI[] | AppError> =
-    this.admin ? this.orderService.getAll() : this.orderService.getAllByUser();
+    this.isRouteAdmin.check() ? this.orderService.getAll() : this.orderService.getAllByUser();
 
     orderList$
     .subscribe({
@@ -56,5 +58,4 @@ export class OrderListComponent implements OnInit{
     }
     this.applyFilter();
   }
-
 }

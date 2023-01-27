@@ -1,7 +1,7 @@
 <p>
     <span>Név:</span>
     <span>
-        {{order.name}}
+        {{order?.name}}
     </span>
 </p>
 <p>
@@ -9,30 +9,49 @@
         Cím:
     </span>
     <span>
-        {{order.address}}
+        {{order?.address}}
     </span>
 </p>
 <p>
     <span>Város:</span>
     <span>
-        {{order.city}}
+        {{order?.city}}
     </span>
 </p>
 <p>
     <span>Kiszállítási mód:</span>
     <span>
-        {{deliveryMethodDisplayValue}}
+        {{deliveryMethod?.displayValue}}
     </span>
 </p>
 <p>
     <span>Fizetési mód:</span>
     <span>
-        {{paymentMethodDisplayValue}}
+        {{paymentMethod?.displayValue}}
     </span>
+</p>
+<p>
+    <span>Rendelés státusza:</span>
+    <span *ngIf="isRouteAdmin.check(); else noAdmin">
+        <mat-form-field appearance="fill">
+            <mat-label>Rendelés státusza</mat-label>
+            <mat-select [(ngModel)]="selectedStatus" (ngModelChange)="selectedStatusChanged()">
+              <mat-option disabled value=""></mat-option>
+              <mat-option *ngFor="let status of orderStatusList" [value]="status.value">
+                {{status.displayValue}}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+    </span>
+    <ng-template #noAdmin>
+        <span>
+            {{orderStatus?.displayValue}}
+        </span>
+    </ng-template>
 </p>
 <p>
     <span>Dátum:</span>
     <span>
-        {{order.dateCreated | date:'short':'+0100':'hu'}}
+        {{order?.dateCreated | date:'short':'+0100':'hu'}}
     </span>
 </p>
