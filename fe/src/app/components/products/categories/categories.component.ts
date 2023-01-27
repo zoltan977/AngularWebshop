@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CategoryService, ICategory } from 'src/app/services/category.service';
+import { TypeService, ICategory } from 'src/app/services/type.service';
 
 @Component({
   selector: 'categories',
@@ -11,7 +11,7 @@ export class CategoriesComponent {
   categories$
   @Input('category') category!: string;
   
-  constructor(private categoryService: CategoryService) {
-    this.categories$ = this.categoryService.getAll() as Observable<ICategory[]>;
+  constructor(private typeService: TypeService) {
+    this.categories$ = this.typeService.getCategoryList() as Observable<ICategory[]>;
   }
 }

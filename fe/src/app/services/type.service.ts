@@ -12,17 +12,17 @@ export interface ICategory {
 @Injectable({
   providedIn: 'root'
 })
-export class CategoryService {
-  private readonly PATH = "http://localhost:5000/type/category"
+export class TypeService {
+  private readonly PATH = "http://localhost:5000/type"
 
   constructor(private httpClient: HttpClient) { 
   }
 
-  getAll(): Observable<ICategory[] | AppError> {
-    const response = this.httpClient.get<ICategory[]>(this.PATH)
+  getCategoryList(): Observable<ICategory[] | AppError> {
+    const response = this.httpClient.get<ICategory[]>(this.PATH + "/category")
 
     return response.pipe(
-      tap(data => console.log("category service response data", data)),
+      tap(data => console.log("getCategoryList response data", data)),
       catchError(serviceErrorHandler)
       )
   }
