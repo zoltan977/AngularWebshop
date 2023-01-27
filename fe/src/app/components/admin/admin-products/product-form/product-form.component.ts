@@ -6,7 +6,7 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { lastValueFrom, Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { FormError } from 'src/app/errors/formError';
-import { CategoryService, ICategory } from 'src/app/services/category.service';
+import { TypeService, ICategory } from 'src/app/services/type.service';
 import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { Product } from '../../../../models/product-model';
@@ -23,7 +23,7 @@ export class ProductFormComponent implements OnInit {
   public newProductForm!: FormGroup;
   public id;
 
-  constructor(private categoryService: CategoryService, 
+  constructor(private typeService: TypeService, 
               route: ActivatedRoute,
               private formBuilder: RxFormBuilder,
               private productService: ProductService,
@@ -34,7 +34,7 @@ export class ProductFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.categories$ = this.categoryService.getAll() as Observable<ICategory[]>;
+    this.categories$ = this.typeService.getCategoryList() as Observable<ICategory[]>;
     this.productModel = new Product();
     this.newProductForm = this.formBuilder.formGroup(this.productModel);
 
