@@ -15,6 +15,6 @@ export class TypeRoutes implements RoutesClassInterface {
     }
 
     private initRoutes() {
-        this.router.get('/category', this.typeController.getAll)
+        this.router.get('/category', this.typeController.getCategoryList)
     }
 }
