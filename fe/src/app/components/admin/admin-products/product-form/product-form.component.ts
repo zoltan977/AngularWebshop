@@ -10,7 +10,7 @@ import { TypeService, ICategory } from 'src/app/services/type.service';
 import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { Product } from '../../../../models/product-model';
-import { DeleteProductDialogComponent } from './delete-product-dialog/delete-product-dialog.component';
+import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'app-product-form-component',
@@ -79,7 +79,10 @@ export class ProductFormComponent implements OnInit {
   }
 
   async openDeleteProductDialog() {
-    const dialogRef = this.dialog.open(DeleteProductDialogComponent);
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
+      title: "Biztos hogy törlöd ezt a terméket?",
+      confirmButtonTitle: "Törlés"
+    }});
     const result = await lastValueFrom(dialogRef.afterClosed());
     return result;
   }

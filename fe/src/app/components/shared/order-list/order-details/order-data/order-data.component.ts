@@ -4,6 +4,9 @@ import { OrderDataFromAPI, OrderStatusList } from 'src/app/models/order-model';
 import { DropDownListItemInterface } from "src/app/models/dropdownlist-item-interface";
 import { OrderService } from 'src/app/services/order.service';
 import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'order-data',
@@ -20,14 +23,30 @@ export class OrderDataComponent implements OnInit {
   orderStatus?: DropDownListItemInterface;
   
   selectedStatus?: string;
+  prevSelectedStatus?: string;
 
-  constructor(private orderService: OrderService, public isRouteAdmin: IsRouteAdmin) {}
+  constructor(private dialog: MatDialog, private orderService: OrderService, public isRouteAdmin: IsRouteAdmin) {}
 
-  selectedStatusChanged() {
+  async openModifyOrderStatusDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
+      title: "Biztos hogy módosítod a megrendelés státuszt?",
+      confirmButtonTitle: "Módosít"
+    }});
+    const result = await lastValueFrom(dialogRef.afterClosed());
+    return result;
+  }
+
+  async selectedStatusChanged() {
     console.log("selectedStatus changed: ", this.selectedStatus)
-    if (!this.order || !this.selectedStatus) {
+    if (!(this.order && this.selectedStatus)) {
       return
     }
+    const dialogResult = await this.openModifyOrderStatusDialog();
+    if (!dialogResult) {
+      this.selectedStatus = this.prevSelectedStatus;
+      return;
+    }
+
     this.orderService.update({
       _id: this.order?._id,
       newStatus: this.selectedStatus
@@ -46,7 +65,8 @@ export class OrderDataComponent implements OnInit {
   private settingTheSelectedStatusAndOrderStatus() {
     this.orderStatusList = OrderStatusList;
     this.orderStatus = OrderStatusList.find(os => os.value === this.order?.orderStatus);
-    this.selectedStatus = this.orderStatus?.value
+    this.selectedStatus = this.orderStatus?.value;
+    this.prevSelectedStatus = this.selectedStatus;
   }
   
   private settingTheDeliveryAndPaymentMethod() {
