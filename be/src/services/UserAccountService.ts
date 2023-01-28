@@ -36,7 +36,7 @@ class UserAccountService {
       return savedAccount;
   }
 
-  public async get(userEmail: string) {
+  public async getByUser(userEmail: string) {
     let accountData
 
     try {
