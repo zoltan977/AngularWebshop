@@ -21,10 +21,10 @@ export class UserAccountController {
         }
     }
 
-    public get = async (req: Request, res: Response, next: NextFunction) => {
+    public getByUser = async (req: Request, res: Response, next: NextFunction) => {
         try {
             const userEmail = res?.locals?.user?.email;
-            const result = await this.userAccountService.get(userEmail);
+            const result = await this.userAccountService.getByUser(userEmail);
           
             return res.json(result);
         } catch (error) {

@@ -19,7 +19,7 @@ export class UserAccountRoutes implements RoutesClassInterface {
 
     private initRoutes() {
         this.router.post('/add', authMiddleWare(), validationMiddleware(AddUserAccountItemsRequest), this.userAccountController.add)
-        this.router.get('/get', authMiddleWare(), this.userAccountController.get)
+        this.router.get('/getByUser', authMiddleWare(), this.userAccountController.getByUser)
         this.router.delete('/customer-name/:id', authMiddleWare(), this.userAccountController.deleteCustomerName)
         this.router.delete('/delivery-address/:id', authMiddleWare(), this.userAccountController.deleteDeliveryAddress)
     }
