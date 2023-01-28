@@ -35,7 +35,7 @@ export class OrderService {
 
   update(stateUpdateRequest: IOrderStatusUpdateRequest): Observable<AppError | OrderDataFromAPI> {
 
-    const response = this.httpClient.post<OrderDataFromAPI>(this.PATH + "/update", stateUpdateRequest);
+    const response = this.httpClient.put<OrderDataFromAPI>(this.PATH + "/update", stateUpdateRequest);
 
     return response.pipe(
       tap(data => {
