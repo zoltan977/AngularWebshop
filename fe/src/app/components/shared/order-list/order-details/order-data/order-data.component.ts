@@ -52,7 +52,11 @@ export class OrderDataComponent implements OnInit {
       newStatus: this.selectedStatus
     })
     .subscribe({
-      next: order => this.order = order as OrderDataFromAPI
+      next: order => this.order = order as OrderDataFromAPI,
+      error: (error) => {
+        this.selectedStatus = this.prevSelectedStatus;
+        throw error;
+      }
     })
   }
 
