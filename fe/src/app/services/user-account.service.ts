@@ -21,7 +21,7 @@ export class UserAccountService extends DataService<UserAccountFormModel, UserAc
     return this._currentUserAccountData;
   }
 
-  override setCurrentData(data: UserAccountData) {
+  protected override setCurrentData(data: UserAccountData) {
     this._currentUserAccountData = new UserAccountData(data);
   }
 
@@ -31,7 +31,7 @@ export class UserAccountService extends DataService<UserAccountFormModel, UserAc
     return response.pipe(
       tap(data => {
         console.log("UserAccountData service response data", data);
-        this._currentUserAccountData = new UserAccountData(data as UserAccountData);
+        this.setCurrentData(data as UserAccountData);
       }),
       catchError(serviceErrorHandler)
     )
@@ -43,7 +43,7 @@ export class UserAccountService extends DataService<UserAccountFormModel, UserAc
     return response.pipe(
       tap(data => {
         console.log("UserAccountData service response data", data);
-        this._currentUserAccountData = new UserAccountData(data as UserAccountData);
+        this.setCurrentData(data as UserAccountData);
       }),
       catchError(serviceErrorHandler)
     )

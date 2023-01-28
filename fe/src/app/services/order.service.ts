@@ -18,7 +18,7 @@ export class OrderService extends DataService<OrderDataToAPI, OrderDataFromAPI, 
     super(httpClient, "http://localhost:5000/order")
   }
 
-  override clearShoppingCart() {
+  protected override clearShoppingCart() {
     this.cartService.clearCart().subscribe();
   }
 }
