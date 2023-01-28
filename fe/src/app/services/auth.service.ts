@@ -49,7 +49,7 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("logged in: ", data.token);
         this.setToken(data.token);
-        this.userAccountService.get().subscribe({
+        this.userAccountService.getByUser().subscribe({
             complete: this.navigateToTheReturnUrl
           });
       }),

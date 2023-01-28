@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
 
   private preloadingUserAccountData() {
     if (this.authService.userLoggedIn) {
-      this.userAccountService.get()
+      this.userAccountService.getByUser()
       .subscribe({
         complete: () => this.userAccountDataLoaded = true
       })
