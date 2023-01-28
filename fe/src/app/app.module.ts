@@ -25,7 +25,7 @@ import { PaymentAndDeliveryFormComponent } from './components/check-out/payment-
 import { UserAccountComponent } from './components/user-account/user-account.component';
 import { AddUserAccountItemFormComponent } from './components/user-account/add-user-account-item-form/add-user-account-item-form.component';
 import { DisplayUserAccountDataComponent } from './components/user-account/display-user-account-data/display-user-account-data.component';
-import { DeleteProductDialogComponent } from './components/admin/admin-products/product-form/delete-product-dialog/delete-product-dialog.component';
+import { ConfirmDialogComponent } from './components/shared/confirm-dialog/confirm-dialog.component';
 
 import {MatMenuModule} from '@angular/material/menu';
 import {MatButtonModule} from '@angular/material/button';
@@ -90,7 +90,7 @@ export function tokenGetter() {
     UserAccountComponent,
     AddUserAccountItemFormComponent,
     DisplayUserAccountDataComponent,
-    DeleteProductDialogComponent,
+    ConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,

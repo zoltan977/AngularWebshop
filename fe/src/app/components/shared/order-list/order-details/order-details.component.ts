@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { lastValueFrom, Observable } from 'rxjs';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
 import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
+import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 
 @Component({
   selector: 'order-details',
@@ -15,10 +17,19 @@ export class OrderDetailsComponent implements OnInit {
   order?: OrderDataFromAPI;
 
   constructor(public orderService: OrderService, private route: ActivatedRoute, 
-    public isRouteAdmin: IsRouteAdmin, private router: Router) {}
+    public isRouteAdmin: IsRouteAdmin, private router: Router, private dialog: MatDialog) {}
 
-  deleteOrder() {
-    if (!this.order?._id) {
+  async openDeleteOrderDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
+      title: "Biztos hogy törlöd ezt a megrendelést?",
+      confirmButtonTitle: "Törlés"
+    }});
+    const result = await lastValueFrom(dialogRef.afterClosed());
+    return result;
+  }
+
+  async deleteOrder() {
+    if (!(this.order?._id && await this.openDeleteOrderDialog())) {
       return
     }
 
