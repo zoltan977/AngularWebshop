@@ -8,7 +8,7 @@ describe('DataServiceService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DataService<Product, Product, Product>);
+    service = TestBed.inject(DataService);
   });
 
   it('should be created', () => {
