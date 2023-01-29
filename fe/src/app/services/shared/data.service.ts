@@ -3,27 +3,15 @@ import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import serviceErrorHandler from 'src/app/utils/serviceErrorHandler';
+import { BaseDataService } from './base-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataService<AddType, ResponseType, UpdateType> {
+export class DataService<AddType, ResponseType, UpdateType> extends BaseDataService<AddType, ResponseType> {
 
-  constructor(protected httpClient: HttpClient, @Inject(InjectionToken<string>) protected readonly PATH: string) { 
-  }
-
-  add(dataToAPI: AddType): Observable<AppError | ResponseType> {
-
-    const response = this.httpClient.post<ResponseType>(this.PATH + "/add", dataToAPI);
-
-    return response.pipe(
-      tap(data => {
-        console.log("Data service response data", data);
-        this.setCurrentData(data);
-        this.clearShoppingCart();
-      }),
-      catchError(serviceErrorHandler)
-      )
+  constructor(httpClient: HttpClient, @Inject(InjectionToken<string>) PATH: string) { 
+    super(httpClient, PATH)
   }
 
   getAll(): Observable<ResponseType[] | AppError> {
@@ -36,16 +24,7 @@ export class DataService<AddType, ResponseType, UpdateType> {
       catchError(serviceErrorHandler)
       )
   }
-
-  getAllByUser(): Observable<ResponseType[] | AppError> {
-    const response = this.httpClient.get<ResponseType[]>(this.PATH + "/getAllByUser")
-
-    return response.pipe(
-      tap(data => console.log("Data service response data", data)),
-      catchError(serviceErrorHandler)
-      )
-  }
-
+  
   get(id: string): Observable<ResponseType | AppError> {
     const response = this.httpClient.get<ResponseType>(this.PATH + "/get/" + id)
 
@@ -55,18 +34,6 @@ export class DataService<AddType, ResponseType, UpdateType> {
       }),
       catchError(serviceErrorHandler)
       )
-  }
-
-  getByUser(): Observable<ResponseType | AppError> {
-    const response = this.httpClient.get<ResponseType>(this.PATH + "/getByUser")
-
-    return response.pipe(
-      tap(data => {
-        console.log("Data service response data", data);
-        this.setCurrentData(data);
-      }),
-      catchError(serviceErrorHandler)
-    )
   }
 
   update(dataToAPI: UpdateType): Observable<ResponseType | AppError> {
@@ -92,9 +59,4 @@ export class DataService<AddType, ResponseType, UpdateType> {
       )
   }
 
-  protected setCurrentData(data: ResponseType) {
-  }
-
-  protected clearShoppingCart() {
-  }
 }

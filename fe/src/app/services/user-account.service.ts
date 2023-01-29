@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
 import { UserAccountData, UserAccountFormModel } from '../models/user-account-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
-import { DataService } from './shared/data.service';
+import { BaseDataService } from './shared/base-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccountService extends DataService<UserAccountFormModel, UserAccountData, UserAccountFormModel> {
+export class UserAccountService extends BaseDataService<UserAccountFormModel, UserAccountData> {
 
   private _currentUserAccountData: UserAccountData = new UserAccountData();
 
@@ -23,6 +23,18 @@ export class UserAccountService extends DataService<UserAccountFormModel, UserAc
 
   protected override setCurrentData(data: UserAccountData) {
     this._currentUserAccountData = new UserAccountData(data);
+  }
+
+  getByUser(): Observable<UserAccountData | AppError> {
+    const response = this.httpClient.get<UserAccountData>(this.PATH + "/getByUser")
+
+    return response.pipe(
+      tap(data => {
+        console.log("Data service response data", data);
+        this.setCurrentData(data);
+      }),
+      catchError(serviceErrorHandler)
+    )
   }
 
   deleteCustomerName(customerNameId: string): Observable<UserAccountData | AppError> {
