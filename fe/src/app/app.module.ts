@@ -5,7 +5,6 @@ import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
-import { OrderSuccessComponent } from './components/order-success/order-success.component';
 import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
@@ -71,7 +70,6 @@ export function tokenGetter() {
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,
-    OrderSuccessComponent,
     AdminProductsComponent,
     NavbarComponent,
     LoginComponent,
@@ -133,7 +131,6 @@ export function tokenGetter() {
       {path: 'signup', component: SignupComponent},
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
-      {path: 'order-success/:id', component: OrderSuccessComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: OrderListComponent, canActivate: [AuthGuard]},
       {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
       {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},

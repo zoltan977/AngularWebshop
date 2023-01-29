@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
+import { ToastService } from 'angular-toastify';
 import { FormError } from 'src/app/errors/formError';
 import { CustomerName, DeliveryAddress, UserAccountFormModel } from 'src/app/models/user-account-model';
 import { AuthService } from 'src/app/services/auth.service';
@@ -17,14 +18,15 @@ export class AddUserAccountItemFormComponent implements OnInit {
   private userAccountFormModel!: UserAccountFormModel;
 
   constructor(private formBuilder: RxFormBuilder, private userAccountService: UserAccountService, 
-    private authService: AuthService) {}
+    private authService: AuthService, private toastService: ToastService) {}
   
   submit() {
     console.log("userAccountFormModel: ", this.userAccountFormModel);
-      this.userAccountService.add(this.userAccountFormModel)
+    this.userAccountService.add(this.userAccountFormModel)
     .subscribe({
       next: () => {
         this.userAccountForm.reset();
+        this.toastService.success("A hozzáadás sikerült");
       },
       error: (error) => {
         console.log("userAccount component error:", error)

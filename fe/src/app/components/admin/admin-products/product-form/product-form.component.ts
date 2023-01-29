@@ -11,6 +11,7 @@ import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { Product } from '../../../../models/product-model';
 import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'app-product-form-component',
@@ -28,7 +29,8 @@ export class ProductFormComponent implements OnInit {
               private formBuilder: RxFormBuilder,
               private productService: ProductService,
               private router: Router,
-              public dialog: MatDialog) {
+              public dialog: MatDialog, 
+              private toastService: ToastService) {
 
       this.id = route.snapshot.paramMap.get('id')
   }
@@ -54,18 +56,41 @@ export class ProductFormComponent implements OnInit {
     })
   }
 
-  save() {
+  async openModifyProductDialog() {
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
+      title: "Biztos hogy módosítod a termék adatokat?",
+      confirmButtonTitle: "Módosítás"
+    }});
+    const result = await lastValueFrom(dialogRef.afterClosed());
+    return result;
+  }
+
+  async save() {
     console.log("productModel Data: ", this.productModel)
     let result: Observable<Product | AppError>
-    if (this.id)
-      result = this.productService.update(this.productModel)
-    else
+    let toasterMessage: string;
+    const isNewProduct: boolean = !this.id;
+    if (!isNewProduct) {
+      if (!await this.openModifyProductDialog()) {
+        this.populateForm();
+        return
+      }
+
+      toasterMessage = "A módosítás sikeres volt";
+      result = this.productService.update(this.productModel);
+    }
+    else {
+      toasterMessage = "Az új termék hozzáadva";
       result = this.productService.add(this.productModel)
+    }
 
     result
     .subscribe({
       next: () => {
-        this.router.navigate(['/admin/products']);
+        this.toastService.success(toasterMessage);
+        if (isNewProduct) {
+          this.router.navigate(['/admin/products']);
+        }
       },
       error: (error) => {
         console.log("product form component error:", error)
@@ -93,6 +118,7 @@ export class ProductFormComponent implements OnInit {
     this.productService.delete(this.id)
     .subscribe({
       next: () => {
+        this.toastService.success("A termék sikeresen törölve");
         this.router.navigate(['/admin/products']);
       }
     })

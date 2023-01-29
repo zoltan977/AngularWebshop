@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { FormError } from 'src/app/errors/formError';
 import { OrderDataToAPI, OrderDataFromAPI, OrderFormModel } from 'src/app/models/order-model';
 import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
@@ -23,7 +24,9 @@ import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-m
 })
 export class CheckOutComponent {
 
-  constructor(private orderService: OrderService, private router: Router, private checkoutFormsValuesService: CheckoutFormsValuesService) {}
+  constructor(private orderService: OrderService, private router: Router, 
+    private toastService: ToastService,
+    private checkoutFormsValuesService: CheckoutFormsValuesService) {}
 
   submit(orderModel: OrderFormModel, paymentAndDeliveryModel:PaymentAndDeliveryFormModel, 
     orderForm: FormGroup, paymentAndDeliveryForm: FormGroup, stepper: MatStepper) {
@@ -34,7 +37,8 @@ export class CheckOutComponent {
     .subscribe({
       next: (order) => {
         this.resetForms();
-        this.router.navigate(['/order-success', (order as OrderDataFromAPI)._id]);
+        this.router.navigate(['/my/orders']);
+        this.toastService.success("A rendelés sikeres");
       },
       error: (error) => {
         console.log("order form component error:", error)

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastService } from 'angular-toastify';
 import { lastValueFrom, Observable } from 'rxjs';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
 import { OrderService } from 'src/app/services/order.service';
@@ -17,7 +18,8 @@ export class OrderDetailsComponent implements OnInit {
   order?: OrderDataFromAPI;
 
   constructor(public orderService: OrderService, private route: ActivatedRoute, 
-    public isRouteAdmin: IsRouteAdmin, private router: Router, private dialog: MatDialog) {}
+    public isRouteAdmin: IsRouteAdmin, private router: Router, private dialog: MatDialog, 
+    private toastService: ToastService) {}
 
   async openDeleteOrderDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
@@ -36,6 +38,7 @@ export class OrderDetailsComponent implements OnInit {
     this.orderService.delete(this.order?._id)
     .subscribe({
       next: () => {
+        this.toastService.success("A törlés sikeres volt");
         if (this.isRouteAdmin.check()) {
           this.router.navigate(['admin/orders'])
         } else {

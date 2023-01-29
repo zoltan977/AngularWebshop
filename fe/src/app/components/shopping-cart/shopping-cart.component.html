@@ -2,7 +2,8 @@
   <h1>Bevásárló kosár</h1>
   <p>
       {{cartService.currentCart.itemCount || 0}} db tétel van a kosárban. 
-      <button mat-raised-button 
+      <button *ngIf="cartService.currentCart.itemCount"
+        mat-raised-button 
         color="warn"
         (click)="clearCart()">
           Kosár ürítése

@@ -7,6 +7,7 @@ import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component';
 import { lastValueFrom } from 'rxjs';
+import { ToastService } from 'angular-toastify';
 
 @Component({
   selector: 'order-data',
@@ -25,7 +26,8 @@ export class OrderDataComponent implements OnInit {
   selectedStatus?: string;
   prevSelectedStatus?: string;
 
-  constructor(private dialog: MatDialog, private orderService: OrderService, public isRouteAdmin: IsRouteAdmin) {}
+  constructor(private dialog: MatDialog, private orderService: OrderService, 
+    public isRouteAdmin: IsRouteAdmin, private toastService: ToastService) {}
 
   async openModifyOrderStatusDialog() {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {data: {
@@ -52,7 +54,10 @@ export class OrderDataComponent implements OnInit {
       newStatus: this.selectedStatus
     })
     .subscribe({
-      next: order => this.order = order as OrderDataFromAPI,
+      next: order => {
+        this.order = order as OrderDataFromAPI;
+        this.toastService.success("A módosítás sikeres volt");
+      },
       error: (error) => {
         this.selectedStatus = this.prevSelectedStatus;
         throw error;
