@@ -136,8 +136,8 @@ export function tokenGetter() {
       {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},
 
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/products/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/products/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/products/product-details/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
+      {path: 'admin/products/product-details/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders', component: OrderListComponent, canActivate: [AdminAuthGuard]},
       {path: 'admin/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AdminAuthGuard]},
     ]),

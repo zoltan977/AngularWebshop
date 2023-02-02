@@ -58,7 +58,7 @@
         <button [disabled]="newProductForm.invalid" mat-raised-button color="primary" type="submit">
             Mentés
         </button>
-        <button [disabled]="!id" type="button" mat-raised-button color="warn" (click)="delete()">
+        <button *ngIf="id" type="button" mat-raised-button color="warn" (click)="delete()">
             Törlés
         </button>
     </p>
