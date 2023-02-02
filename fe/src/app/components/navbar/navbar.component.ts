@@ -28,19 +28,19 @@ const mapRouteToPageTitle: Record<string, string> = {
   ]
 })
 export class NavbarComponent {
-  currentPageTitle: string = 'Home';
-  url: string;
+  currentPageTitle: string;
+  nextPageTitle: string;
   pageTitleSliding: string = '';
 
   constructor(public authService: AuthService, public cartService: ShoppingCartService, router: Router) {
-    this.url = router.url;
-    this.setCurrentPageTitle();
+    this.currentPageTitle = this.getPageTitleFromUrl(router.url);
+    this.nextPageTitle = this.currentPageTitle;
     router.events.subscribe(this.routerNavigationEventHandler)
   }
 
   pageTitleAnimationDone(event: any) {
     if (event.toState === 'outLeft') {
-      this.setCurrentPageTitle();
+      this.currentPageTitle = this.nextPageTitle;
       this.pageTitleSliding = 'in';
     }
     else if (event.toState === 'outRight') {
@@ -50,17 +50,20 @@ export class NavbarComponent {
 
   private routerNavigationEventHandler = (event: any) => {
     if (event instanceof NavigationStart) {
-      this.url = event.url;
-      this.pageTitleSliding = 'out';
+      this.nextPageTitle = this.getPageTitleFromUrl(event.url);
+      if (this.nextPageTitle !== this.currentPageTitle) {
+        this.pageTitleSliding = 'out';
+      }
     }
   }
 
-  private setCurrentPageTitle() {
-    this.currentPageTitle = "Home";
+  private getPageTitleFromUrl(url: string): string {
+    let title = "Home";
     for (const route in mapRouteToPageTitle) {
-      if(this.url.includes(route)) {
-        this.currentPageTitle = mapRouteToPageTitle[route]
+      if(url.includes(route)) {
+        title = mapRouteToPageTitle[route]
       }
     }
+    return title;
   }
 }
