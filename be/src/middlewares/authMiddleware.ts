@@ -20,7 +20,12 @@ const authMiddleWare = (admin: boolean = false) => async (request: Request, resp
             next(new UnauthorizedException())
         }
 
-        const decodedToken: any = verify(token as string, jwtSecret as string)
+        let decodedToken: any 
+        try {
+            decodedToken= verify(token as string, jwtSecret as string)
+        } catch (error) {
+            next(new UnauthorizedException())
+        }
         console.log("auth middleware decodedToken: ", decodedToken)
         if (!decodedToken.user) {
             next(new UnauthorizedException())
