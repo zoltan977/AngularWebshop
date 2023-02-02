@@ -20,6 +20,13 @@ mat-toolbar {
                 flex: 1;
                 text-align: center;
             }
+
+            a {
+                min-width: unset;
+                mat-icon {
+                    margin: 0;
+                }
+            }
         }
     }
 
