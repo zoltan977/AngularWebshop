@@ -1,5 +1,6 @@
+import { DOCUMENT } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { tap, catchError, of, Observable, switchMap } from 'rxjs';
 import { AppError } from '../errors/appError';
 import { Product } from '../models/product-model';
@@ -14,7 +15,7 @@ export class ShoppingCartService {
   private readonly PATH = "http://localhost:5000/cart"
   private _currentCart: ShoppingCart = new ShoppingCart()
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, @Inject(DOCUMENT) private document: Document) {
     console.log("Shopping cart service constructor");
   }
 
@@ -34,7 +35,8 @@ export class ShoppingCartService {
       tap((cart: ShoppingCart) => {
         console.log("shopping-cart service ADD response data", cart);
         this.setCartId(cart._id)
-        this.setCurrentShoppingCart(cart);      
+        this.setCurrentShoppingCart(cart);
+        this.addToCartAnimation(product._id || "");      
       }),
       catchError(serviceErrorHandler)
       )
@@ -110,6 +112,41 @@ export class ShoppingCartService {
     }
     else {
       this._currentCart = new ShoppingCart(cart);
+    }
+  }
+
+  private addToCartAnimation(id: string) {
+    const imgToClone: any = this.document.getElementById(id);
+    if (!imgToClone) {
+      return
+    }
+    const imgToCloneData = imgToClone.getBoundingClientRect();
+    const imgToCloneParent = imgToClone.parentElement;
+    if (!imgToCloneParent) {
+      return
+    }
+    const imgClone = imgToClone.cloneNode(false);
+
+    imgClone.style.position = 'fixed';
+    imgClone.style.zIndex = 100;
+    
+    imgToCloneParent.appendChild(imgClone);
+
+    const addAnimation = imgClone.animate([{
+      left: `${imgToCloneData.left}px`,
+      top: `${imgToCloneData.top}px`,
+      width: `${imgToCloneData.width}px`,
+      height: `${imgToCloneData.height}px`
+    }, {
+      left: 'calc(100% - 50px)', 
+      top: 'calc(0% + 20px)', 
+      width: '20px', 
+      height: '20px', 
+      opacity: 0}], 
+    500)
+
+    addAnimation.onfinish = () => {
+      imgClone.remove()
     }
   }
 }
