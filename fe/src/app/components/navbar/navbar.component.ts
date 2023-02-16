@@ -30,7 +30,7 @@ const mapRouteToPageTitle: Record<string, string> = {
 export class NavbarComponent {
   currentPageTitle: string;
   nextPageTitle: string;
-  pageTitleSliding: string = '';
+  pageTitleState: string = '*';
 
   constructor(public authService: AuthService, public cartService: ShoppingCartService, router: Router) {
     this.currentPageTitle = this.getPageTitleFromUrl(router.url);
@@ -41,10 +41,10 @@ export class NavbarComponent {
   pageTitleAnimationDone(event: any) {
     if (event.toState === 'outLeft') {
       this.currentPageTitle = this.nextPageTitle;
-      this.pageTitleSliding = 'in';
+      this.pageTitleState = 'outRight';
     }
     else if (event.toState === 'outRight') {
-      this.pageTitleSliding = '';
+      this.pageTitleState = '*';
     }
   }
 
@@ -52,7 +52,7 @@ export class NavbarComponent {
     if (event instanceof NavigationStart) {
       this.nextPageTitle = this.getPageTitleFromUrl(event.url);
       if (this.nextPageTitle !== this.currentPageTitle) {
-        this.pageTitleSliding = 'out';
+        this.pageTitleState = 'outLeft';
       }
     }
   }

@@ -1,6 +1,13 @@
+$card-size: 400px;
 :host {
-    width: 400px;
+    width: $card-size;
     text-align: center;
+
+    img {
+        max-height: $card-size;
+        max-width: $card-size;
+        object-fit: contain;
+    }
 
     button {
         width: 100%;

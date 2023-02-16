@@ -57,6 +57,7 @@ export class OrderDataComponent implements OnInit {
       next: order => {
         this.order = order as OrderDataFromAPI;
         this.toastService.success("A módosítás sikeres volt");
+        this.prevSelectedStatus = this.selectedStatus;
       },
       error: (error) => {
         this.selectedStatus = this.prevSelectedStatus;

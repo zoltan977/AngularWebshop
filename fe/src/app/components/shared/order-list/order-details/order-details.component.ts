@@ -39,11 +39,7 @@ export class OrderDetailsComponent implements OnInit {
     .subscribe({
       next: () => {
         this.toastService.success("A törlés sikeres volt");
-        if (this.isRouteAdmin.check()) {
-          this.router.navigate(['admin/orders'])
-        } else {
-          this.router.navigate(['my/orders'])
-        }
+        this.router.navigate(['admin/orders']);
       }
     })
   }

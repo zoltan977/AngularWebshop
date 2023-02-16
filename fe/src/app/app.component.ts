@@ -10,7 +10,7 @@ import { UserAccountService } from './services/user-account.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'Angular-PizzaParty';
+  title = 'Angular-Webshop';
   cartLoaded: boolean = false;
   userAccountDataLoaded: boolean = false;
   

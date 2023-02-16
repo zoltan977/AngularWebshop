@@ -27,7 +27,7 @@
             [matBadgeHidden]="!cartService.currentCart.itemCount">
             <mat-icon class="big">shopping_cart</mat-icon>
         </a>
-        <span [@slideInOut]="pageTitleSliding ? pageTitleSliding === 'out' ? 'outLeft' : 'outRight' : '*'" 
+        <span [@slideInOut]="pageTitleState" 
         (@slideInOut.done)="pageTitleAnimationDone($event)">
             {{currentPageTitle}}
         </span>

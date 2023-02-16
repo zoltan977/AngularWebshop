@@ -13,7 +13,7 @@
           Meg kell adni
         </mat-error>
         <mat-error *ngIf="controls?.paymentMethod?.errors?.isIn as isIn">
-          {{isIn || isIn.message}}
+          {{isIn.message || isIn}}
         </mat-error>
     </div>
     <div>
@@ -30,7 +30,7 @@
           Meg kell adni
         </mat-error>
         <mat-error *ngIf="controls?.deliveryMethod?.errors?.isIn as isIn">
-          {{isIn || isIn.message}}
+          {{isIn.message || isIn}}
         </mat-error>
     </div>
         

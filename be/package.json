@@ -1,7 +1,7 @@
 {
   "name": "be",
   "version": "1.0.0",
-  "description": "PartyPizza API",
+  "description": "Webshop API",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",

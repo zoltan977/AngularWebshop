@@ -1,5 +1,5 @@
 import { ErrorHandler, Injectable, NgZone } from "@angular/core";
-import { Router, RouterStateSnapshot } from "@angular/router";
+import { Router } from "@angular/router";
 import { ToastService } from "angular-toastify";
 import { CredentialsError } from "../errors/credentialsError";
 
