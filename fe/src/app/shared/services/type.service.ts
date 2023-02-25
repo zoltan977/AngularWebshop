@@ -1,17 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from '../errors/appError';
-import serviceErrorHandler from '../utils/serviceErrorHandler';
+import { AppError } from '../../errors/appError';
+import serviceErrorHandler from '../../utils/serviceErrorHandler';
 
 export interface ICategory {
   name: string;
   displayName: string;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class TypeService {
   private readonly PATH = "http://localhost:5000/type"
 

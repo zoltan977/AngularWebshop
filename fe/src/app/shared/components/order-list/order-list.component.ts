@@ -4,7 +4,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { OrderDataFromAPI } from 'src/app/models/order-model';
-import { DataTablesFilterValuesService } from 'src/app/services/data-tables-filter-values.service';
+import { DataTablesFilterValuesService } from 'src/app/shared/services/data-tables-filter-values.service';
 import { OrderService } from 'src/app/services/order.service';
 import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
 

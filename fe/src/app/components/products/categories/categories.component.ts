@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { TypeService, ICategory } from 'src/app/services/type.service';
+import { TypeService, ICategory } from 'src/app/shared/services/type.service';
 
 @Component({
   selector: 'categories',

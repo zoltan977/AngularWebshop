@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { tap, catchError, of, Observable, switchMap } from 'rxjs';
 import { AppError } from '../errors/appError';
-import { Product } from '../models/product-model';
-import { ShoppingCart } from '../models/shopping-cart';
+import { Product } from '../shared/models/product-model';
+import { ShoppingCart } from '../shared/models/shopping-cart';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
 
 @Injectable({

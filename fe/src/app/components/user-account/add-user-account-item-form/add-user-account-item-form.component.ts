@@ -4,7 +4,7 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastService } from 'angular-toastify';
 import { FormError } from 'src/app/errors/formError';
 import { CustomerName, DeliveryAddress, UserAccountFormModel } from 'src/app/models/user-account-model';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserAccountService } from 'src/app/services/user-account.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 

@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ShoppingCart } from 'src/app/models/shopping-cart';
-import { ShoppingCartItem } from 'src/app/models/shopping-cart-item';
+import { ShoppingCart } from 'src/app/shared/models/shopping-cart';
+import { ShoppingCartItem } from 'src/app/shared/models/shopping-cart-item';
 
 @Component({
   selector: 'display-cart',

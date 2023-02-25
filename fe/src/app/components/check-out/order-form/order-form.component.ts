@@ -5,7 +5,7 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { map, Observable, startWith } from 'rxjs';
 import { OrderFormModel } from 'src/app/models/order-model';
 import { CustomerNameData, DeliveryAddressData } from 'src/app/models/user-account-model';
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from 'src/app/shared/services/auth.service';
 import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
 import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
 import { UserAccountService } from 'src/app/services/user-account.service';

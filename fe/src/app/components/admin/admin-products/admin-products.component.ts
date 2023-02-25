@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
-import { DataTablesFilterValuesService } from 'src/app/services/data-tables-filter-values.service';
+import { DataTablesFilterValuesService } from 'src/app/shared/services/data-tables-filter-values.service';
 import { ProductService } from 'src/app/services/product.service';
-import { Product } from '../../../models/product-model'
+import { Product } from '../../../shared/models/product-model'
 
 @Component({
   selector: 'app-admin-products',

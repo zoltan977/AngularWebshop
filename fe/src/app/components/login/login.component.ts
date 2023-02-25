@@ -3,7 +3,7 @@ import { NgForm } from '@angular/forms';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { CredentialsError } from '../../errors/credentialsError';
 import { FormError } from '../../errors/formError';
-import { AuthService } from '../../services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 
 @Component({
   selector: 'app-login',

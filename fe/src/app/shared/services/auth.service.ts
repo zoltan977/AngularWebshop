@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from '../errors/appError';
+import { AppError } from '../../errors/appError';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { SignUpFormModel } from '../components/signup/signupFormModel';
-import serviceErrorHandler from '../utils/serviceErrorHandler';
+import { SignUpFormModel } from '../../components/signup/signupFormModel';
+import serviceErrorHandler from '../../utils/serviceErrorHandler';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserAccountService } from './user-account.service';
+import { UserAccountService } from '../../services/user-account.service';
 
 interface ITokenResponse {
   token: string;
@@ -21,9 +21,7 @@ interface ICurrentUser {
   }
 }
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class AuthService {
   private readonly PATH = "http://localhost:5000/auth"
 

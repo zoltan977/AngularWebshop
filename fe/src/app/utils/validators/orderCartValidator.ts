@@ -1,5 +1,5 @@
 import { AbstractControl, ValidationErrors, ValidatorFn } from "@angular/forms";
-import { ShoppingCart } from "src/app/models/shopping-cart";
+import { ShoppingCart } from "src/app/shared/models/shopping-cart";
 
 export const orderCartValidator: ValidatorFn = (control:AbstractControl<ShoppingCart>) : ValidationErrors | null => {
     const cart = control.value;

@@ -6,11 +6,11 @@ import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { lastValueFrom, Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { FormError } from 'src/app/errors/formError';
-import { TypeService, ICategory } from 'src/app/services/type.service';
+import { TypeService, ICategory } from 'src/app/shared/services/type.service';
 import { ProductService } from 'src/app/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
-import { Product } from '../../../../models/product-model';
-import { ConfirmDialogComponent } from '../../../shared/confirm-dialog/confirm-dialog.component';
+import { Product } from '../../../../shared/models/product-model';
+import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { ToastService } from 'angular-toastify';
 
 @Component({

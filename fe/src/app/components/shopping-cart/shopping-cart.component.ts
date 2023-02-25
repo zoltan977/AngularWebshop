@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import { ShoppingCartItem } from 'src/app/models/shopping-cart-item';
+import { ShoppingCartItem } from 'src/app/shared/models/shopping-cart-item';
 import { ShoppingCartService } from '../../services/shopping-cart.service';
 
 @Component({
