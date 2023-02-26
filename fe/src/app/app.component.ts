@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ReactiveFormConfig } from '@rxweb/reactive-form-validators';
-import { AuthService } from './services/auth.service';
-import { ShoppingCartService } from './services/shopping-cart.service';
-import { UserAccountService } from './services/user-account.service';
+import { AuthService } from './shared/services/auth.service';
+import { ShoppingCartService } from './shared/services/shopping-cart.service';
+import { UserAccountService } from './membership/services/user-account.service';
 
 @Component({
   selector: 'app-root',
