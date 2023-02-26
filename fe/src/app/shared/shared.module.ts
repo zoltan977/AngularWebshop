@@ -15,6 +15,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatBadgeModule } from '@angular/material/badge';
 
 
 
@@ -24,7 +29,8 @@ import { MatCardModule } from '@angular/material/card';
     DisplayCartComponent,
     OrderListComponent,
     ProductCardComponent,
-    ProductQuantityComponent
+    ProductQuantityComponent,
+    NavbarComponent,
   ],
   exports: [
     ConfirmDialogComponent,
@@ -32,12 +38,10 @@ import { MatCardModule } from '@angular/material/card';
     OrderListComponent,
     ProductCardComponent,
     ProductQuantityComponent,
-    CommonModule,
-    MatDialogModule,
-    MatTableModule,
-    MatCardModule,
+    NavbarComponent,
     MatFormFieldModule,
-    FormsModule
+    FormsModule,
+    MatTableModule
   ],
   providers: [
     AuthGuard,
@@ -51,6 +55,10 @@ import { MatCardModule } from '@angular/material/card';
     MatTableModule,
     MatFormFieldModule,
     MatCardModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatBadgeModule,
     FormsModule,
     RouterModule.forChild([])
   ]

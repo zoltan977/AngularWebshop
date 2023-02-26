@@ -4,7 +4,7 @@ import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
 import { OrderDataToAPI, OrderDataFromAPI } from '../models/order-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
-import { DataService } from './shared/data.service';
+import { DataService } from '../shared/services/shared/data.service';
 import { ShoppingCartService } from './shopping-cart.service';
 interface IOrderStatusUpdateRequest {
   _id: string;

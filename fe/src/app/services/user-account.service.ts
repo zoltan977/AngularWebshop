@@ -4,7 +4,7 @@ import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../errors/appError';
 import { UserAccountData, UserAccountFormModel } from '../models/user-account-model';
 import serviceErrorHandler from '../utils/serviceErrorHandler';
-import { BaseDataService } from './shared/base-data.service';
+import { BaseDataService } from '../shared/services/shared/base-data.service';
 
 @Injectable({
   providedIn: 'root'

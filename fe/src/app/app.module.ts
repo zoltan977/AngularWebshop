@@ -3,28 +3,31 @@ import { registerLocaleData } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 import localeHu from '@angular/common/locales/hu';
 import { ErrorHandler, NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
-import { MatBadgeModule } from '@angular/material/badge';
 import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSortModule } from '@angular/material/sort';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatTableModule } from '@angular/material/table';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
+import { AdminModule } from './admin/admin.module';
 
+import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
+import { ProductFormComponent } from './admin/components/admin-products/product-form/product-form.component';
+import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
 import { AppComponent } from './app.component';
-import { AdminProductsComponent } from './components/admin/admin-products/admin-products.component';
-import { ProductFormComponent } from './components/admin/admin-products/product-form/product-form.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
 import { OrderSummaryComponent } from './components/check-out/order-summary/order-summary.component';
@@ -33,7 +36,6 @@ import {
 } from './components/check-out/payment-and-delivery-form/payment-and-delivery-form.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
 import { CategoriesComponent } from './components/products/categories/categories.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
@@ -45,7 +47,6 @@ import {
   DisplayUserAccountDataComponent,
 } from './components/user-account/display-user-account-data/display-user-account-data.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
-import { AdminAuthGuard } from './services/admin-auth-guard.service';
 import { OrderDataComponent } from './shared/components/order-list/order-details/order-data/order-data.component';
 import { OrderDetailsComponent } from './shared/components/order-list/order-details/order-details.component';
 import { OrderListComponent } from './shared/components/order-list/order-list.component';
@@ -66,11 +67,8 @@ export function tokenGetter() {
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,
-    AdminProductsComponent,
-    NavbarComponent,
     LoginComponent,
     SignupComponent,
-    ProductFormComponent,
     CategoriesComponent,
     OrderSummaryComponent,
     OrderFormComponent,
@@ -84,23 +82,26 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    MatToolbarModule,
     MatInputModule,
     MatPasswordStrengthModule,
     MatSelectModule,
-    MatBadgeModule,
     MatSortModule,
     MatStepperModule,
     MatRadioModule,
     MatAutocompleteModule,
+    MatDialogModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatCardModule,
+    FormsModule,
     ReactiveFormsModule,
     RxReactiveFormsModule,
     HttpClientModule,
     AngularToastifyModule,
     SharedModule,
+    AdminModule,
 
     JwtModule.forRoot({
       config: {
@@ -121,12 +122,6 @@ export function tokenGetter() {
       {path: 'my/orders', component: OrderListComponent, canActivate: [AuthGuard]},
       {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
       {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},
-
-      {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/products/product-details/new', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/products/product-details/:id', component: ProductFormComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/orders', component: OrderListComponent, canActivate: [AdminAuthGuard]},
-      {path: 'admin/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AdminAuthGuard]},
     ]),
   ],
   providers: [
