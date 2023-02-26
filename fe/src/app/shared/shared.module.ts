@@ -24,6 +24,12 @@ import { MatSelectModule } from '@angular/material/select';
 import { OrderDetailsComponent } from './components/order-list/order-details/order-details.component';
 import { OrderDataComponent } from './components/order-list/order-details/order-data/order-data.component';
 import { ShoppingCartService } from './services/shopping-cart.service';
+import { HttpClientModule } from '@angular/common/http';
+import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule } from '@angular/material/button';
+import { MatInputModule } from '@angular/material/input';
+import { MatSortModule } from '@angular/material/sort';
 
 
 
@@ -39,6 +45,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     NavbarComponent,
   ],
   exports: [
+    BrowserAnimationsModule,
+    RxReactiveFormsModule,
+    HttpClientModule,
     ConfirmDialogComponent,
     DisplayCartComponent,
     OrderListComponent,
@@ -53,7 +62,10 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     MatTableModule,
     MatCardModule,
     MatIconModule,
-    MatSelectModule
+    MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSortModule
   ],
   providers: [
     AuthGuard,
@@ -63,6 +75,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     ShoppingCartService
   ],
   imports: [
+    BrowserAnimationsModule,
+    RxReactiveFormsModule,
+    HttpClientModule,
     CommonModule,
     MatDialogModule,
     MatTableModule,
@@ -73,6 +88,9 @@ import { ShoppingCartService } from './services/shopping-cart.service';
     MatMenuModule,
     MatBadgeModule,
     MatSelectModule,
+    MatButtonModule,
+    MatInputModule,
+    MatSortModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([])

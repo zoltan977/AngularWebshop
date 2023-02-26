@@ -1,12 +1,9 @@
 import { registerLocaleData } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
 import localeHu from '@angular/common/locales/hu';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
-import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
 
 import { AdminModule } from './admin/admin.module';
@@ -28,9 +25,6 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
-    RxReactiveFormsModule,
-    HttpClientModule,
     AngularToastifyModule,
     SharedModule,
     AdminModule,
