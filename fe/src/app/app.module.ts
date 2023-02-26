@@ -22,11 +22,8 @@ import { RouterModule } from '@angular/router';
 import { JwtModule } from '@auth0/angular-jwt';
 import { RxReactiveFormsModule } from '@rxweb/reactive-form-validators';
 import { AngularToastifyModule, ToastService } from 'angular-toastify';
-import { AdminModule } from './admin/admin.module';
 
-import { AdminProductsComponent } from './admin/components/admin-products/admin-products.component';
-import { ProductFormComponent } from './admin/components/admin-products/product-form/product-form.component';
-import { AdminAuthGuard } from './admin/services/admin-auth-guard.service';
+import { AdminModule } from './admin/admin.module';
 import { AppComponent } from './app.component';
 import { CheckOutComponent } from './components/check-out/check-out.component';
 import { OrderFormComponent } from './components/check-out/order-form/order-form.component';
@@ -35,18 +32,10 @@ import {
   PaymentAndDeliveryFormComponent,
 } from './components/check-out/payment-and-delivery-form/payment-and-delivery-form.component';
 import { HomeComponent } from './components/home/home.component';
-import { LoginComponent } from './components/login/login.component';
 import { CategoriesComponent } from './components/products/categories/categories.component';
 import { ProductsComponent } from './components/products/products.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { SignupComponent } from './components/signup/signup.component';
-import {
-  AddUserAccountItemFormComponent,
-} from './components/user-account/add-user-account-item-form/add-user-account-item-form.component';
-import {
-  DisplayUserAccountDataComponent,
-} from './components/user-account/display-user-account-data/display-user-account-data.component';
-import { UserAccountComponent } from './components/user-account/user-account.component';
+import { MembershipModule } from './membership/membership.module';
 import { OrderDataComponent } from './shared/components/order-list/order-details/order-data/order-data.component';
 import { OrderDetailsComponent } from './shared/components/order-list/order-details/order-details.component';
 import { OrderListComponent } from './shared/components/order-list/order-list.component';
@@ -67,17 +56,12 @@ export function tokenGetter() {
     ProductsComponent,
     ShoppingCartComponent,
     CheckOutComponent,
-    LoginComponent,
-    SignupComponent,
     CategoriesComponent,
     OrderSummaryComponent,
     OrderFormComponent,
     OrderDetailsComponent,
     OrderDataComponent,
     PaymentAndDeliveryFormComponent,
-    UserAccountComponent,
-    AddUserAccountItemFormComponent,
-    DisplayUserAccountDataComponent,
   ],
   imports: [
     BrowserModule,
@@ -102,6 +86,7 @@ export function tokenGetter() {
     AngularToastifyModule,
     SharedModule,
     AdminModule,
+    MembershipModule,
 
     JwtModule.forRoot({
       config: {
@@ -115,13 +100,11 @@ export function tokenGetter() {
       {path: '', component: ProductsComponent},
       {path: 'products', component: ProductsComponent},
       {path: 'shopping-cart', component: ShoppingCartComponent},
-      {path: 'login', component: LoginComponent},
-      {path: 'signup', component: SignupComponent},
+      
 
       {path: 'check-out', component: CheckOutComponent, canActivate: [AuthGuard]},
       {path: 'my/orders', component: OrderListComponent, canActivate: [AuthGuard]},
       {path: 'my/orders/order-details/:id', component: OrderDetailsComponent, canActivate: [AuthGuard]},
-      {path: 'my/account', component: UserAccountComponent, canActivate: [AuthGuard]},
     ]),
   ],
   providers: [

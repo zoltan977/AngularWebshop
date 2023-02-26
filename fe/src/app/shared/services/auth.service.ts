@@ -3,10 +3,10 @@ import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../../errors/appError';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { SignUpFormModel } from '../../components/signup/signupFormModel';
+import { SignUpFormModel } from '../../membership/components/signup/signupFormModel';
 import serviceErrorHandler from '../../utils/serviceErrorHandler';
 import { ActivatedRoute, Router } from '@angular/router';
-import { UserAccountService } from '../../services/user-account.service';
+import { UserAccountService } from '../../membership/services/user-account.service';
 
 interface ITokenResponse {
   token: string;

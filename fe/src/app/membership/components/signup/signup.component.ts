@@ -2,8 +2,8 @@ import { Component, OnInit} from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import setFormErrors from 'src/app/utils/setFormErrors';
-import { FormError } from '../../errors/formError';
-import { AuthService } from '../../shared/services/auth.service';
+import { FormError } from '../../../errors/formError';
+import { AuthService } from '../../../shared/services/auth.service';
 import { SignUpFormModel } from './signupFormModel';
 
 @Component({

@@ -12,7 +12,7 @@ import { TypeService } from './services/type.service';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatCardModule } from '@angular/material/card';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -41,7 +41,10 @@ import { MatBadgeModule } from '@angular/material/badge';
     NavbarComponent,
     MatFormFieldModule,
     FormsModule,
-    MatTableModule
+    ReactiveFormsModule,
+    MatTableModule,
+    MatCardModule,
+    MatIconModule
   ],
   providers: [
     AuthGuard,
@@ -60,6 +63,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatMenuModule,
     MatBadgeModule,
     FormsModule,
+    ReactiveFormsModule,
     RouterModule.forChild([])
   ]
 })

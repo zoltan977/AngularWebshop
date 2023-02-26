@@ -20,7 +20,6 @@ import { MatSelectModule } from '@angular/material/select';
   imports: [
     CommonModule,
     SharedModule,
-    ReactiveFormsModule,
     MatSelectModule,
     RouterModule.forChild([
       {path: 'admin/products', component: AdminProductsComponent, canActivate: [AdminAuthGuard]},

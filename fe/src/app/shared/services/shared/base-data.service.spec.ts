@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { UserAccountData, UserAccountFormModel } from 'src/app/models/user-account-model';
+import { UserAccountData, UserAccountFormModel } from 'src/app/membership/models/user-account-model';
 
 import { BaseDataService } from './base-data.service';
 
