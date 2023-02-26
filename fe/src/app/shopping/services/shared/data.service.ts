@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from 'src/app/errors/appError';
-import serviceErrorHandler from 'src/app/utils/serviceErrorHandler';
-import { BaseDataService } from './base-data.service';
+import { AppError } from 'src/app/shared/errors/appError';
+import serviceErrorHandler from 'src/app/shared/utils/serviceErrorHandler';
+import { BaseDataService } from '../../../shared/services/shared/base-data.service';
 
 @Injectable({
   providedIn: 'root'

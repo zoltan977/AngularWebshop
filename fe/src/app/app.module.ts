@@ -11,7 +11,7 @@ import { AppComponent } from './app.component';
 import { MembershipModule } from './membership/membership.module';
 import { SharedModule } from './shared/shared.module';
 import { ShoppingModule } from './shopping/shopping.module';
-import { AppErrorHandler } from './utils/errorHandler';
+import { AppErrorHandler } from './shared/utils/errorHandler';
 
 registerLocaleData(localeHu, 'hu');
 

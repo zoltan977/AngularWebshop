@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { ToastService } from 'angular-toastify';
-import { FormError } from 'src/app/errors/formError';
+import { FormError } from 'src/app/shared/errors/formError';
 import { CustomerName, DeliveryAddress, UserAccountFormModel } from 'src/app/membership/models/user-account-model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { UserAccountService } from 'src/app/membership/services/user-account.service';
-import setFormErrors from 'src/app/utils/setFormErrors';
+import setFormErrors from 'src/app/shared/utils/setFormErrors';
 
 @Component({
   selector: 'add-user-account-item-form',

@@ -3,7 +3,7 @@ import { DeliveryMethods, PaymentMethods } from 'src/app/shopping/models/payment
 import { OrderDataFromAPI, OrderStatusList } from 'src/app/shopping/models/order-model';
 import { DropDownListItemInterface } from "src/app/shopping/models/dropdownlist-item-interface";
 import { OrderService } from 'src/app/shopping/services/order.service';
-import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
+import { IsRouteAdmin } from 'src/app/shared/services/is-route-admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component';
 import { lastValueFrom } from 'rxjs';

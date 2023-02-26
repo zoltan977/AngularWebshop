@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable, InjectionToken } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from 'src/app/errors/appError';
-import serviceErrorHandler from 'src/app/utils/serviceErrorHandler';
+import { AppError } from 'src/app/shared/errors/appError';
+import serviceErrorHandler from 'src/app/shared/utils/serviceErrorHandler';
 
 @Injectable({
   providedIn: 'root'

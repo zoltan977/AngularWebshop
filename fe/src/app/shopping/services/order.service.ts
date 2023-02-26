@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from '../../errors/appError';
+import { AppError } from '../../shared/errors/appError';
 import { OrderDataToAPI, OrderDataFromAPI } from '../models/order-model';
-import serviceErrorHandler from '../../utils/serviceErrorHandler';
-import { DataService } from '../../shared/services/shared/data.service';
+import serviceErrorHandler from '../../shared/utils/serviceErrorHandler';
+import { DataService } from './shared/data.service';
 import { ShoppingCartService } from '../../shared/services/shopping-cart.service';
 interface IOrderStatusUpdateRequest {
   _id: string;

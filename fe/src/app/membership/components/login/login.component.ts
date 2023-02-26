@@ -1,8 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import setFormErrors from 'src/app/utils/setFormErrors';
-import { CredentialsError } from '../../../errors/credentialsError';
-import { FormError } from '../../../errors/formError';
+import setFormErrors from 'src/app/shared/utils/setFormErrors';
+import { CredentialsError } from '../../../shared/errors/credentialsError';
+import { FormError } from '../../../shared/errors/formError';
 import { AuthService } from '../../../shared/services/auth.service';
 
 @Component({

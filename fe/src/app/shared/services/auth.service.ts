@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
-import { AppError } from '../../errors/appError';
+import { AppError } from '../errors/appError';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SignUpFormModel } from '../../membership/components/signup/signupFormModel';
-import serviceErrorHandler from '../../utils/serviceErrorHandler';
+import serviceErrorHandler from '../utils/serviceErrorHandler';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UserAccountService } from '../../membership/services/user-account.service';
 
@@ -62,7 +62,9 @@ export class AuthService {
       tap((data: ITokenResponse) => {
         console.log("signed up: ", data.token);
         this.setToken(data.token)
-        this.navigateToHomePage()
+        this.userAccountService.getByUser().subscribe({
+          complete: this.navigateToTheReturnUrl
+        });
       }),
       catchError(serviceErrorHandler)
     );

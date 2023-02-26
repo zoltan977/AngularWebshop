@@ -2,11 +2,11 @@ import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Observable } from 'rxjs';
-import { AppError } from 'src/app/errors/appError';
+import { AppError } from 'src/app/shared/errors/appError';
 import { OrderDataFromAPI } from 'src/app/shopping/models/order-model';
 import { DataTablesFilterValuesService } from 'src/app/shared/services/data-tables-filter-values.service';
 import { OrderService } from 'src/app/shopping/services/order.service';
-import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
+import { IsRouteAdmin } from 'src/app/shared/services/is-route-admin.service';
 
 @Component({
   selector: 'order-list',

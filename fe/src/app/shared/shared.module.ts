@@ -30,6 +30,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
+import { IsRouteAdmin } from './services/is-route-admin.service';
 
 
 
@@ -72,7 +73,8 @@ import { MatSortModule } from '@angular/material/sort';
     AuthService,
     DataTablesFilterValuesService,
     TypeService,
-    ShoppingCartService
+    ShoppingCartService,
+    IsRouteAdmin
   ],
   imports: [
     BrowserAnimationsModule,

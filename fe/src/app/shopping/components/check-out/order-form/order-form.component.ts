@@ -9,7 +9,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { UserAccountService } from 'src/app/membership/services/user-account.service';
-import { orderCartValidator } from 'src/app/utils/validators/orderCartValidator';
+import { orderCartValidator } from 'src/app/shopping/utils/validators/orderCartValidator';
 
 @Component({
   selector: 'order-form',
