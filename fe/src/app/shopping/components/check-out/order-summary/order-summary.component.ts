@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 
 @Component({
   selector: 'order-summary',

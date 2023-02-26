@@ -3,8 +3,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 import { lastValueFrom, Observable } from 'rxjs';
-import { OrderDataFromAPI } from 'src/app/models/order-model';
-import { OrderService } from 'src/app/services/order.service';
+import { OrderDataFromAPI } from 'src/app/shopping/models/order-model';
+import { OrderService } from 'src/app/shopping/services/order.service';
 import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
 import { ConfirmDialogComponent } from '../../confirm-dialog/confirm-dialog.component';
 

@@ -1,6 +1,6 @@
 import { prop, required } from "@rxweb/reactive-form-validators";
 import { DropDownListItemInterface } from "./dropdownlist-item-interface";
-import { ShoppingCart } from "../shared/models/shopping-cart";
+import { ShoppingCart } from "../../shared/models/shopping-cart";
 
 export class OrderFormModel {
     constructor(init?: OrderFormModel) {

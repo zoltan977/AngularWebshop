@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeliveryMethods, PaymentMethods } from 'src/app/models/payment-and-delivery-model';
-import { OrderDataFromAPI, OrderStatusList } from 'src/app/models/order-model';
-import { DropDownListItemInterface } from "src/app/models/dropdownlist-item-interface";
-import { OrderService } from 'src/app/services/order.service';
+import { DeliveryMethods, PaymentMethods } from 'src/app/shopping/models/payment-and-delivery-model';
+import { OrderDataFromAPI, OrderStatusList } from 'src/app/shopping/models/order-model';
+import { DropDownListItemInterface } from "src/app/shopping/models/dropdownlist-item-interface";
+import { OrderService } from 'src/app/shopping/services/order.service';
 import { IsRouteAdmin } from 'src/app/utils/is-route-admin.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../confirm-dialog/confirm-dialog.component';

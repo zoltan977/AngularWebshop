@@ -14,9 +14,6 @@ import {
   DisplayUserAccountDataComponent,
 } from './components/user-account/display-user-account-data/display-user-account-data.component';
 import { UserAccountComponent } from './components/user-account/user-account.component';
-
-
-
 @NgModule({
   declarations: [
     LoginComponent,

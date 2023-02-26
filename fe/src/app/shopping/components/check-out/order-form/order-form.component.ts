@@ -3,11 +3,11 @@ import { FormGroup } from '@angular/forms';
 import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { map, Observable, startWith } from 'rxjs';
-import { OrderFormModel } from 'src/app/models/order-model';
+import { OrderFormModel } from 'src/app/shopping/models/order-model';
 import { CustomerNameData, DeliveryAddressData } from 'src/app/membership/models/user-account-model';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
-import { ShoppingCartService } from 'src/app/services/shopping-cart.service';
+import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
+import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { UserAccountService } from 'src/app/membership/services/user-account.service';
 import { orderCartValidator } from 'src/app/utils/validators/orderCartValidator';
 

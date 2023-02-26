@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { ShoppingCartService } from '../../../services/shopping-cart.service';
+import { ShoppingCartService } from '../../services/shopping-cart.service';
 import { slideInOut } from './navbar.component.animations';
 
 const mapRouteToPageTitle: Record<string, string> = {

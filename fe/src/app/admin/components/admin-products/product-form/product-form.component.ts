@@ -7,7 +7,7 @@ import { lastValueFrom, Observable } from 'rxjs';
 import { AppError } from 'src/app/errors/appError';
 import { FormError } from 'src/app/errors/formError';
 import { TypeService, ICategory } from 'src/app/shared/services/type.service';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/shopping/services/product.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { Product } from '../../../../shared/models/product-model';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';

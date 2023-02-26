@@ -5,9 +5,9 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 import { FormError } from 'src/app/errors/formError';
-import { OrderDataToAPI, OrderFormModel } from 'src/app/models/order-model';
-import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
-import { OrderService } from 'src/app/services/order.service';
+import { OrderDataToAPI, OrderFormModel } from 'src/app/shopping/models/order-model';
+import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
+import { OrderService } from 'src/app/shopping/services/order.service';
 import setFormErrors from 'src/app/utils/setFormErrors';
 import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-model';
 

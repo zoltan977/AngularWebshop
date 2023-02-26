@@ -20,6 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
+import { MatSelectModule } from '@angular/material/select';
+import { OrderDetailsComponent } from './components/order-list/order-details/order-details.component';
+import { OrderDataComponent } from './components/order-list/order-details/order-data/order-data.component';
+import { ShoppingCartService } from './services/shopping-cart.service';
 
 
 
@@ -28,6 +32,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     ConfirmDialogComponent,
     DisplayCartComponent,
     OrderListComponent,
+    OrderDetailsComponent,
+    OrderDataComponent,
     ProductCardComponent,
     ProductQuantityComponent,
     NavbarComponent,
@@ -36,6 +42,8 @@ import { MatBadgeModule } from '@angular/material/badge';
     ConfirmDialogComponent,
     DisplayCartComponent,
     OrderListComponent,
+    OrderDetailsComponent,
+    OrderDataComponent,
     ProductCardComponent,
     ProductQuantityComponent,
     NavbarComponent,
@@ -44,13 +52,15 @@ import { MatBadgeModule } from '@angular/material/badge';
     ReactiveFormsModule,
     MatTableModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatSelectModule
   ],
   providers: [
     AuthGuard,
     AuthService,
     DataTablesFilterValuesService,
-    TypeService
+    TypeService,
+    ShoppingCartService
   ],
   imports: [
     CommonModule,
@@ -62,6 +72,7 @@ import { MatBadgeModule } from '@angular/material/badge';
     MatIconModule,
     MatMenuModule,
     MatBadgeModule,
+    MatSelectModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([])

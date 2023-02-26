@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { DataTablesFilterValuesService } from 'src/app/shared/services/data-tables-filter-values.service';
-import { ProductService } from 'src/app/services/product.service';
+import { ProductService } from 'src/app/shopping/services/product.service';
 import { Product } from '../../../shared/models/product-model'
 
 @Component({

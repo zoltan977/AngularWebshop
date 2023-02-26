@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
-import { CheckoutFormsValuesService } from 'src/app/services/checkout-forms-values.service';
+import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
 import { DeliveryMethods, PaymentAndDeliveryFormModel, PaymentMethods } from '../../../models/payment-and-delivery-model';
 
 @Component({
