@@ -59,16 +59,20 @@ export class AddUserAccountItemFormComponent implements OnInit {
     this.userAccountForm?.markAllAsTouched()
   }
 
+  objValues(obj: Object | null) {
+    return Object.values(obj || {}).map(v => v.message || v);
+  }
+
   get controls() {
     return this.userAccountForm.controls
   }
 
   get customerNames() {
-    return (this.controls.customerNames as FormArray).controls as FormGroup[]
+    return (this.controls.customerNames as FormArray<FormGroup>).controls
   }
 
   get deliveryAddresses() {
-    return (this.controls.deliveryAddresses as FormArray).controls as FormGroup[]
+    return (this.controls.deliveryAddresses as FormArray<FormGroup>).controls
   }
 
   get isFormInvalid() {

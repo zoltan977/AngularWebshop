@@ -3,11 +3,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Termék</mat-label>
           <input matInput placeholder="title" formControlName="title">
-          <mat-error *ngIf="controls?.title?.errors?.required">
-            Meg kell adni
-          </mat-error>
-          <mat-error *ngIf="controls?.title?.errors?.isProductTitleAlreadyExist as isProductTitleAlreadyExist">
-            {{isProductTitleAlreadyExist?.message || isProductTitleAlreadyExist}}
+          <mat-error *ngFor="let error of objValues(controls.title.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -16,14 +13,8 @@
           <mat-label>Ár</mat-label>
           <input type="number" matInput placeholder="price" formControlName="price">
           <span matTextSuffix>Ft</span>
-          <mat-error *ngIf="controls?.price?.errors?.required">
-            Meg kell adni
-          </mat-error>
-          <mat-error *ngIf="controls?.price?.errors?.minNumber as minNumber">
-            {{minNumber?.message || minNumber}}
-          </mat-error>
-          <mat-error *ngIf="controls?.price?.errors?.number as number">
-            {{number?.message || number}}
+          <mat-error *ngFor="let error of objValues(controls.price.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -34,11 +25,8 @@
             <mat-option value=""></mat-option>
             <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.displayName}}</mat-option>
           </mat-select>
-          <mat-error *ngIf="controls?.category?.errors?.required">
-            Meg kell adni
-          </mat-error>
-          <mat-error *ngIf="controls?.category?.errors?.isCategoryInProductCategories as isCategoryInProductCategories">
-            {{isCategoryInProductCategories?.message || isCategoryInProductCategories}}
+          <mat-error *ngFor="let error of objValues(controls.category.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -46,11 +34,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Kép URL</mat-label>
           <input matInput placeholder="image url" formControlName="imageURL">
-          <mat-error *ngIf="controls?.imageURL?.errors?.required">
-            Meg kell adni
-          </mat-error>
-          <mat-error *ngIf="controls?.imageURL?.errors?.url as url">
-            {{url?.message || url}}
+          <mat-error *ngFor="let error of objValues(controls.imageURL.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>

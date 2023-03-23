@@ -26,8 +26,8 @@
               {{option.name}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="controls?.name?.errors?.required">
-            Meg kell adni
+          <mat-error *ngFor="let error of objValues(controls.name.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -45,8 +45,8 @@
               {{option.city}} - {{option.address}}
             </mat-option>
           </mat-autocomplete>
-          <mat-error *ngIf="controls?.address?.errors?.required">
-            Meg kell adni
+          <mat-error *ngFor="let error of objValues(controls.address.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -54,8 +54,8 @@
         <mat-form-field appearance="fill">
           <mat-label>Város</mat-label>
           <input matInput formControlName="city">
-          <mat-error *ngIf="controls?.city?.errors?.required">
-            Meg kell adni
+          <mat-error *ngFor="let error of objValues(controls.city.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>

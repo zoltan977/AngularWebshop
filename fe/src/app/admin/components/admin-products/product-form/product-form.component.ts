@@ -45,6 +45,10 @@ export class ProductFormComponent implements OnInit {
     }
   }
 
+  objValues(obj: Object | null) {
+    return Object.values(obj || {}).map(v => v.message || v);
+  }
+
   private populateForm() {
     this.productService.get(this.id!)
     .subscribe({

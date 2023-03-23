@@ -13,6 +13,10 @@ form {
             mat-form-field {
                 width: 100%;
             }
+
+            div > mat-error {
+                margin-top: -20px;
+            }
         }
     }
 }
