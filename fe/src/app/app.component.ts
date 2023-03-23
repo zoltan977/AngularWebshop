@@ -49,6 +49,7 @@ export class AppComponent implements OnInit {
   private settingValidationMessagesForRxWebForms() {
     ReactiveFormConfig.set({
       "validationMessage":{
+        "required": "Meg kell adni",
         "minNumber": "Nem lehet negatív",
         "url": "Nem megfelelő URL",
         "email": "Nem megfelelő email",

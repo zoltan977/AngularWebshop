@@ -4,8 +4,8 @@
           <mat-label>Felhasználónév</mat-label>
           <input matInput placeholder="username" formControlName="username">
           <mat-icon matSuffix>account_circle</mat-icon>
-          <mat-error *ngIf="controls.username.errors?.required">
-            Meg kell adni a felhasználó nevet
+          <mat-error *ngFor="let error of objValues(controls.username.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>
@@ -14,12 +14,8 @@
           <mat-label>Email</mat-label>
           <input matInput placeholder="email" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="controls.email.errors?.required">Meg kell adni az email-t</mat-error>
-          <mat-error *ngIf="controls.email.errors?.email as email">
-            {{email?.message || email}}
-          </mat-error>
-          <mat-error class="emailAlreadyRegistered" *ngIf="controls.email.errors?.isEmailAlreadyRegistered as isEmailAlreadyRegistered">
-            {{isEmailAlreadyRegistered?.message || isEmailAlreadyRegistered}}
+          <mat-error *ngFor="let error of objValues(controls.email.errors)">
+            {{error}}
           </mat-error>
         </mat-form-field>
     </p>

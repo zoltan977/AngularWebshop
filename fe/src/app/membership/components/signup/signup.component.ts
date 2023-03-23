@@ -27,6 +27,10 @@ export class SignupComponent implements OnInit {
     this.signUpForm = this.formBuilder.formGroup(this.signUpFormModel);
   }
 
+  objValues(obj: Object | null) {
+    return Object.values(obj || {}).map(v => v.message || v);
+  }
+
   markConfirmPasswordAsTouched() {
     this.signUpForm?.controls['confirmPassword'].markAsTouched({onlySelf: true})
   }

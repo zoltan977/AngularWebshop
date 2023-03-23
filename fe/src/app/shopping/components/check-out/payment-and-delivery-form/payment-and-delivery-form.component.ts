@@ -21,6 +21,10 @@ export class PaymentAndDeliveryFormComponent {
     this.paymentAndDeliveryForm = formBuilder.formGroup(this.paymentAndDeliveryFormModel);
   }
 
+  objValues(obj: Object | null) {
+    return Object.values(obj || {}).map(v => v.message || v);
+  }
+
   markAllInputsAsTouched() {
     this.paymentAndDeliveryForm?.markAllAsTouched();
   }

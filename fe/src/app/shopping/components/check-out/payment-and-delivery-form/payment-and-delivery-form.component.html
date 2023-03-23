@@ -9,12 +9,9 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-        <mat-error *ngIf="controls?.paymentMethod?.errors?.required">
-          Meg kell adni
-        </mat-error>
-        <mat-error *ngIf="controls?.paymentMethod?.errors?.isIn as isIn">
-          {{isIn.message || isIn}}
-        </mat-error>
+      <mat-error *ngFor="let error of objValues(controls.paymentMethod.errors)">
+        {{error}}
+      </mat-error>
     </div>
     <div>
       <div class="formControls">
@@ -26,12 +23,9 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-        <mat-error *ngIf="controls?.deliveryMethod?.errors?.required">
-          Meg kell adni
-        </mat-error>
-        <mat-error *ngIf="controls?.deliveryMethod?.errors?.isIn as isIn">
-          {{isIn.message || isIn}}
-        </mat-error>
+      <mat-error *ngFor="let error of objValues(controls.deliveryMethod.errors)">
+        {{error}}
+      </mat-error>
     </div>
         
     <span (click)="markAllInputsAsTouched()">

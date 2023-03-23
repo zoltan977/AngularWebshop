@@ -38,6 +38,10 @@ export class OrderFormComponent {
       this.deliveryAddresses = userAccountService.currentUserAccountData.deliveryAddresses;
   }
 
+  objValues(obj: Object | null) {
+    return Object.values(obj || {}).map(v => v.message || v);
+  }
+
   deliveryAddressSelected(event: MatAutocompleteSelectedEvent) {
     this.controls.address.setValue(event.option.value.address)
     this.controls.city.setValue(event.option.value.city)
