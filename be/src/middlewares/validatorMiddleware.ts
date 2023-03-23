@@ -5,21 +5,25 @@ import { StatusCodes } from 'http-status-codes';
 import HttpException from '../exceptions/HttpException';
 import { DTOValidationException } from '../exceptions/DTOValidationException';
 
-const mapErrorConstraintsPropsToFrontendErrorProps: Record<string, string> = {
-    isString: "required",
-    isEmail: "email",
-    isNumber: "number",
-    isUrl: "url",
-    isArray: "isArray",
-    isIn: "isIn",
-    isDefined: "isDefined",
-    nestedValidation: "nestedValidation",
-    objectPropertyError: "objectPropertyError",
-    IsEmailAlreadyRegisteredConstraint: "isEmailAlreadyRegistered",
-    IsCategoryInProductCategoriesConstraint: "isCategoryInProductCategories",
-    IsProductTitleAlreadyExistConstraint: "isProductTitleAlreadyExist",
-    IsUserEmailInUserCollectionConstraint: "isUserEmailInUserCollection"
-};
+const createFlatArrayFromChildErrors = (errors: ValidationError[]): ValidationError[] => {
+    const errorsArray: ValidationError[] = [];
+
+    for (const error of errors) {
+        const currentError = error;
+        let currentChild = error;
+        while (currentChild.children?.length) {
+            currentChild = currentChild.children.pop() as ValidationError;
+            if (!(currentChild.target as any).prototype) {
+                currentError.property = `${currentError.property}.${currentChild.property}`;
+            }
+            currentError.value = currentChild.value;
+            currentError.constraints = currentChild.constraints;
+        }
+        errorsArray.push(currentError);
+    }
+
+    return errorsArray;
+}
 
 const validationMiddleware = (type: any, skipMissingProperties = false, otherValidatorOptions?: Partial<ValidatorOptions>): RequestHandler => {
     return async (req, res, next): Promise<any> => {
@@ -34,10 +38,10 @@ const validationMiddleware = (type: any, skipMissingProperties = false, otherVal
                 const flatErrorsArray = createFlatArrayFromChildErrors(errors);
                 console.log("Validation flatErrorsArray: ", flatErrorsArray);
 
-                const message = flatErrorsArray.map((error: ValidationError) => Object.values(error.constraints || {objectPropertyError: `${error.property} error`}).join(", ")).join(', ');
+                const message = flatErrorsArray.map((error: ValidationError) => Object.values(error.constraints!).join(", ")).join(', ');
                 const data = flatErrorsArray.map((error: ValidationError) => ({
                     property: error.property, 
-                    constraints: Object.entries(error.constraints || {objectPropertyError: `${error.property} error`}).map(e => ({[mapErrorConstraintsPropsToFrontendErrorProps[e[0]]]: e[1]})),
+                    constraints: error.constraints!,
                 }))
 
                 next(new HttpException(StatusCodes.BAD_REQUEST, message, {errorsInPostedData: data}));
@@ -51,20 +55,5 @@ const validationMiddleware = (type: any, skipMissingProperties = false, otherVal
 
     };
 };
-
-const createFlatArrayFromChildErrors = (errors: ValidationError[]): ValidationError[] => {
-    const errorsArray: ValidationError[] = [];
-
-    for (const error of errors) {
-        errorsArray.push(error);
-        let currentError = error;
-        while (currentError.children?.length) {
-            currentError = currentError.children.pop() as ValidationError;
-            errorsArray.push(currentError as ValidationError);
-        }
-    }
-
-    return errorsArray;
-}
 
 export default validationMiddleware;

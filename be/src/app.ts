@@ -25,7 +25,7 @@ class App {
             this.app.use(route.path, route.router);
         });
         this.app.use('/', (req, res, next) => {
-            res.status(StatusCodes.OK).send('PAGE NOT FOUND');
+            res.status(StatusCodes.NOT_FOUND).send('PAGE NOT FOUND');
         });
     }
 
