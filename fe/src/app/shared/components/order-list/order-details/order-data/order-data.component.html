@@ -21,13 +21,13 @@
 <p>
     <span>Kiszállítási mód:</span>
     <span>
-        {{deliveryMethod?.displayValue}}
+        {{order?.deliveryMethodDisplayName}}
     </span>
 </p>
 <p>
     <span>Fizetési mód:</span>
     <span>
-        {{paymentMethod?.displayValue}}
+        {{order?.paymentMethodDisplayName}}
     </span>
 </p>
 <p>
@@ -45,7 +45,7 @@
     </span>
     <ng-template #noAdmin>
         <span>
-            {{orderStatus?.displayValue}}
+            {{order?.orderStatusDisplayName}}
         </span>
     </ng-template>
 </p>

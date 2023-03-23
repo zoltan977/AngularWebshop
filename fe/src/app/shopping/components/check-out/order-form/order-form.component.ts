@@ -4,7 +4,7 @@ import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 import { RxFormBuilder } from '@rxweb/reactive-form-validators';
 import { map, Observable, startWith } from 'rxjs';
 import { OrderFormModel } from 'src/app/shopping/models/order-model';
-import { CustomerNameData, DeliveryAddressData } from 'src/app/membership/models/user-account-model';
+import { CustomerName, DeliveryAddress } from 'src/app/membership/models/user-account-model';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
@@ -20,10 +20,10 @@ export class OrderFormComponent {
   orderForm: FormGroup;
   orderModel: OrderFormModel;
 
-  filteredCustomerNames!: Observable<CustomerNameData[]>;
-  filteredDeliveryAddresses!: Observable<DeliveryAddressData[]>;
-  private customerNames: CustomerNameData[];
-  private deliveryAddresses: DeliveryAddressData[];
+  filteredCustomerNames!: Observable<CustomerName[]>;
+  filteredDeliveryAddresses!: Observable<DeliveryAddress[]>;
+  private customerNames: CustomerName[];
+  private deliveryAddresses: DeliveryAddress[];
 
   constructor(
     private formBuilder: RxFormBuilder,
@@ -47,7 +47,7 @@ export class OrderFormComponent {
     this.controls.city.setValue(event.option.value.city)
   }
 
-  displayDeliveryAddressValue(deliveryAddress: DeliveryAddressData | string): string {
+  displayDeliveryAddressValue(deliveryAddress: DeliveryAddress | string): string {
     return deliveryAddress ? typeof deliveryAddress === 'string' ? deliveryAddress : deliveryAddress.address : '';
   }
 
@@ -87,7 +87,7 @@ export class OrderFormComponent {
     );
   }
 
-  private filterCustomerNames(name: string): CustomerNameData[] {
+  private filterCustomerNames(name: string): CustomerName[] {
     const filterValue = name.toString().toLowerCase();
 
     return this.customerNames.filter(cn => cn.name.toString().toLowerCase().includes(filterValue));
@@ -102,7 +102,7 @@ export class OrderFormComponent {
     );
   }
 
-  private filterDeliveryAddresses(value: string): DeliveryAddressData[] {
+  private filterDeliveryAddresses(value: string): DeliveryAddress[] {
     const filterValue = value.toString().toLowerCase();
 
     return this.deliveryAddresses.filter(da => da.city.toString().toLowerCase().includes(filterValue) || 
