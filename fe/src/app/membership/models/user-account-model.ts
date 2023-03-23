@@ -1,48 +1,36 @@
 import {email, propArray, required} from   "@rxweb/reactive-form-validators"   
 
 export class CustomerName {
+    public readonly _id?: string;
+
     @required()
-    name!: string;
+    name: string = "";
 }
 
 export class DeliveryAddress {
-    @required()
-    address!: string;
+    public readonly _id?: string;
 
     @required()
-    city!: string;
+    address: string = "";
+
+    @required()
+    city: string = "";
 }
 
 export class UserAccountFormModel {
+    public readonly _id?: string;
+
     @propArray(CustomerName)
-    customerNames!: CustomerName[];
+    customerNames: CustomerName[] = [new CustomerName()];
 
     @propArray(DeliveryAddress)
-    deliveryAddresses!: DeliveryAddress[];
+    deliveryAddresses: DeliveryAddress[] = [new DeliveryAddress()];
 
     @required()
     @email()
-    userEmail!: string;
-}
+    userEmail: string = "";
 
-export class CustomerNameData {
-    public readonly _id: string = "";
-    public readonly name: string = "";
-}
-
-export class DeliveryAddressData {
-    public readonly _id: string = "";
-    public readonly address: string = "";
-    public readonly city: string = "";
-}
-
-export class UserAccountData {
-    public readonly _id: string = "";
-    public readonly userEmail: string = "";
-    public readonly customerNames: CustomerNameData[] = [];
-    public readonly deliveryAddresses: DeliveryAddressData[] = [];
-
-    constructor (init?: UserAccountData) {
+    constructor (init?: UserAccountFormModel) {
         if (init) {
             Object.assign(this, init)
         }

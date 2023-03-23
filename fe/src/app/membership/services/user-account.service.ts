@@ -2,16 +2,16 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, Observable, tap } from 'rxjs';
 import { AppError } from '../../shared/errors/appError';
-import { UserAccountData, UserAccountFormModel } from '../models/user-account-model';
+import { UserAccountFormModel } from '../models/user-account-model';
 import serviceErrorHandler from '../../shared/utils/serviceErrorHandler';
 import { BaseDataService } from '../../shared/services/shared/base-data.service';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UserAccountService extends BaseDataService<UserAccountFormModel, UserAccountData> {
+export class UserAccountService extends BaseDataService<UserAccountFormModel, UserAccountFormModel> {
 
-  private _currentUserAccountData: UserAccountData = new UserAccountData();
+  private _currentUserAccountData: UserAccountFormModel = new UserAccountFormModel();
 
   constructor(httpClient: HttpClient) { 
     super(httpClient, "http://localhost:5000/user-account")
@@ -21,12 +21,12 @@ export class UserAccountService extends BaseDataService<UserAccountFormModel, Us
     return this._currentUserAccountData;
   }
 
-  protected override setCurrentData(data: UserAccountData) {
-    this._currentUserAccountData = new UserAccountData(data);
+  protected override setCurrentData(data: UserAccountFormModel) {
+    this._currentUserAccountData = new UserAccountFormModel(data);
   }
 
-  getByUser(): Observable<UserAccountData | AppError> {
-    const response = this.httpClient.get<UserAccountData>(this.PATH + "/getByUser")
+  getByUser(): Observable<UserAccountFormModel | AppError> {
+    const response = this.httpClient.get<UserAccountFormModel>(this.PATH + "/getByUser")
 
     return response.pipe(
       tap(data => {
@@ -37,25 +37,25 @@ export class UserAccountService extends BaseDataService<UserAccountFormModel, Us
     )
   }
 
-  deleteCustomerName(customerNameId: string): Observable<UserAccountData | AppError> {
-    const response = this.httpClient.delete<UserAccountData>(this.PATH + "/customer-name/" + customerNameId)
+  deleteCustomerName(customerNameId: string): Observable<UserAccountFormModel | AppError> {
+    const response = this.httpClient.delete<UserAccountFormModel>(this.PATH + "/customer-name/" + customerNameId)
 
     return response.pipe(
       tap(data => {
         console.log("UserAccountData service response data", data);
-        this.setCurrentData(data as UserAccountData);
+        this.setCurrentData(data as UserAccountFormModel);
       }),
       catchError(serviceErrorHandler)
     )
   }
 
-  deleteDeliveryAddress(deliveryAddressId: string): Observable<UserAccountData | AppError> {
-    const response = this.httpClient.delete<UserAccountData>(this.PATH + "/delivery-address/" + deliveryAddressId)
+  deleteDeliveryAddress(deliveryAddressId: string): Observable<UserAccountFormModel | AppError> {
+    const response = this.httpClient.delete<UserAccountFormModel>(this.PATH + "/delivery-address/" + deliveryAddressId)
 
     return response.pipe(
       tap(data => {
         console.log("UserAccountData service response data", data);
-        this.setCurrentData(data as UserAccountData);
+        this.setCurrentData(data as UserAccountFormModel);
       }),
       catchError(serviceErrorHandler)
     )

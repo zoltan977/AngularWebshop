@@ -9,7 +9,7 @@
             <p>
                 {{customerName.name}}
             </p>
-            <button mat-mini-fab color="accent" type="button" (click)="deleteCustomerName(customerName._id)">
+            <button mat-mini-fab color="accent" type="button" (click)="deleteCustomerName(customerName._id!)">
                 <mat-icon>remove</mat-icon>
             </button>
         </mat-card-content>
@@ -29,7 +29,7 @@
                     {{deliveryAddress.city}}
                 </p>
             </div>
-            <button mat-mini-fab color="accent" type="button" (click)="deleteDeliveryAddress(deliveryAddress._id)">
+            <button mat-mini-fab color="accent" type="button" (click)="deleteDeliveryAddress(deliveryAddress._id!)">
                 <mat-icon>remove</mat-icon>
             </button>
         </mat-card-content>
