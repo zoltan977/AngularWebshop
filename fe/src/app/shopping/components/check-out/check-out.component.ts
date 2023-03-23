@@ -5,11 +5,10 @@ import { MatStepper } from '@angular/material/stepper';
 import { Router } from '@angular/router';
 import { ToastService } from 'angular-toastify';
 import { FormError } from 'src/app/shared/errors/formError';
-import { OrderDataToAPI, OrderFormModel } from 'src/app/shopping/models/order-model';
+import { OrderDataToAPI, OrderFormModel, PaymentAndDeliveryFormModel } from 'src/app/shopping/models/order-model';
 import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-forms-values.service';
 import { OrderService } from 'src/app/shopping/services/order.service';
 import setFormErrors from 'src/app/shared/utils/setFormErrors';
-import { PaymentAndDeliveryFormModel } from '../../models/payment-and-delivery-model';
 
 @Component({
   selector: 'app-check-out',
@@ -28,10 +27,10 @@ export class CheckOutComponent {
     private toastService: ToastService,
     private checkoutFormsValuesService: CheckoutFormsValuesService) {}
 
-  submit(orderModel: OrderFormModel, paymentAndDeliveryModel:PaymentAndDeliveryFormModel, 
+  submit(orderModel: OrderFormModel, paymentAndDeliveryModel: PaymentAndDeliveryFormModel, 
     orderForm: FormGroup, paymentAndDeliveryForm: FormGroup, stepper: MatStepper) {
 
-    const orderData: OrderDataToAPI = {...orderModel, ...paymentAndDeliveryModel};
+    const orderData: OrderDataToAPI = new OrderDataToAPI({...orderModel, ...paymentAndDeliveryModel} as OrderDataToAPI);
 
     this.orderService.add(orderData)
     .subscribe({

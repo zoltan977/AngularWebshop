@@ -1,7 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { DeliveryMethods, PaymentMethods } from 'src/app/shopping/models/payment-and-delivery-model';
-import { OrderDataFromAPI, OrderStatusList } from 'src/app/shopping/models/order-model';
-import { DropDownListItemInterface } from "src/app/shopping/models/dropdownlist-item-interface";
+import { DropDownListItemInterface, OrderDataFromAPI, OrderStatusList } from 'src/app/shopping/models/order-model';
 import { OrderService } from 'src/app/shopping/services/order.service';
 import { IsRouteAdmin } from 'src/app/shared/services/is-route-admin.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -17,11 +15,7 @@ import { ToastService } from 'angular-toastify';
 export class OrderDataComponent implements OnInit {
   @Input('order') order?: OrderDataFromAPI
   
-  deliveryMethod?: DropDownListItemInterface;
-  paymentMethod?: DropDownListItemInterface;
-
   orderStatusList?: DropDownListItemInterface[];
-  orderStatus?: DropDownListItemInterface;
   
   selectedStatus?: string;
   prevSelectedStatus?: string;
@@ -68,19 +62,13 @@ export class OrderDataComponent implements OnInit {
 
   ngOnInit(): void {
     console.log("this.order: ", this.order)
-    this.settingTheSelectedStatusAndOrderStatus();
-    this.settingTheDeliveryAndPaymentMethod();
+    this.settingTheSelectedStatusAndOrderStatusList();
   }
   
-  private settingTheSelectedStatusAndOrderStatus() {
+  private settingTheSelectedStatusAndOrderStatusList() {
     this.orderStatusList = OrderStatusList;
-    this.orderStatus = OrderStatusList.find(os => os.value === this.order?.orderStatus);
-    this.selectedStatus = this.orderStatus?.value;
+    this.selectedStatus = this.order?.orderStatus;
     this.prevSelectedStatus = this.selectedStatus;
   }
   
-  private settingTheDeliveryAndPaymentMethod() {
-    this.deliveryMethod = DeliveryMethods.find(dm => dm.value === this.order?.deliveryMethod);
-    this.paymentMethod = PaymentMethods.find(pm => pm.value === this.order?.paymentMethod);
-  }
 }
