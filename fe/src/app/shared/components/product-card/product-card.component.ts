@@ -17,4 +17,8 @@ export class ProductCardComponent {
   addToCart() {
     this.cartService.addToCart(this.product, 1).subscribe()
   }
+
+  get imageUrl() {
+    return this.product.imageURL || 'assets/noimage.jpg';
+  }
 }
