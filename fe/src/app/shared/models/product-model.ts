@@ -8,7 +8,7 @@ export class Product {
 
     @required()
     @minNumber({ value: 0 })
-    price!: string;
+    price!: number;
 
     @required()
     category!: string;

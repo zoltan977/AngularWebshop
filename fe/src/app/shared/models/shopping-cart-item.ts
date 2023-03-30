@@ -9,6 +9,6 @@ export class ShoppingCartItem {
     }
 
     get totalPrice() {
-        return parseInt(this.product.price) * this.quantity
+        return this.product.price * this.quantity
     }
 }
