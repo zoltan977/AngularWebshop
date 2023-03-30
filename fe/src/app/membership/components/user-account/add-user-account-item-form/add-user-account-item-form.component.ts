@@ -59,8 +59,8 @@ export class AddUserAccountItemFormComponent implements OnInit {
     this.userAccountForm?.markAllAsTouched()
   }
 
-  objValues(obj: Object | null) {
-    return Object.values(obj || {}).map(v => v.message || v);
+  errorsToArray(error: Object | null) {
+    return Object.values(error || {}).map(v => v.message || v);
   }
 
   get controls() {

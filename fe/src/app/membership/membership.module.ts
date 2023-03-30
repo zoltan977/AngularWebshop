@@ -1,4 +1,3 @@
-import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
@@ -25,7 +24,6 @@ import { UserAccountComponent } from './components/user-account/user-account.com
   imports: [
     CommonModule,
     SharedModule,
-    MatPasswordStrengthModule,
     RouterModule.forChild([
       {path: 'login', component: LoginComponent},
       {path: 'signup', component: SignupComponent},

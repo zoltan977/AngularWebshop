@@ -1,61 +1,15 @@
 <form (submit)="signUp()" [formGroup]="signUpForm">
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Felhasználónév</mat-label>
-          <input matInput placeholder="username" formControlName="username">
-          <mat-icon matSuffix>account_circle</mat-icon>
-          <mat-error *ngFor="let error of objValues(controls.username.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="username" label="Felhasználónév" placeholder="username" icon-suffix="account_circle"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Email</mat-label>
-          <input matInput placeholder="email" formControlName="email">
-          <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngFor="let error of objValues(controls.email.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="email" label="Email" placeholder="email" icon-suffix="email"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Jelszó</mat-label>
-          <mat-pass-toggle-visibility #toggle matSuffix></mat-pass-toggle-visibility>
-          <input [type]="toggle.type" matInput placeholder="password" formControlName="password">
-          <mat-password-strength 
-            #passwordComponent 
-            [password]="controls.password.value"
-            [enableLowerCaseLetterRule]="false"
-            [enableUpperCaseLetterRule]="false"
-            [enableDigitRule]="true"
-            [enableLengthRule]="true"
-            [enableSpecialCharRule]="false">
-          </mat-password-strength>
-          <mat-password-strength-info
-            *ngIf="(controls.password.errors) && 
-            (controls.password.dirty || controls.password.touched)"
-            class="with-icon-padding" 
-            [minCharsCriteriaMsg]="'Legalább 8 karakter'"
-            [digitsCriteriaMsg]="'Legalább 1 szám'"
-            [passwordComponent]="passwordComponent">
-          </mat-password-strength-info>
-        </mat-form-field>
+        <custom-mat-form-field type="password" [password-strength]="true" formControlName="password" label="Jelszó" placeholder="password"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Jelszó megerősítés</mat-label>
-          <mat-pass-toggle-visibility #toggle2 matSuffix></mat-pass-toggle-visibility>
-          <input [type]="toggle2.type" matInput placeholder="Confirm password"
-                  formControlName="confirmPassword" (keydown)="markConfirmPasswordAsTouched()">
-          <mat-error *ngIf="controls.confirmPassword.errors?.compare as compare">
-            {{compare?.message || compare}}
-          </mat-error>
-          <mat-error *ngIf="controls.confirmPassword.errors?.required">
-            Meg kell erősíteni a jelszót
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field type="password" formControlName="confirmPassword" label="Jelszó megerősítés" placeholder="Confirm password" (keydown)="markConfirmPasswordAsTouched()"></custom-mat-form-field>
     </p>
     <p (click)="markAllInputsAsTouched()">
         <button [disabled]="signUpForm.invalid" mat-raised-button color="primary" type="submit">

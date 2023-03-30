@@ -1,0 +1,41 @@
+<mat-form-field appearance="fill">
+    <mat-label>{{label}}</mat-label>
+    <input *ngIf="!select && type !== 'textarea'" [type]="innerType" matInput [placeholder]="placeholder" [formControl]="control" [matAutocomplete]="auto" />
+    <ng-container *ngIf="passwordStrength">
+      <mat-password-strength 
+        #passwordComponent 
+        [password]="control.value"
+        [enableLowerCaseLetterRule]="false"
+        [enableUpperCaseLetterRule]="false"
+        [enableDigitRule]="true"
+        [enableLengthRule]="true"
+        [enableSpecialCharRule]="false">
+      </mat-password-strength>
+      <mat-password-strength-info
+        *ngIf="(control.errors) && 
+        (control.dirty || control.touched)"
+        class="with-icon-padding" 
+        [minCharsCriteriaMsg]="'Legalább 8 karakter'"
+        [digitsCriteriaMsg]="'Legalább 1 szám'"
+        [passwordComponent]="passwordComponent">
+      </mat-password-strength-info>
+    </ng-container>
+    <textarea *ngIf="!select && type === 'textarea'" matInput [placeholder]="placeholder" [formControl]="control" [matAutocomplete]="auto"></textarea>
+    <mat-autocomplete #auto="matAutocomplete" (optionSelected)="autoCompleter.optionSelected && autoCompleter.optionSelected($event)" [displayWith]="autoCompleter.displayWith || null">
+      <mat-option *ngFor="let option of autoCompleter?.optionList | async" [value]="autoCompleter.getValue(option)">
+        {{autoCompleter.getDisplayValue(option)}}
+      </mat-option>
+    </mat-autocomplete>
+    <mat-select *ngIf="!!select" [formControl]="control">
+      <mat-option value=""></mat-option>
+      <mat-option *ngFor="let li of select.optionList | async" [value]="select.getValue(li)">{{select.getDisplayValue(li)}}</mat-option>
+    </mat-select>
+    <span matTextSuffix *ngIf="!!suffix">{{suffix}}</span>
+    <mat-icon matSuffix *ngIf="!!iconSuffix">{{iconSuffix}}</mat-icon>
+    <button type="button" mat-icon-button matSuffix *ngIf="type === 'password'" (click)="toggleInnerType()">
+      <mat-icon>{{innerType === 'password' ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+    <mat-error *ngFor="let error of errorsToArray(control.errors)">
+      {{error}}
+    </mat-error>
+</mat-form-field>

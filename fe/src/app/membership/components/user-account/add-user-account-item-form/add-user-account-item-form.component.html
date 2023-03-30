@@ -5,20 +5,13 @@
         </mat-error>
     </p>
     <mat-card>
-        <mat-error *ngFor="let error of objValues(controls.customerNames.errors)">
+        <mat-error *ngFor="let error of errorsToArray(controls.customerNames.errors)">
             {{error}}
         </mat-error>
         <mat-card-content [formGroup]="customerName" *ngFor="let customerName of customerNames; let i=index">
             <div>
-                <mat-form-field appearance="fill">
-                    <mat-label>Számlázási név</mat-label>
-                    <input matInput formControlName="name">
-                    <mat-icon matSuffix>account_circle</mat-icon>
-                    <mat-error *ngFor="let error of objValues(customerName.controls.name.errors)">
-                        {{error}}
-                    </mat-error>
-                </mat-form-field>
-                <mat-error *ngFor="let error of objValues(customerName.errors)">
+                <custom-mat-form-field formControlName="name" label="Számlázási név" icon-suffix="account_circle"></custom-mat-form-field>
+                <mat-error *ngFor="let error of errorsToArray(customerName.errors)">
                     {{error}}
                 </mat-error>
             </div>
@@ -33,28 +26,14 @@
         </mat-card-actions>
     </mat-card>
     <mat-card>
-        <mat-error *ngFor="let error of objValues(controls.deliveryAddresses.errors)">
+        <mat-error *ngFor="let error of errorsToArray(controls.deliveryAddresses.errors)">
             {{error}}
         </mat-error>
         <mat-card-content [formGroup]="deliveryAddress" *ngFor="let deliveryAddress of deliveryAddresses; let i=index">
             <div>
-                <mat-form-field appearance="fill">
-                  <mat-label>Szállítási cím</mat-label>
-                  <textarea matInput formControlName="address"></textarea>
-                  <mat-icon matSuffix>location_on</mat-icon>
-                  <mat-error *ngFor="let error of objValues(deliveryAddress.controls.address.errors)">
-                    {{error}}
-                  </mat-error>
-                </mat-form-field>
-                <mat-form-field appearance="fill">
-                    <mat-label>Város</mat-label>
-                    <input matInput formControlName="city">
-                    <mat-icon matSuffix>location_city</mat-icon>
-                    <mat-error *ngFor="let error of objValues(deliveryAddress.controls.city.errors)">
-                        {{error}}
-                    </mat-error>
-                </mat-form-field>
-                <mat-error *ngFor="let error of objValues(deliveryAddress.errors)">
+                <custom-mat-form-field formControlName="address" type="textarea" label="Szállítási cím" icon-suffix="location_on"></custom-mat-form-field>
+                <custom-mat-form-field formControlName="city" label="Város" icon-suffix="location_city"></custom-mat-form-field>
+                <mat-error *ngFor="let error of errorsToArray(deliveryAddress.errors)">
                     {{error}}
                 </mat-error>
             </div>
