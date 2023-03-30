@@ -31,7 +31,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { MatSortModule } from '@angular/material/sort';
 import { IsRouteAdmin } from './services/is-route-admin.service';
-
+import { MatFormFieldComponent } from './components/mat-form-field/mat-form-field.component';
+import { MatPasswordStrengthModule } from '@angular-material-extensions/password-strength';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 
 
 @NgModule({
@@ -44,6 +46,7 @@ import { IsRouteAdmin } from './services/is-route-admin.service';
     ProductCardComponent,
     ProductQuantityComponent,
     NavbarComponent,
+    MatFormFieldComponent,
   ],
   exports: [
     BrowserAnimationsModule,
@@ -66,7 +69,10 @@ import { IsRouteAdmin } from './services/is-route-admin.service';
     MatSelectModule,
     MatButtonModule,
     MatInputModule,
-    MatSortModule
+    MatSortModule,
+    MatAutocompleteModule,
+    MatPasswordStrengthModule,
+    MatFormFieldComponent,
   ],
   providers: [
     AuthGuard,
@@ -93,6 +99,8 @@ import { IsRouteAdmin } from './services/is-route-admin.service';
     MatButtonModule,
     MatInputModule,
     MatSortModule,
+    MatPasswordStrengthModule,
+    MatAutocompleteModule,
     FormsModule,
     ReactiveFormsModule,
     RouterModule.forChild([])
