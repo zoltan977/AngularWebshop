@@ -15,49 +15,13 @@
       </mat-error>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Név</mat-label>
-          <input
-            matInput
-            formControlName="name"
-            [matAutocomplete]="nameAuto">
-          <mat-autocomplete #nameAuto="matAutocomplete">
-            <mat-option *ngFor="let option of filteredCustomerNames | async" [value]="option.name">
-              {{option.name}}
-            </mat-option>
-          </mat-autocomplete>
-          <mat-error *ngFor="let error of objValues(controls.name.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="name" label="Név" [auto-completer]="nameAutoCompleterProps"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Cím</mat-label>
-          <textarea
-            matInput
-            formControlName="address"
-            [matAutocomplete]="addressAuto">
-          </textarea>
-          <mat-autocomplete #addressAuto="matAutocomplete"
-          (optionSelected)="deliveryAddressSelected($event)" [displayWith]="displayDeliveryAddressValue">
-            <mat-option *ngFor="let option of filteredDeliveryAddresses | async" [value]="option">
-              {{option.city}} - {{option.address}}
-            </mat-option>
-          </mat-autocomplete>
-          <mat-error *ngFor="let error of objValues(controls.address.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="address" type="textarea" label="Cím" [auto-completer]="addressAutoCompleterProps"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Város</mat-label>
-          <input matInput formControlName="city">
-          <mat-error *ngFor="let error of objValues(controls.city.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="city" label="Város"></custom-mat-form-field>
     </p>
     
     <p>

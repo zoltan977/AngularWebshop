@@ -9,7 +9,7 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <mat-error *ngFor="let error of objValues(controls.paymentMethod.errors)">
+      <mat-error *ngFor="let error of errorsToArray(controls.paymentMethod.errors)">
         {{error}}
       </mat-error>
     </div>
@@ -23,7 +23,7 @@
           </mat-radio-button>
         </mat-radio-group>
       </div>
-      <mat-error *ngFor="let error of objValues(controls.deliveryMethod.errors)">
+      <mat-error *ngFor="let error of errorsToArray(controls.deliveryMethod.errors)">
         {{error}}
       </mat-error>
     </div>

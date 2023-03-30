@@ -13,7 +13,6 @@ import { AuthGuard } from '../shared/services/auth-guard.service';
 import { OrderListComponent } from '../shared/components/order-list/order-list.component';
 import { OrderDetailsComponent } from '../shared/components/order-list/order-details/order-details.component';
 import { MatStepperModule } from '@angular/material/stepper';
-import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatRadioModule } from '@angular/material/radio';
 
 
@@ -30,7 +29,6 @@ import { MatRadioModule } from '@angular/material/radio';
   ],
   imports: [
     MatStepperModule,
-    MatAutocompleteModule,
     MatRadioModule,
     CommonModule,
     SharedModule,

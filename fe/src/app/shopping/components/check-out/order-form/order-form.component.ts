@@ -10,6 +10,7 @@ import { CheckoutFormsValuesService } from 'src/app/shopping/services/checkout-f
 import { ShoppingCartService } from 'src/app/shared/services/shopping-cart.service';
 import { UserAccountService } from 'src/app/membership/services/user-account.service';
 import { orderCartValidator } from 'src/app/shopping/utils/validators/orderCartValidator';
+import { DropDownListElementInterface } from 'src/app/shared/components/mat-form-field/mat-form-field.component';
 
 @Component({
   selector: 'order-form',
@@ -38,10 +39,6 @@ export class OrderFormComponent {
       this.deliveryAddresses = userAccountService.currentUserAccountData.deliveryAddresses;
   }
 
-  objValues(obj: Object | null) {
-    return Object.values(obj || {}).map(v => v.message || v);
-  }
-
   deliveryAddressSelected(event: MatAutocompleteSelectedEvent) {
     this.controls.address.setValue(event.option.value.address)
     this.controls.city.setValue(event.option.value.city)
@@ -57,6 +54,24 @@ export class OrderFormComponent {
 
   get controls() {
     return this.orderForm?.controls;
+  }
+
+  get nameAutoCompleterProps(): DropDownListElementInterface {
+    return {
+      optionList: this.filteredCustomerNames, 
+      getValue: (option: CustomerName) => option.name, 
+      getDisplayValue: (option: CustomerName) => option.name
+    }
+  }
+
+  get addressAutoCompleterProps(): DropDownListElementInterface {
+    return {
+      optionList: this.filteredDeliveryAddresses, 
+      getValue: (option: DeliveryAddress) => option, 
+      getDisplayValue: (option: DeliveryAddress) => `${option.city} - ${option.address}`,
+      optionSelected: this.deliveryAddressSelected.bind(this),
+      displayWith: this.displayDeliveryAddressValue
+    }
   }
 
   ngOnInit(): void {
