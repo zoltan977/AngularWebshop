@@ -12,6 +12,7 @@ import setFormErrors from 'src/app/shared/utils/setFormErrors';
 import { Product } from '../../../../shared/models/product-model';
 import { ConfirmDialogComponent } from '../../../../shared/components/confirm-dialog/confirm-dialog.component';
 import { ToastService } from 'angular-toastify';
+import { DropDownListElementInterface } from 'src/app/shared/components/mat-form-field/mat-form-field.component';
 
 @Component({
   selector: 'app-product-form-component',
@@ -35,6 +36,14 @@ export class ProductFormComponent implements OnInit {
       this.id = route.snapshot.paramMap.get('id')
   }
 
+  get selectProps(): DropDownListElementInterface {
+    return {
+      optionList: this.categories$, 
+      getValue: (option: ICategory) => option.name, 
+      getDisplayValue: (option: ICategory) => option.displayName
+    };
+  }
+
   ngOnInit(): void {
     this.categories$ = this.typeService.getCategoryList() as Observable<ICategory[]>;
     this.productModel = new Product();
@@ -43,10 +52,6 @@ export class ProductFormComponent implements OnInit {
     if (this.id) {
       this.populateForm();
     }
-  }
-
-  objValues(obj: Object | null) {
-    return Object.values(obj || {}).map(v => v.message || v);
   }
 
   private populateForm() {
@@ -130,9 +135,5 @@ export class ProductFormComponent implements OnInit {
 
   markAllInputsAsTouched() {
     this.newProductForm?.markAllAsTouched();
-  }
-
-  get controls() {
-    return this.newProductForm?.controls;
   }
 }

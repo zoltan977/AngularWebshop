@@ -1,43 +1,15 @@
 <form (submit)="save()" [formGroup]="newProductForm">
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Termék</mat-label>
-          <input matInput placeholder="title" formControlName="title">
-          <mat-error *ngFor="let error of objValues(controls.title.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="title" label="Termék" placeholder="title"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Ár</mat-label>
-          <input type="number" matInput placeholder="price" formControlName="price">
-          <span matTextSuffix>Ft</span>
-          <mat-error *ngFor="let error of objValues(controls.price.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="price" label="Ár" placeholder="price" suffix="Ft" type="number"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Kategória</mat-label>
-          <mat-select formControlName="category">
-            <mat-option value=""></mat-option>
-            <mat-option *ngFor="let c of categories$ | async" [value]="c.name">{{c.displayName}}</mat-option>
-          </mat-select>
-          <mat-error *ngFor="let error of objValues(controls.category.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="category" label="Kategória" [select]="selectProps"></custom-mat-form-field>
     </p>
     <p>
-        <mat-form-field appearance="fill">
-          <mat-label>Kép URL</mat-label>
-          <input matInput placeholder="image url" formControlName="imageURL">
-          <mat-error *ngFor="let error of objValues(controls.imageURL.errors)">
-            {{error}}
-          </mat-error>
-        </mat-form-field>
+        <custom-mat-form-field formControlName="imageURL" label="Kép URL" placeholder="image url"></custom-mat-form-field>
     </p>
     <p (click)="markAllInputsAsTouched()">
         <button [disabled]="newProductForm.invalid" mat-raised-button color="primary" type="submit">
