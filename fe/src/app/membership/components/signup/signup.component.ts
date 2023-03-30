@@ -17,18 +17,10 @@ export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService, private formBuilder: RxFormBuilder) {
   }
-
-  get controls() {
-    return this.signUpForm.controls
-  }
-  
+    
   ngOnInit(): void {
     this.signUpFormModel = new SignUpFormModel();
     this.signUpForm = this.formBuilder.formGroup(this.signUpFormModel);
-  }
-
-  objValues(obj: Object | null) {
-    return Object.values(obj || {}).map(v => v.message || v);
   }
 
   markConfirmPasswordAsTouched() {

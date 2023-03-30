@@ -9,13 +9,12 @@ form {
             align-items: center;
             gap: 20px;
             
-            div,
-            mat-form-field {
+            div {
                 width: 100%;
-            }
 
-            div > mat-error {
-                margin-top: -20px;
+                & > mat-error {
+                    margin-top: -20px;
+                }
             }
         }
     }
