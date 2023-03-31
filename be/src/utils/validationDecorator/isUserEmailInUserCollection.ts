@@ -1,5 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import UserModel from "../../models/user/user";
+import { ErrorMessage } from "../../constants/object/ErrorMessage";
 
 @ValidatorConstraint({ async: true })
 export class IsUserEmailInUserCollectionConstraint implements ValidatorConstraintInterface {
@@ -11,6 +12,10 @@ export class IsUserEmailInUserCollectionConstraint implements ValidatorConstrain
             return Promise.resolve(false);
         }
         return Promise.resolve(true);
+    }
+
+    defaultMessage(validationArguments: ValidationArguments): string {
+        return ErrorMessage.NOT_A_VALID_USER;
     }
 }
 

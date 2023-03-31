@@ -1,5 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import CategoryModel from "../../models/category/category";
+import { ErrorMessage } from "../../constants/object/ErrorMessage";
 
 @ValidatorConstraint({ async: true })
 export class IsCategoryInProductCategoriesConstraint implements ValidatorConstraintInterface {
@@ -11,6 +12,10 @@ export class IsCategoryInProductCategoriesConstraint implements ValidatorConstra
             return Promise.resolve(false);
         }
         return Promise.resolve(true);
+    }
+
+    defaultMessage(validationArguments: ValidationArguments): string {
+        return ErrorMessage.NOT_A_VALID_CATEGORY;
     }
 }
 

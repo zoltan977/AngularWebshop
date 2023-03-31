@@ -1,5 +1,6 @@
 import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import ProductModel from "../../models/product/product";
+import { ErrorMessage } from "../../constants/object/ErrorMessage";
 
 @ValidatorConstraint({ async: true })
 export class IsProductTitleAlreadyExistConstraint implements ValidatorConstraintInterface {
@@ -11,6 +12,10 @@ export class IsProductTitleAlreadyExistConstraint implements ValidatorConstraint
             return Promise.resolve(false);
         }
         return Promise.resolve(true);
+    }
+
+    defaultMessage(validationArguments: ValidationArguments): string {
+        return ErrorMessage.PRODUCT_TITLE_ALREADY_EXISTS;
     }
 }
 
