@@ -1,4 +1,4 @@
-import { IsString } from "class-validator";
+import { IsString } from "../utils/myClassValidator";
 
 interface DeliveryAddressDTOInterface {
     address: string;

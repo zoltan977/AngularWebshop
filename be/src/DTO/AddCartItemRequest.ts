@@ -1,8 +1,9 @@
 import { Type } from 'class-transformer';
-import { IsDefined, IsNumber, IsOptional, IsString, ValidateNested } from 'class-validator';
+import { IsDefined, IsOptional, ValidateNested } from 'class-validator';
 import { ProductModelInterface } from '../models/product/product';
 import { ProductDTO } from './ProductDTO';
 import 'reflect-metadata';
+import { IsNumber, IsString } from '../utils/myClassValidator';
 
 export interface AddCartItemRequestInterface {
     cartId?: string;

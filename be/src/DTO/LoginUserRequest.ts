@@ -1,5 +1,5 @@
-import { IsEmail, IsString } from 'class-validator';
-import { ErrorMessage } from '../constants/enum/ErrorMessage';
+import { RegularExpressions } from "../constants/object/regularExpressions";
+import { IsEmail, IsString, Matches, MinLength } from "../utils/myClassValidator";
 
 export interface LoginUserRequestInterface {
     email: string;
@@ -7,9 +7,11 @@ export interface LoginUserRequestInterface {
 }
 
 export class LoginUserRequest implements LoginUserRequestInterface {
-    @IsEmail(undefined, {message: ErrorMessage.INVALID_EMAIL})
+    @IsEmail()
     public email!: string;
 
     @IsString()
+    @MinLength(8)
+    @Matches(RegularExpressions.AT_LEAST_ONE_NUMBER)
     public password!: string;
 }

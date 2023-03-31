@@ -1,9 +1,10 @@
 import { Type } from 'class-transformer';
-import { IsIn, IsString, ValidateNested, IsDefined } from 'class-validator';
+import { IsDefined, ValidateNested } from 'class-validator';
+
 import { DeliveryMethodType } from '../constants/enum/DeliveryMethodType';
-import { ErrorMessage } from '../constants/enum/ErrorMessage';
 import { PaymentMethodType } from '../constants/enum/PaymentMethodType';
 import { OrderModelInterface } from '../models/order/order';
+import { IsEmail, IsIn, IsString } from '../utils/myClassValidator';
 import { IsUserEmailInUserCollection } from '../utils/validationDecorator/isUserEmailInUserCollection';
 import { CartDTO } from './CartDTO';
 
@@ -25,8 +26,8 @@ export class AddOrderRequest implements AddOrderRequestInterface {
     @Type(() => CartDTO)
     public cart!: CartDTO;
 
-    @IsString()
-    @IsUserEmailInUserCollection({ message: ErrorMessage.NOT_A_VALID_USER})
+    @IsEmail()
+    @IsUserEmailInUserCollection()
     public userEmail!: string;
 
     @IsIn([DeliveryMethodType.CLICK_AND_COLLECT, DeliveryMethodType.HOME_DELIVERY, DeliveryMethodType.LOCKER_DELIVERY])

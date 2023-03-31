@@ -1,6 +1,5 @@
-import { IsNumber, IsString, IsUrl } from 'class-validator';
-import { ErrorMessage } from '../constants/enum/ErrorMessage';
 import { ProductModelInterface } from '../models/product/product';
+import { IsInt, IsNumber, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
 
 export class ProductDTO implements ProductModelInterface {
     @IsString()
@@ -9,12 +8,13 @@ export class ProductDTO implements ProductModelInterface {
     @IsString()
     public title!: string;
 
-    @IsNumber()
+    @IsInt()
+    @IsPositive()
     public price!: number;
 
     @IsString()
     public category!: string;
 
-    @IsUrl(undefined, {message: ErrorMessage.INVALID_URL})
+    @IsUrl()
     public imageURL!: string;
 }
