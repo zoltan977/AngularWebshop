@@ -1,7 +1,7 @@
-import { IsNumber, IsString, IsUrl } from 'class-validator';
-import { ErrorMessage } from '../constants/enum/ErrorMessage';
-import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
 import { ProductModelInterface } from '../models/product/product';
+import { IsInt, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
+import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
+
 export class UpdateProductRequest implements ProductModelInterface {
     @IsString()
     public _id!: string;
@@ -9,13 +9,14 @@ export class UpdateProductRequest implements ProductModelInterface {
     @IsString()
     public title!: string;
 
-    @IsNumber(undefined, {message: ErrorMessage.INVALID_NUMBER})
+    @IsInt()
+    @IsPositive()
     public price!: number;
 
     @IsString()
-    @IsCategoryInProductCategories({ message: ErrorMessage.NOT_A_VALID_CATEGORY})
+    @IsCategoryInProductCategories()
     public category!: string;
 
-    @IsUrl(undefined, {message: ErrorMessage.INVALID_URL})
+    @IsUrl()
     public imageURL!: string;
 }

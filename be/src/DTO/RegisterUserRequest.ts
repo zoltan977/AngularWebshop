@@ -1,6 +1,6 @@
-import { IsEmail, IsString } from 'class-validator';
+import { RegularExpressions } from '../constants/object/regularExpressions';
+import { IsEmail, IsString, Matches, MinLength } from '../utils/myClassValidator';
 import { IsEmailAlreadyRegistered } from '../utils/validationDecorator/isEmailAlreadyRegistered';
-import { ErrorMessage } from '../constants/enum/ErrorMessage'
 
 export interface RegisterUserRequestInterface {
     email: string;
@@ -9,13 +9,15 @@ export interface RegisterUserRequestInterface {
 }
 
 export class RegisterUserRequest implements RegisterUserRequestInterface {
-    @IsEmail(undefined, {message: ErrorMessage.INVALID_EMAIL})
-    @IsEmailAlreadyRegistered({ message: ErrorMessage.USER_EMAIL_ALREADY_EXISTS })
+    @IsEmail()
+    @IsEmailAlreadyRegistered()
     public email!: string;
 
     @IsString()
     public username!: string;
 
     @IsString()
+    @MinLength(8)
+    @Matches(RegularExpressions.AT_LEAST_ONE_NUMBER)
     public password!: string;
 }

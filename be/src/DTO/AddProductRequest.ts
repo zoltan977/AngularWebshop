@@ -1,5 +1,4 @@
-import { IsNumber, IsString, IsUrl } from 'class-validator';
-import { ErrorMessage } from '../constants/enum/ErrorMessage';
+import { IsInt, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
 import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
 import { IsProductTitleAlreadyExist } from '../utils/validationDecorator/isProductTitleAlreadyExist';
 
@@ -12,16 +11,17 @@ export interface AddProductRequestInterface {
 
 export class AddProductRequest implements AddProductRequestInterface {
     @IsString()
-    @IsProductTitleAlreadyExist({ message: ErrorMessage.PRODUCT_TITLE_ALREADY_EXISTS })
+    @IsProductTitleAlreadyExist()
     public title!: string;
 
-    @IsNumber(undefined, {message: ErrorMessage.INVALID_NUMBER})
+    @IsInt()
+    @IsPositive()
     public price!: number;
 
     @IsString()
-    @IsCategoryInProductCategories({ message: ErrorMessage.NOT_A_VALID_CATEGORY})
+    @IsCategoryInProductCategories()
     public category!: string;
 
-    @IsUrl(undefined, {message: ErrorMessage.INVALID_URL})
+    @IsUrl()
     public imageURL!: string;
 }

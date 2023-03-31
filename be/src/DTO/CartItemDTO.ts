@@ -1,7 +1,8 @@
 import { Type } from 'class-transformer';
-import { IsDefined, IsNumber, ValidateNested } from 'class-validator';
+import { IsDefined, ValidateNested } from 'class-validator';
 import { ItemModelInterface } from '../models/cart/cart';
 import { ProductDTO } from './ProductDTO';
+import { IsInt, IsNumber, IsPositive } from '../utils/myClassValidator';
 
 export class CartItemDTO implements ItemModelInterface {
     
@@ -10,6 +11,7 @@ export class CartItemDTO implements ItemModelInterface {
     @Type(() => ProductDTO)
     public product!: ProductDTO;
 
-    @IsNumber()
+    @IsInt()
+    @IsPositive()
     public quantity!: number;
 }
