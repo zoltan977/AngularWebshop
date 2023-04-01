@@ -1,6 +1,8 @@
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
+import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+
+import { ErrorMessage } from '../../constants/object/ErrorMessage';
 import UserModel from '../../models/user/user';
-import { ErrorMessage } from "../../constants/object/ErrorMessage";
+import { getDecoratorFunction } from './utils/getDecoratorFunction';
 
 @ValidatorConstraint({ async: true })
 export class IsEmailAlreadyRegisteredConstraint implements ValidatorConstraintInterface {
@@ -19,14 +21,4 @@ export class IsEmailAlreadyRegisteredConstraint implements ValidatorConstraintIn
     }
 }
 
-export const IsEmailAlreadyRegistered = (validationOptions?: ValidationOptions) => {
-    return (object: Object, propertyName: string): void => {
-        registerDecorator({
-            target: object.constructor,
-            propertyName: propertyName,
-            options: validationOptions,
-            constraints: [],
-            validator: IsEmailAlreadyRegisteredConstraint,
-        });
-    };
-};
+export const IsEmailAlreadyRegistered = getDecoratorFunction(IsEmailAlreadyRegisteredConstraint);

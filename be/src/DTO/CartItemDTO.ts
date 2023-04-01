@@ -2,7 +2,7 @@ import { Type } from 'class-transformer';
 import { IsDefined, ValidateNested } from 'class-validator';
 import { ItemModelInterface } from '../models/cart/cart';
 import { ProductDTO } from './ProductDTO';
-import { IsInt, IsNumber, IsPositive } from '../utils/myClassValidator';
+import { IsInt, IsNumber, IsPositive } from '../utils/classValidatorWithErrorMessage';
 
 export class CartItemDTO implements ItemModelInterface {
     

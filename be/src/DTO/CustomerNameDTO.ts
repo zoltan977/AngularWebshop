@@ -1,4 +1,4 @@
-import { IsString } from "../utils/myClassValidator";
+import { IsString } from "../utils/classValidatorWithErrorMessage";
 
 interface CustomerNameDTOInterface {
     name: string;

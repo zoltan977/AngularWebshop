@@ -1,6 +1,8 @@
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
-import ProductModel from "../../models/product/product";
-import { ErrorMessage } from "../../constants/object/ErrorMessage";
+import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+
+import { ErrorMessage } from '../../constants/object/ErrorMessage';
+import ProductModel from '../../models/product/product';
+import { getDecoratorFunction } from './utils/getDecoratorFunction';
 
 @ValidatorConstraint({ async: true })
 export class IsProductTitleAlreadyExistConstraint implements ValidatorConstraintInterface {
@@ -19,14 +21,4 @@ export class IsProductTitleAlreadyExistConstraint implements ValidatorConstraint
     }
 }
 
-export const IsProductTitleAlreadyExist = (validationOptions?: ValidationOptions) => {
-    return (object: Object, propertyName: string): void => {
-        registerDecorator({
-            target: object.constructor,
-            propertyName: propertyName,
-            options: validationOptions,
-            constraints: [],
-            validator: IsProductTitleAlreadyExistConstraint,
-        });
-    };
-};
+export const IsProductTitleAlreadyExist = getDecoratorFunction(IsProductTitleAlreadyExistConstraint);
