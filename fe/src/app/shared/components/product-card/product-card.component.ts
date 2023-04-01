@@ -15,7 +15,7 @@ export class ProductCardComponent {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.product, 1).subscribe()
+    this.cartService.addToCart(this.product).subscribe()
   }
 
   get imageUrl() {

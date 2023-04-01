@@ -27,9 +27,9 @@ export class ShoppingCartService {
     return this.getCartId()
   }
 
-  addToCart(product: Product, quantity: number) {
+  addToCart(product: Product) {
     const cartId = this.getCartId()
-    const response = this.httpClient.post<ShoppingCart>(this.PATH + '/add', {product, quantity, cartId});
+    const response = this.httpClient.post<ShoppingCart>(this.PATH + '/add', {product, cartId});
 
     return response.pipe(
       tap((cart: ShoppingCart) => {
@@ -42,12 +42,12 @@ export class ShoppingCartService {
       )
   }
 
-  removeFromCart(product: Product, quantity: number): Observable<ShoppingCart | AppError> {
+  removeFromCart(product: Product): Observable<ShoppingCart | AppError> {
     const cartId = this.getCartId()
     if (!cartId) {
       return of(new ShoppingCart())
     }
-    const response = this.httpClient.post<ShoppingCart>(this.PATH + '/remove', {product, quantity, cartId});
+    const response = this.httpClient.post<ShoppingCart>(this.PATH + '/remove', {product, cartId});
 
     return response.pipe(
       tap((cart: ShoppingCart) => {
