@@ -136,4 +136,8 @@ export class ProductFormComponent implements OnInit {
   markAllInputsAsTouched() {
     this.newProductForm?.markAllAsTouched();
   }
+
+  errorsToArray(error: Object | null | undefined) {
+    return Object.values(error || {}).map(v => v.message || v);
+  }
 }
