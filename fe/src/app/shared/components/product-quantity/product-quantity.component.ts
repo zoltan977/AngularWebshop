@@ -15,10 +15,10 @@ export class ProductQuantityComponent {
   }
 
   addToCart() {
-    this.cartService.addToCart(this.product, 1).subscribe()
+    this.cartService.addToCart(this.product).subscribe()
   }
 
   removeFromCart() {
-    this.cartService.removeFromCart(this.product, 1).subscribe();
+    this.cartService.removeFromCart(this.product).subscribe();
   }
 }
