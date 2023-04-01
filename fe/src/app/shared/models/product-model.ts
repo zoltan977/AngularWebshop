@@ -1,6 +1,7 @@
-import { minNumber, required, url } from "@rxweb/reactive-form-validators";
+import { minNumber, required, url, prop } from "@rxweb/reactive-form-validators";
 
 export class Product {
+    @prop()
     _id?: string;
 
     @required()

@@ -1,5 +1,10 @@
 <form (submit)="save()" [formGroup]="newProductForm">
     <p>
+        <mat-error *ngFor="let error of errorsToArray(newProductForm.controls._id?.errors)">
+            {{error}}
+        </mat-error>
+    </p>
+    <p>
         <custom-mat-form-field formControlName="title" label="Termék" placeholder="title"></custom-mat-form-field>
     </p>
     <p>
