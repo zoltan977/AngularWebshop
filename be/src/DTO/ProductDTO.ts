@@ -1,5 +1,5 @@
 import { ProductModelInterface } from '../models/product/product';
-import { IsInt, IsNumber, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
+import { IsInt, IsPositive, IsString, IsUrl } from '../utils/classValidatorWithErrorMessage';
 
 export class ProductDTO implements ProductModelInterface {
     @IsString()

@@ -1,5 +1,5 @@
 import { ProductModelInterface } from '../models/product/product';
-import { IsInt, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
+import { IsInt, IsPositive, IsString, IsUrl } from '../utils/classValidatorWithErrorMessage';
 import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
 
 export class UpdateProductRequest implements ProductModelInterface {

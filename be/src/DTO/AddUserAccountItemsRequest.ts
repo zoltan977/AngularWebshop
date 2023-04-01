@@ -1,7 +1,7 @@
 import { Type } from 'class-transformer';
 import { IsArray, IsDefined, ValidateNested } from 'class-validator';
 
-import { IsEmail } from '../utils/myClassValidator';
+import { IsEmail } from '../utils/classValidatorWithErrorMessage';
 import { CustomerNameDTO } from './CustomerNameDTO';
 import { DeliveryAddressDTO } from './DeliveryAddressDTO';
 

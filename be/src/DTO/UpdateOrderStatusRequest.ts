@@ -1,5 +1,5 @@
 import { OrderStatusType } from '../constants/enum/OrderStatusType';
-import { IsIn, IsString } from '../utils/myClassValidator';
+import { IsIn, IsString } from '../utils/classValidatorWithErrorMessage';
 
 export interface UpdateOrderStatusRequestInterface {
     _id: string;

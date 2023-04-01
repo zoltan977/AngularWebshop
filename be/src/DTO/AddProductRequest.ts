@@ -1,4 +1,4 @@
-import { IsInt, IsPositive, IsString, IsUrl } from '../utils/myClassValidator';
+import { IsInt, IsPositive, IsString, IsUrl } from '../utils/classValidatorWithErrorMessage';
 import { IsCategoryInProductCategories } from '../utils/validationDecorator/isCategoryInProductCategories';
 import { IsProductTitleAlreadyExist } from '../utils/validationDecorator/isProductTitleAlreadyExist';
 

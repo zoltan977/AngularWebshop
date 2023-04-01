@@ -1,5 +1,5 @@
 import { RegularExpressions } from "../constants/object/regularExpressions";
-import { IsEmail, IsString, Matches, MinLength } from "../utils/myClassValidator";
+import { IsEmail, IsString, Matches, MinLength } from "../utils/classValidatorWithErrorMessage";
 
 export interface LoginUserRequestInterface {
     email: string;

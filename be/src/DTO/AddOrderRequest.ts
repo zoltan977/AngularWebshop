@@ -4,7 +4,7 @@ import { IsDefined, ValidateNested } from 'class-validator';
 import { DeliveryMethodType } from '../constants/enum/DeliveryMethodType';
 import { PaymentMethodType } from '../constants/enum/PaymentMethodType';
 import { OrderModelInterface } from '../models/order/order';
-import { IsEmail, IsIn, IsString } from '../utils/myClassValidator';
+import { IsEmail, IsIn, IsString } from '../utils/classValidatorWithErrorMessage';
 import { IsUserEmailInUserCollection } from '../utils/validationDecorator/isUserEmailInUserCollection';
 import { CartDTO } from './CartDTO';
 
