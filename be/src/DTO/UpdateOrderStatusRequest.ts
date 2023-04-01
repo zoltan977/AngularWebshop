@@ -1,5 +1,7 @@
 import { OrderStatusType } from '../constants/enum/OrderStatusType';
+import OrderModel from '../models/order/order';
 import { IsIn, IsString } from '../utils/classValidatorWithErrorMessage';
+import { IsIdValid } from '../utils/validationDecorator/isIdValid';
 
 export interface UpdateOrderStatusRequestInterface {
     _id: string;
@@ -8,6 +10,7 @@ export interface UpdateOrderStatusRequestInterface {
 
 export class UpdateOrderStatusRequest implements UpdateOrderStatusRequestInterface {
     @IsString()
+    @IsIdValid(OrderModel)
     public _id!: string;
     
     @IsIn([

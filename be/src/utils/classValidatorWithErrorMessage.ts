@@ -34,7 +34,7 @@ export const IsUrl = (options?: ValidatorJS.IsURLOptions, validationOptions?: Va
 _IsUrl(options, {...validationOptions, message: ErrorMessage.INVALID_URL});
 
 export const IsNumber = (options: IsNumberOptions = {}, validationOptions?: ValidationOptions): PropertyDecorator => 
-_IsNumber(options, {...validationOptions, message: ErrorMessage.INVALID_NUMBER});
+_IsNumber(options, {...validationOptions, message: ErrorMessage.NOT_NUMBER});
 
 export const MinLength = (min: number, validationOptions?: ValidationOptions): PropertyDecorator =>
 _MinLength(min, {...validationOptions, message: ErrorMessage.MIN_LENGTH("$constraint1") });
