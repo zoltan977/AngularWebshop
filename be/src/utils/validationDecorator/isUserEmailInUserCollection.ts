@@ -1,6 +1,8 @@
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
-import UserModel from "../../models/user/user";
-import { ErrorMessage } from "../../constants/object/ErrorMessage";
+import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+
+import { ErrorMessage } from '../../constants/object/ErrorMessage';
+import UserModel from '../../models/user/user';
+import { getDecoratorFunction } from './utils/getDecoratorFunction';
 
 @ValidatorConstraint({ async: true })
 export class IsUserEmailInUserCollectionConstraint implements ValidatorConstraintInterface {
@@ -19,14 +21,4 @@ export class IsUserEmailInUserCollectionConstraint implements ValidatorConstrain
     }
 }
 
-export const IsUserEmailInUserCollection = (validationOptions?: ValidationOptions) => {
-    return (object: Object, propertyName: string): void => {
-        registerDecorator({
-            target: object.constructor,
-            propertyName: propertyName,
-            options: validationOptions,
-            constraints: [],
-            validator: IsUserEmailInUserCollectionConstraint,
-        });
-    };
-};
+export const IsUserEmailInUserCollection = getDecoratorFunction(IsUserEmailInUserCollectionConstraint);

@@ -1,6 +1,8 @@
-import { registerDecorator, ValidationArguments, ValidationOptions, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
-import CategoryModel from "../../models/category/category";
-import { ErrorMessage } from "../../constants/object/ErrorMessage";
+import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from 'class-validator';
+
+import { ErrorMessage } from '../../constants/object/ErrorMessage';
+import CategoryModel from '../../models/category/category';
+import { getDecoratorFunction } from './utils/getDecoratorFunction';
 
 @ValidatorConstraint({ async: true })
 export class IsCategoryInProductCategoriesConstraint implements ValidatorConstraintInterface {
@@ -19,14 +21,4 @@ export class IsCategoryInProductCategoriesConstraint implements ValidatorConstra
     }
 }
 
-export const IsCategoryInProductCategories = (validationOptions?: ValidationOptions) => {
-    return (object: Object, propertyName: string): void => {
-        registerDecorator({
-            target: object.constructor,
-            propertyName: propertyName,
-            options: validationOptions,
-            constraints: [],
-            validator: IsCategoryInProductCategoriesConstraint,
-        });
-    };
-};
+export const IsCategoryInProductCategories = getDecoratorFunction(IsCategoryInProductCategoriesConstraint);
