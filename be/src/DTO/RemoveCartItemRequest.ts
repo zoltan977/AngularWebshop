@@ -4,13 +4,12 @@ import { Type } from 'class-transformer';
 import { IsDefined, ValidateNested } from 'class-validator';
 
 import { ProductModelInterface } from '../models/product/product';
-import { IsInt, IsPositive, IsString } from '../utils/myClassValidator';
+import { IsString } from '../utils/classValidatorWithErrorMessage';
 import { ProductDTO } from './ProductDTO';
 
 export interface RemoveCartItemRequestInterface {
     cartId: string;
     product: ProductModelInterface;
-    quantity: number;
 }
 
 export class RemoveCartItemRequest implements RemoveCartItemRequestInterface {
@@ -21,8 +20,4 @@ export class RemoveCartItemRequest implements RemoveCartItemRequestInterface {
     @ValidateNested()
     @Type(() => ProductDTO)
     public product!: ProductDTO;
-
-    @IsInt()
-    @IsPositive()
-    public quantity!: number;
 }

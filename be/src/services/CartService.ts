@@ -14,7 +14,7 @@ class CartService {
             dateCreated: new Date().getTime(),
             items: [{
               product: cartData.product,
-              quantity: cartData.quantity
+              quantity: 1
             }]
           });
           savedCart = await newCart.save();
@@ -22,7 +22,7 @@ class CartService {
           const cartToUpdate = await CartModel.findById(cartData.cartId);
           const itemToUpdate = cartToUpdate!.items.find(item => item.product._id.toString() === cartData.product._id.toString())
           if (itemToUpdate) {
-            itemToUpdate.quantity += cartData.quantity;
+            itemToUpdate.quantity += 1;
           } else {
             cartToUpdate!.items.push({
               product: cartData.product,
@@ -49,7 +49,7 @@ class CartService {
         const cartToUpdate = await CartModel.findById(cartData.cartId);
         let itemToUpdate = cartToUpdate!.items.find(item => item.product._id.toString() === cartData.product._id.toString())
         
-        itemToUpdate!.quantity -= cartData.quantity;
+        itemToUpdate!.quantity -= 1;
         if (itemToUpdate!.quantity === 0) {
           cartToUpdate!.items = cartToUpdate!.items.filter(item => item.product._id.toString() !== cartData.product._id.toString())
         }
