@@ -20,3 +20,8 @@ export const getGenericDecoratorFunctionWithProperty = (validationConstrintClass
 <T>(property: keyof T, validationOptions?: ValidationOptions) => {
     return getRegisterDecoratorCaller([property], validationConstrintClass, validationOptions)
 };
+
+export const getDecoratorFunctionWithParameter = (validationConstrintClass: Function | ValidatorConstraintInterface) => 
+(parameter: any, validationOptions?: ValidationOptions) => {
+    return getRegisterDecoratorCaller([parameter], validationConstrintClass, validationOptions)
+};
