@@ -20,6 +20,10 @@ Simple Angular webshop with fix product categories
     - admin@admin.hu
     - admin1234
 
+## Demo
+
+You can test the running upplication on this [demo](https://angular-webshop.onrender.com) link.
+
 ## Tech-stack:
 
 - [Angular](https://angular.io/) - A JavaScript framework for building user interfaces
