@@ -22,7 +22,7 @@ Simple Angular webshop with fix product categories
 
 ## Demo
 
-You can test the running application on this [demo](https://angular-webshop.onrender.com) link.
+You can test the running application on this [demo](https://angular-webshop.onrender.com) link.(It may take a few minutes to start...)
 
 ## Tech-stack:
 
