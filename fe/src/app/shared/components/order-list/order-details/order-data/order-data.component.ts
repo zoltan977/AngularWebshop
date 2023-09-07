@@ -49,7 +49,7 @@ export class OrderDataComponent implements OnInit {
     })
     .subscribe({
       next: order => {
-        this.order = order as OrderDataFromAPI;
+        this.order = new OrderDataFromAPI(order as OrderDataFromAPI);
         this.toastService.success("A módosítás sikeres volt");
         this.prevSelectedStatus = this.selectedStatus;
       },
